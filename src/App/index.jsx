@@ -1,6 +1,8 @@
 import React from "react";
 import "../styles/index.scss";
+import Login from "./Login";
 
-const App = () => <div>Our code goes here //</div>;
+const App = () => <Login />;
+
 
 export default App;
