@@ -1,32 +1,47 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const LoginForm = ({ clicked }) => (
-  <div className="login-form">
+const LoginForm = ({ onChange, onClick, value, pending }) => (
+  <>
     <form> 
-      <h3 className="login-form__header">
-        Welcome to your Gifting Board
-      </h3>
       <label> Email:
-        <input type="email" className="form-control" />
+        <input
+          onChange={onChange}
+          value={value.email || ""}
+          type="email"
+          name="email"
+          className="form-control"
+        />
       </label>
       <label> Password:
-        <input type="password" className="form-control" />
+        <input
+          onChange={onChange}
+          value={value.password || ""}
+          type="password"
+          name="password"
+          className="form-control"
+        />
       </label>
       <button
-        onClick={clicked}
+        onClick={onClick}
+        disabled={pending}
         className="login-form__btn btn btn-primary btn-block">
-        Login
+        {pending ? "Sending..." : "Login"}
       </button>
     </form>
     <div className="login-form__signup">
-      <button className="btn btn-outline-primary btn-block"> Sign Up </button>
+      <button className="btn btn-outline-primary btn-block">
+        Sign Up
+      </button>
     </div>
-  </div>
+  </>
 );
 
 LoginForm.propTypes = {
-  clicked: PropTypes.func
-};
+  onChange: PropTypes.func,
+  onClick: PropTypes.func,
+  value: PropTypes.object,
+  pending: PropTypes.bool
+}
 
 export default LoginForm;

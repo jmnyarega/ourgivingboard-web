@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from "redux-thunk" 
+import thunk from "redux-thunk" // to help with the async actions
 import reducer from "./reducers/user/login";
 
 let store;
@@ -10,6 +10,5 @@ if (process.env.NODE_ENV !== "development") {
 } else {
   store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 }
-
 
 export default store;

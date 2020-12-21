@@ -1,8 +1,17 @@
 import { LOGIN_PENDING, LOGIN_SUCCESS, LOGIN_FAILURE } from "../../actions/constants/types";
 
+/*
+ *  user(login)
+ *      - password: string
+ *      - email: string
+ *      - message: string
+ *  error: error object
+ *  pending: boolen
+ */
+
 const initialState = {
-  user: 0,
-  pending: true,
+  user: null,
+  pending: false,
   error: null
 };
 
