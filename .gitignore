@@ -47,6 +47,7 @@ Thumbs.db
 *.flv
 *.mov
 *.wmv
+tags
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 

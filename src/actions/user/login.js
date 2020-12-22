@@ -16,11 +16,14 @@ export const loginFailure = (error) => ({
   error
 });
 
-export const login = () => {
+export const login = (user) => {
   return (dispatch) => {
     dispatch(loginPending());
-    http().get(`${URL}/todos`)
-      .then(response => dispatch(loginSuccess(response?.data)))
+    http().post(`${URL}/todos`, user)
+      .then(() => dispatch(loginSuccess({
+        user,
+        message: "login success"
+      })))
       .catch(error => dispatch(loginFailure(error)));
   }
 };
