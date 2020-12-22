@@ -1,0 +1,29 @@
+.board {
+  position: relative;
+  margin: 0 0 1rem;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    margin: 0.5rem;
+    background-color: $gray;
+    height: 1px;
+    border-radius: 0.8rem;
+  }
+
+  & strong {
+    color: $purple;
+    font-size: 1.8rem;
+  }
+
+  &-description {
+    color: rgba(0, 0, 0, 0.4);
+  }
+  & button {
+    display: block;
+    margin-left: calc(100% - 100px);
+  }
+}
