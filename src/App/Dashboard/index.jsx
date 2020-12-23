@@ -2,7 +2,7 @@ import React from "react";
 import TopBar from "./TopBar";
 import SideBar from "./SideBar";
 import SummaryContent from "./SummaryContent";
-import Board from "./Board";
+import Community from "./Community";
 
 const Dashboard = () => (
   <div className="dashboard">
@@ -15,7 +15,7 @@ const Dashboard = () => (
           <SummaryContent title="gifted" number={0} />
           <SummaryContent title="recieved" number={0} />
         </div>
-        <Board data={[1, 2, 3, 4]} />
+        <Community data={[1, 2, 3, 4]} />
       </div>
     </div>
   </div>
