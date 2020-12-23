@@ -7,7 +7,6 @@ import { login } from "../../actions/user/login";
 
 const verifyLogin = (user, pending, error, history) => {
   useEffect(() => {
-    console.log(user)
     if (user?.message === "login success" && pending === false) {
       history.push("/home");
     } else if (error && pending === false) {
@@ -17,9 +16,13 @@ const verifyLogin = (user, pending, error, history) => {
 };
 
 const Login = () => {
-  const { pending, user, error }= useSelector(state => state);
+  const { pending, user, error } = useSelector((state) => state?.login);
   const dispatch = useDispatch();
-  const [ value ,handleChange, handleSubmit ] = useCustomForm({}, dispatch, login);
+  const [value, handleChange, handleSubmit] = useCustomForm(
+    {},
+    dispatch,
+    login
+  );
 
   const history = useHistory();
   verifyLogin(user, pending, error, history);
@@ -27,9 +30,7 @@ const Login = () => {
   return (
     <div className="login flex-jc-c flex-ai-c">
       <div className="login-form">
-        <h3 className="login-form__header">
-          Welcome to your Gifting Board
-        </h3>
+        <h3 className="login-form__header">Welcome to your Gifting Board</h3>
         <LoginForm
           onChange={handleChange}
           onClick={handleSubmit}

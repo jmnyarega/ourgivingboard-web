@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk" // to help with the async actions
-import reducer from "./reducers/user/login";
+import reducer from "./reducers";
 
 let store;
 
