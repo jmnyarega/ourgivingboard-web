@@ -6,12 +6,11 @@ const Board = ({ data }) => (
     <h3 className="element-header">Boards</h3>
     {data.map((_, index) => (
       <div className="board" key={index}>
-        <h3 className="board-header"> Platinum Aspen Core Luxury Home </h3>
+        <h3 className="board-header">Royal Jewels</h3>
         <p className="board-description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque
-          possimus sed provident velit voluptas non
+          The Royal Jewels community
         </p>
-        <strong>398</strong> members
+        <strong>8</strong> members
         <button className="btn btn-outline-primary">Join Board</button>
       </div>
     ))}
