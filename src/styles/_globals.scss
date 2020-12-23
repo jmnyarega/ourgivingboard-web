@@ -16,8 +16,12 @@ body {
 }
 
 a, a:visited, a:hover {
-  color: $gray;
+  color: $darkGray;
   text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.5;
 }
 
 // move to layout.scss
@@ -35,11 +39,60 @@ a, a:visited, a:hover {
   &-ai-c {
     align-items: center;
   }
+
+  &-row-gap {
+    &-6 {
+      $space: 6.25rem;
+      @include gap($space, 0, $space, 0, "flex-row-gap-6", $space);
+    }
+    &-2 {
+      $space: 2rem;
+      @include gap($space, 0, $space, 0, "flex-row-gap-2", $space);
+    }
+    &-1 {
+      $space: 1rem;
+      @include gap($space, 0, $space, 0, "flex-row-gap-1", $space);
+    }
+    &-1 {
+      $space: 1rem;
+      @include gap($space, 0, $space, 0, "flex-row-gap-1", $space);
+    }
+  }
+
+  &-column-gap {
+    &-6 {
+      $space: 6.25rem;
+      @include gap(0, $space, 0, $space, "flex-column-gap-6", $space);
+    }
+    &-2 {
+      $space: 2rem;
+      @include gap(0, $space, 0, $space,"flex-column-gap-2", $space);
+    }
+    &-1 {
+      $space: 1rem;
+      @include gap(0, $space, 0, $space, "flex-column-gap-1", $space);
+    }
+  }
 }
 
 .container {
   padding: 0 2rem;
   margin: 0 auto;
+  width: 95%;
+  max-width: 1400px;
+}
+
+.active-nav {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0%;
+    bottom: 0;
+    left: -3%;
+    right: 101%;
+    background-color: $lightPurple;
+  }
 }
 
 // visibility

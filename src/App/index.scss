@@ -1,0 +1,9 @@
+.dashboard {
+    &-summary {
+        column-gap: 1rem;
+        @include breakpoint-up(large) {
+            display: flex;
+            justify-content: space-around;
+        }
+    }
+}
