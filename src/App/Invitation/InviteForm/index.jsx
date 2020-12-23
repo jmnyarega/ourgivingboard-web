@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Invitation = ({ onChange, onClick, value, pending }) => (
+const InviteForm = ({ onChange, onClick, value, pending }) => (
   <form>
-    <label> Email:
+    <label> Password:
       <input
         onChange={onChange}
         value={value.password || ""}
@@ -12,7 +12,7 @@ const Invitation = ({ onChange, onClick, value, pending }) => (
         className="form-control"
       />
     </label>
-    <label> Password:
+    <label> Confirm Password:
       <input
         onChange={onChange}
         value={value.confirmPassword || ""}
@@ -31,11 +31,11 @@ const Invitation = ({ onChange, onClick, value, pending }) => (
   </form>
 );
 
-Invitation.propTypes = {
+InviteForm.propTypes = {
   onChange: PropTypes.func,
   onClick: PropTypes.func,
   value: PropTypes.object,
   pending: PropTypes.bool,
 };
 
-export default Invitation;
+export default InviteForm;
