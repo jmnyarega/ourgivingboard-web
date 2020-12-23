@@ -9,7 +9,7 @@ const Dashboard = () => (
     <TopBar />
     <div className="container flex flex-column-gap-6">
       <SideBar />
-      <div>
+      <div className="dashboard-main">
         <div className="dashboard-summary">
           <SummaryContent title="pending" number={70} />
           <SummaryContent title="gifted" number={10} />

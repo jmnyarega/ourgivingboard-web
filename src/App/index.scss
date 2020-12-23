@@ -1,4 +1,10 @@
 .dashboard {
+    &-main {
+        width: 100%;
+        @include breakpoint-up(large) {
+            width: 60%;
+        }
+    }
     &-summary {
         column-gap: 1rem;
         @include breakpoint-up(large) {
