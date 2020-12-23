@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Logo from "../../../Assets/logo.png";
+import Links from "./Links";
 
 const TopBar = () => {
   const [open, setOpen] = useState("");
@@ -25,12 +26,10 @@ const TopBar = () => {
   return (
     <header className={header.join(" ")}>
       <div className={`overlay ${fade.join(" ")} `}></div>
-
       <nav className="container container--pall flex flex-jc-sb flex-ai-c">
         <a href="/" className="header__logo">
           <img src={Logo} alt="Gifting" />
         </a>
-
         <a
           id="btnHamburger"
           onClick={handleClick}
@@ -40,23 +39,8 @@ const TopBar = () => {
           <span></span>
           <span></span>
         </a>
-
-        <div className="header__links hide-for-mobile">
-          <a href="#">Home</a>
-          <a href="#">Payment</a>
-          <a href="#">My Boards</a>
-          <a href="#">FAQ</a>
-          <a href="/login">Log out</a>
-        </div>
       </nav>
-
-      <div className={`header__menu ${fade.join(" ")} `}>
-        <a href="#">Home</a>
-        <a href="#">Payment</a>
-        <a href="#">My Boards</a>
-        <a href="#">FAQ</a>
-        <a href="/login">Log out</a>
-      </div>
+      <Links classes={`header__menu ${fade.join(" ")} `} />
     </header>
   );
 };

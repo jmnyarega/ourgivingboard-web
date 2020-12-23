@@ -1,7 +1,7 @@
 .header {
   position: relative;
   z-index: 1;
-  box-shadow: 0px 2px 4px $gray;
+  box-shadow: 0px 0px 1px $darkGray;
 
   // Hamburger Open Styles
   &.open {
@@ -57,7 +57,7 @@
       display: block;
       width: 26px;
       height: 2px;
-      background-color: $purple;
+      background-color: $darkGray;
       transition: all 300ms ease-in-out;
       transform-origin: 3px 1px;
 
@@ -90,7 +90,7 @@
     a {
       position: relative;
       font-size: $font-sm;
-      color: $lightGray;
+      color: $darkGray;
       transition: color 300ms ease-in-out;
 
       &:not(:last-child){
@@ -110,7 +110,6 @@
       }
       &:hover {
         color: $lightGray;
-
         &::before {
           opacity: 1;
         }

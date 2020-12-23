@@ -1,0 +1,13 @@
+.sidebar {
+    &-link {
+        display: flex;
+        flex-direction: column;
+        @extend .flex-row-gap-1 !optional;
+        & a:first-child {
+            @extend .active-nav;
+        }
+        &-wrapper {
+            margin-top: 2rem;
+        }
+    }
+}

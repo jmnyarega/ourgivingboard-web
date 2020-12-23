@@ -21,5 +21,15 @@ $breakpoints-down: (
 	@media (max-width: map-get($breakpoints-down, $size )) {
 		@content;
 	}
+}
 
+@mixin gap($top, $right, $bottom, $left, $class, $space) {
+  flex-wrap: wrap;
+  margin: $top $right $bottom $left;
+  width: calc(100% + #{$space});
+  gap: $space;
+
+  .#{$class} > * {
+    margin: $space 0 0 $space;
+  }
 }
