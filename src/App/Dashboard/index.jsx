@@ -11,8 +11,8 @@ const Dashboard = () => (
       <SideBar />
       <div>
         <div className="dashboard-summary">
-          <SummaryContent title="pending" number={500} />
-          <SummaryContent title="gifted" number={0} />
+          <SummaryContent title="pending" number={70} />
+          <SummaryContent title="gifted" number={10} />
           <SummaryContent title="recieved" number={0} />
         </div>
         <Community data={[1, 2, 3, 4]} />
