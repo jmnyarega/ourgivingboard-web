@@ -16,8 +16,12 @@ body {
 }
 
 a, a:visited, a:hover {
-  color: $gray;
+  color: $darkGray;
   text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.5;
 }
 
 // move to layout.scss
