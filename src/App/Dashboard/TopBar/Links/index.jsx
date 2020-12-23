@@ -7,7 +7,7 @@ const Links = ({ classes }) => (
     <a href="#">Payment</a>
     <a href="#">My Boards</a>
     <a href="#">FAQ</a>
-    <a href="/login">Log out</a>
+    <a href="/">Log out</a>
   </div>
 );
 
