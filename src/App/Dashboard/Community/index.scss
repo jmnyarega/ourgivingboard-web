@@ -25,5 +25,7 @@
   & button {
     display: block;
     float: right;
+    position: relative;
+    top: -48px;
   }
 }

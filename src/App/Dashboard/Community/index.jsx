@@ -2,18 +2,29 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Community = ({ data }) => (
+  <div>
   <div className="wrapper">
-    <h3 className="element-header">Communities</h3>
+    <h3 className="element-header">Active Boards</h3>
     {data.map((_, index) => (
       <div className="community" key={index}>
-        <h3 className="community-header">Royal Jewels</h3>
         <p className="community-description">
-          The Royal Jewels community
+          $80 Fundboard
         </p>
-        <strong>8</strong> members
-        <button className="btn btn-outline-primary">Join Community</button>
       </div>
     ))}
+  </div>
+  <div>&nbsp;</div>
+  <div className="wrapper">
+    <h3 className="element-header">Community Boards</h3>
+    {data.map((_, index) => (
+      <div className="community" key={index}>
+        <p className="community-description">
+          $80 Fundboard
+        </p>
+        <button className="btn btn-outline-primary">Gift</button>
+      </div>
+    ))}
+  </div>
   </div>
 );
 
