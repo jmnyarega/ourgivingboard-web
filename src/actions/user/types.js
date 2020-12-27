@@ -1,0 +1,19 @@
+// login
+export const LOGIN_PENDING = "LOGIN_PENDING";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAILURE = "LOGIN_FAILURE";
+
+// invite
+export const INVITE_PENDING = "INVITE_PENDING";
+export const INVITE_SUCCESS = "INVITE_SUCCESS";
+export const INVITE_FAILURE = "INVITE_FAILURE";
+
+// current user
+export const CURRENT_USER_PENDING =  "CURRENT_USER_PENDING";
+export const CURRENT_USER_SUCCESS =  "CURRENT_USER_SUCCESS";
+export const CURRENT_USER_FAILURE =  "CURRENT_USER_FAILURE";
+
+// update user
+export const UPDATE_USER_PENDING =  "UPDATE_USER_PENDING";
+export const UPDATE_USER_SUCCESS =  "UPDATE_USER_SUCCESS";
+export const UPDATE_USER_FAILURE =  "UPDATE_USER_FAILURE";

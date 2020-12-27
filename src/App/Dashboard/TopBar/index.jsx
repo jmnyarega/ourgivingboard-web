@@ -35,9 +35,9 @@ const TopBar = () => {
           onClick={handleClick}
           className="header__toggle hide-for-desktop"
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          <span />
+          <span />
+          <span />
         </a>
       </nav>
       <Links classes={`header__menu ${fade.join(" ")} `} />
