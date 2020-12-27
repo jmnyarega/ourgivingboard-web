@@ -1,4 +1,5 @@
 import { http } from "../../helpers/axios";
+import { URL } from "../../helpers/constants";
 import {
   BEGIN_PAYMENT_PENDING,
   BEGIN_PAYMENT_SUCCESS,
@@ -23,7 +24,7 @@ export const beginPayment = (email) => {
   return (dispatch) => {
     dispatch(beginPaymentPending());
     http()
-      .get(process.env.REACT_APP_API_URL, email)
+      .get(URL, email)
       .then((response) => dispatch(beginPaymentSuccess(response)))
       .catch((error) => dispatch(beginPaymentError(error)));
   };

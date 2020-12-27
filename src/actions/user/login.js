@@ -1,4 +1,5 @@
 import { http } from "../../helpers/axios";
+import { URL } from "../../helpers/constants";
 import {
   LOGIN_PENDING,
   LOGIN_SUCCESS,
@@ -23,7 +24,7 @@ export const login = (user) => {
   return (dispatch) => {
     dispatch(loginPending());
     http()
-      .get(process.env.REACT_APP_API_URL, user)
+      .get(URL, user)
       .then(() =>
         dispatch(
           loginSuccess({
