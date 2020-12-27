@@ -1,10 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import dotenv from "dotenv";
+import dotenvExpand from "dotenv-expand";
 import { HashRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
 import App from "./App/index";
 import store from "./store";
+const myEnv = dotenv.config({ path: "../.env" });
+dotenvExpand(myEnv);
+
+console.log(process.env);
 
 ReactDOM.render(
   <React.StrictMode>

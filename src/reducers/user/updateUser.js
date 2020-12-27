@@ -1,7 +1,7 @@
 import {
-  LOGIN_PENDING,
-  LOGIN_SUCCESS,
-  LOGIN_FAILURE,
+  UPDATE_USER_PENDING,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_FAILURE,
 } from "../../actions/user/types";
 
 const initialState = {
@@ -10,18 +10,18 @@ const initialState = {
   error: null,
 };
 
-const loginReducer = (state = initialState, action) => {
+const updateUserReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOGIN_PENDING:
+    case UPDATE_USER_PENDING:
       return { pending: true };
-    case LOGIN_SUCCESS:
+    case UPDATE_USER_SUCCESS:
       return {
         user: action.payload,
         pending: false,
       };
-    case LOGIN_FAILURE:
+    case UPDATE_USER_FAILURE:
       return {
-        error: action.error,
+        error: action.payload,
         pending: false,
       };
     default:
@@ -29,4 +29,4 @@ const loginReducer = (state = initialState, action) => {
   }
 };
 
-export default loginReducer;
+export default updateUserReducer;

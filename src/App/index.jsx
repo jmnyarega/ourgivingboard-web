@@ -1,15 +1,16 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Dashboard from "./Dashboard";
+import Home from "./Home";
+import { Payment } from "./Payment";
 import Login from "./Login";
-import Invitation from "./Invitation";
+import Invite from "./Invitation";
 import "../styles/index.scss";
-
 
 const App = () => (
   <Switch>
-    <Route path="/home" component={Dashboard} />
-    <Route path="/invite" component={Invitation} />
+    <Route path="/home" component={Home} />
+    <Route path="/invite" component={Invite} />
+    <Route path="/payment" component={Payment} />
     <Route exact path="/" component={Login} />
   </Switch>
 );

@@ -1,6 +1,9 @@
 import { http } from "../../helpers/axios";
-import { URL } from "../constants/url";
-import { LOGIN_PENDING, LOGIN_SUCCESS, LOGIN_FAILURE } from "../constants/types";
+import {
+  LOGIN_PENDING,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+} from "./types";
 
 export const loginPending = () => ({
   type: LOGIN_PENDING,
@@ -8,22 +11,27 @@ export const loginPending = () => ({
 
 export const loginSuccess = (payload) => ({
   type: LOGIN_SUCCESS,
-  payload
+  payload,
 });
 
 export const loginFailure = (error) => ({
   type: LOGIN_FAILURE,
-  error
+  error,
 });
 
 export const login = (user) => {
   return (dispatch) => {
     dispatch(loginPending());
-    http().post(`${URL}/todos`, user)
-      .then(() => dispatch(loginSuccess({
-        user,
-        message: "login success"
-      })))
-      .catch(error => dispatch(loginFailure(error)));
-  }
+    http()
+      .get(process.env.REACT_APP_API_URL, user)
+      .then(() =>
+        dispatch(
+          loginSuccess({
+            user,
+            message: "login success",
+          })
+        )
+      )
+      .catch((error) => dispatch(loginFailure(error)));
+  };
 };
