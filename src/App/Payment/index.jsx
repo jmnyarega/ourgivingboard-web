@@ -22,10 +22,13 @@ const CheckoutForm = () => {
   const { payment: confirmPayment } = useSelector(
     (state) => state?.confirmPayment
   );
+
+  // useBeginPayment -> useCreatePayment -> useConfirmPayment -> useCompletePayment
   const [handleSubmit] = useBeginPayment(billingDetails.email);
   const [stripe] = useCreatePayment(CardElement, begin, billingDetails);
   useConfirmPayment(payment);
   useCompletePayment(confirmPayment);
+
   return (
     <form onSubmit={handleSubmit} style={{ width: "60%", marginTop: "5rem" }}>
       <CardElement />

@@ -1,10 +1,6 @@
 import { http } from "../../helpers/axios";
 import { URL } from "../../helpers/constants";
-import {
-  INVITE_PENDING,
-  INVITE_SUCCESS,
-  INVITE_FAILURE,
-} from "./types";
+import { INVITE_PENDING, INVITE_SUCCESS, INVITE_FAILURE } from "./types";
 
 export const invitePending = () => ({
   type: INVITE_PENDING,
@@ -25,14 +21,7 @@ export const invite = (user) => {
     dispatch(invitePending());
     http()
       .get(URL, user)
-      .then(() =>
-        dispatch(
-          inviteSuccess({
-            user,
-            message: "invite success",
-          })
-        )
-      )
+      .then(() => dispatch(inviteSuccess(user)))
       .catch((error) => dispatch(inviteFailure(error)));
   };
 };

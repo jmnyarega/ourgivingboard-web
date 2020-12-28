@@ -1,19 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useCustomForm } from "../../hooks/forms";
+import { useVerifyLogin } from "../../hooks/authentication";
 import LoginForm from "./LoginForm";
 import { login } from "../../actions/user/login";
-
-const verifyLogin = (user, pending, error, history) => {
-  useEffect(() => {
-    if (user?.message === "login success" && pending === false) {
-      history.push("/home");
-    } else if (error && pending === false) {
-      return error.message;
-    }
-  }, [user, pending, error]);
-};
 
 const Login = () => {
   const { pending, user, error } = useSelector((state) => state?.login);
@@ -25,12 +16,19 @@ const Login = () => {
   );
 
   const history = useHistory();
-  verifyLogin(user, pending, error, history);
+  const loginError = useVerifyLogin(
+    user,
+    pending,
+    error,
+    history,
+    "login success"
+  );
 
   return (
     <div className="login flex-jc-c flex-ai-c">
       <div className="login-form">
         <h3 className="login-form__header">Welcome to your Gifting Board</h3>
+        {loginError}
         <LoginForm
           onChange={handleChange}
           onClick={handleSubmit}

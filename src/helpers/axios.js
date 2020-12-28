@@ -1,12 +1,12 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 
-export const addTokenToLocalStorage = (token) => {
+export const saveToken = (token) => {
   const { localStorage } = window;
   localStorage.setItem("jwt", token);
 };
 
-export const removeLocalStorageToken = () => {
+export const removeToken = () => {
   const { localStorage } = window;
   localStorage.removeItem("jwt");
 };

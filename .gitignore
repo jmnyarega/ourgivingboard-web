@@ -58,6 +58,7 @@ tags
 
 # testing
 /coverage
+**/coverage
 
 # production
 /build
