@@ -1,10 +1,6 @@
 import { http } from "../../helpers/axios";
 import { URL } from "../../helpers/constants";
-import {
-  LOGIN_PENDING,
-  LOGIN_SUCCESS,
-  LOGIN_FAILURE,
-} from "./types";
+import { LOGIN_PENDING, LOGIN_SUCCESS, LOGIN_FAILURE } from "./types";
 
 export const loginPending = () => ({
   type: LOGIN_PENDING,
@@ -25,14 +21,7 @@ export const login = (user) => {
     dispatch(loginPending());
     http()
       .get(URL, user)
-      .then(() =>
-        dispatch(
-          loginSuccess({
-            user,
-            message: "login success",
-          })
-        )
-      )
+      .then(() => dispatch(loginSuccess(user)))
       .catch((error) => dispatch(loginFailure(error)));
   };
 };

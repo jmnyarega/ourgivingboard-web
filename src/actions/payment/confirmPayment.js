@@ -27,9 +27,9 @@ export const confirmPayment = (stripe, secretIntent, paymentId) => {
       })
       .then((response) => {
         if (response.error) {
-          return dispatch(confirmPaymentError(response.error))
+          return dispatch(confirmPaymentError(response.error));
         }
-       return dispatch(confirmPaymentSuccess(response))
+        return dispatch(confirmPaymentSuccess(response));
       })
       .catch((error) => dispatch(confirmPaymentError(error)));
   };

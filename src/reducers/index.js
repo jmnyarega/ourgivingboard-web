@@ -5,6 +5,8 @@ import invitationReducer from "./user/invitation";
 import loginReducer from "./user/login";
 import updateUserReducer from "./user/updateUser";
 import currentUserReducer from "./user/currentUser";
+import forgotPasswordReducer from "./user/forgotPassword";
+import newPasswordReducer from "./user/newPassword";
 
 // payment
 import createPaymentReducer from "./payment/createPayment";
@@ -21,4 +23,6 @@ export default combineReducers({
   confirmPayment: confirmPaymentReducer,
   completePayment: completePaymentReducer,
   beginPayment: beginPaymentReducer,
+  forgotPassword: forgotPasswordReducer,
+  newPassword: newPasswordReducer,
 }); 

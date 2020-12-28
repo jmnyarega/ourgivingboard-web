@@ -25,14 +25,7 @@ export const updateUser = (user) => {
     dispatch(updateUserPending());
     http()
       .get(URL, user)
-      .then(() =>
-        dispatch(
-          updateUserSuccess({
-            user,
-            message: "update success",
-          })
-        )
-      )
+      .then(() => dispatch(updateUserSuccess(user)))
       .catch((error) => dispatch(updateUserFailure(error)));
   };
 };

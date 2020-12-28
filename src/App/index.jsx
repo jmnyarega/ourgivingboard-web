@@ -4,6 +4,7 @@ import Home from "./Home";
 import { Payment } from "./Payment";
 import Login from "./Login";
 import Invite from "./Invitation";
+import Recover from "./RecoverPassword";
 import "../styles/index.scss";
 
 const App = () => (
@@ -11,6 +12,7 @@ const App = () => (
     <Route path="/home" component={Home} />
     <Route path="/invite" component={Invite} />
     <Route path="/payment" component={Payment} />
+    <Route path="/recover" component={Recover} />
     <Route exact path="/" component={Login} />
   </Switch>
 );

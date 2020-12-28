@@ -1,19 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useCustomForm } from "../../hooks/forms";
+import { useVerifyLogin } from "../../hooks/authentication";
 import InviteForm from "./InviteForm";
 import { invite } from "../../actions/user/invite";
-
-const verifyInvite = (user, pending, error, history) => {
-  useEffect(() => {
-    if (user?.message === "invite success" && pending === false) {
-      history.push("/home");
-    } else if (error && pending === false) {
-      return error.message;
-    }
-  }, [user, pending, error]);
-};
 
 const Invite = () => {
   const { pending, user, error } = useSelector((state) => state?.invite);
@@ -25,12 +16,18 @@ const Invite = () => {
   );
 
   const history = useHistory();
-  verifyInvite(user, pending, error, history);
-
+  const inviteError = useVerifyLogin(
+    user,
+    pending,
+    error,
+    history,
+    "invite success"
+  );
   return (
     <div className="login flex-jc-c flex-ai-c">
       <div className="login-form">
         <h3 className="login-form__header">Welcome to your Gifting Board</h3>
+        {inviteError}
         <InviteForm
           onChange={handleChange}
           onClick={handleSubmit}
