@@ -14,9 +14,6 @@ import {
 } from "../../hooks/payment.js";
 import {useCurrentUser} from "../../hooks/authentication.js";
 
-// actions
-import { getUserByToken } from "../../actions/user/currentUser";
-
 //components
 import Dashboard from "../Dashboard";
 
@@ -28,7 +25,7 @@ const CheckoutForm = () => {
     (state) => state?.confirmPayment
   );
 
-  useCurrentUser(getUserByToken);
+  useCurrentUser();
 
   // useBeginPayment -> useCreatePayment -> useConfirmPayment -> useCompletePayment
   const [handleSubmit] = useBeginPayment(user?.email);
