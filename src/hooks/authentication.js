@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { saveToken } from "../helpers/axios";
+import { getUserByToken } from "../actions/user/currentUser";
 
 export const useVerifyLogin = (
   user,
@@ -31,4 +33,9 @@ export const useForgotPasswordEmail = (user, pending, error) => {
     }
   }, [user, pending, error]);
   return loaded;
+};
+
+export const useCurrentUser = () => {
+  const dispatch = useDispatch();
+  useEffect(() => dispatch(getUserByToken()), []);
 };

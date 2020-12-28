@@ -1,4 +1,4 @@
-import { decode } from "../../helpers/axios";
+import { decodeUser } from "../../helpers/axios";
 import {
   CURRENT_USER_PENDING,
   CURRENT_USER_SUCCESS,
@@ -20,11 +20,13 @@ export const currentUserFailure = (error) => ({
 });
 
 export const getUserByToken = () => {
-  currentUserPending();
-  try {
-    const user = decode();
-    currentUserSuccess(user);
-  } catch (error) {
-    currentUserFailure();
-  }
+  return (dispatch) => {
+    dispatch(currentUserPending());
+    try {
+      const user = decodeUser();
+      dispatch(currentUserSuccess(user));
+    } catch (error) {
+      dispatch(currentUserFailure());
+    }
+  };
 };

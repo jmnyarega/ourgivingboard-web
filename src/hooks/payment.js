@@ -17,14 +17,14 @@ export const useBeginPayment = (evt, email) => {
   return [handleSubmit];
 };
 
-export const useCreatePayment = (CardElement, begin, billingDetails) => {
+export const useCreatePayment = (CardElement, begin, user) => {
   const stripe = useStripe();
   const elements = useElements();
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (begin)
-      dispatch(createPayment(stripe, elements, CardElement, billingDetails));
+      dispatch(createPayment(stripe, elements, CardElement, user));
   }, [begin]);
   return [stripe, CardElement];
 };
@@ -47,7 +47,6 @@ export const useConfirmPayment = (payment) => {
 
 export const useCompletePayment = (payment) => {
   const dispatch = useDispatch();
-  console.log(payment);
   useEffect(() => {
     if (payment) {
       dispatch(completePayment(payment));
