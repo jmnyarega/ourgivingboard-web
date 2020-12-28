@@ -1,31 +1,42 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
+
+//stripe
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, CardElement } from "@stripe/react-stripe-js";
-import Dashboard from "../Dashboard";
+
+// hooks
 import {
   useCreatePayment,
   useConfirmPayment,
   useCompletePayment,
   useBeginPayment,
 } from "../../hooks/payment.js";
+import {useCurrentUser} from "../../hooks/authentication.js";
+
+// actions
+import { getUserByToken } from "../../actions/user/currentUser";
+
+//components
+import Dashboard from "../Dashboard";
 
 const CheckoutForm = () => {
-  const userDetails = {
-    email: "jmnyarega@gmail.com",
-    phone: "90900909",
-    name: "josiah",
-  };
-  const [billingDetails] = useState(userDetails);
   const { payment } = useSelector((state) => state?.createPayment);
+  const { user } = useSelector((state) => state?.currentUser);
   const { begin } = useSelector((state) => state?.beginPayment);
   const { payment: confirmPayment } = useSelector(
     (state) => state?.confirmPayment
   );
 
+  useCurrentUser(getUserByToken);
+
   // useBeginPayment -> useCreatePayment -> useConfirmPayment -> useCompletePayment
-  const [handleSubmit] = useBeginPayment(billingDetails.email);
-  const [stripe] = useCreatePayment(CardElement, begin, billingDetails);
+  const [handleSubmit] = useBeginPayment(user?.email);
+  const [stripe] = useCreatePayment(CardElement, begin, {
+    email: user?.email,
+    name: user?.name,
+    phone: "8989898989",
+  });
   useConfirmPayment(payment);
   useCompletePayment(confirmPayment);
 
