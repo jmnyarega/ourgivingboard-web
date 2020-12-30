@@ -18,18 +18,13 @@ const createPaymentError = (error) => ({
   error,
 });
 
-export const createPayment = (
-  stripe,
-  elements,
-  CardElement,
-  billingDetails
-) => {
+export const createPayment = (stripe, CardNumberElement, billingDetails) => {
   return (dispatch) => {
     dispatch(createPaymentPending());
     stripe
       .createPaymentMethod({
         type: "card",
-        card: elements.getElement(CardElement),
+        card: CardNumberElement,
         billing_details: billingDetails,
       })
       .then((response) => {

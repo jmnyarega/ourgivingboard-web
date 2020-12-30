@@ -53,7 +53,7 @@ const recoverPassword = () => {
     <div className="login flex-jc-c flex-ai-c">
       <div className="login-form">
         <h3 className="login-form__header">Recover Password</h3>
-        {console.log(recoverError)}
+        {console.log(recoverError, response)}
         {response ? (
           <NewPasswordForm
             onChange={handleNewPasswordChange}

@@ -1,17 +1,32 @@
 import { useState } from "react";
 
-export const useCustomForm = (initial, callback, func) => {
+export const useCustomForm = (initial, callback, func, validate) => {
   const [inputs, setInputs] = useState(initial);
+  const [validateErrors, setValidationErrors] = useState();
   const handleInputChange = (event) => {
-    event.persist();
-    setInputs(inputs => ({
-      ...inputs,
-      [event.target.name]: event.target.value
-    }));
+    if (event?.persist) {
+      event.persist();
+      setInputs((inputs) => ({
+        ...inputs,
+        [event.target.name]: event.target.value,
+      }));
+      if (validate) {
+        setValidationErrors(validate(inputs));
+      }
+    }
+
+    console.log(event)
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    callback(func(inputs));
+    if (validate) {
+      setValidationErrors(validate(inputs));
+      validateErrors &&
+        Object.keys(validateErrors).length === 0 &&
+        callback(func(inputs));
+    } else {
+      callback(func(inputs));
+    }
   };
-  return [ inputs, handleInputChange, handleSubmit ];
+  return [inputs, handleInputChange, handleSubmit, validateErrors];
 };

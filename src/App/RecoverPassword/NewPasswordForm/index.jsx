@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const RecoverPasswordForm = ({ onChange, onClick, value, pending }) => (
+const NewPasswordForm = ({ onChange, onClick, value, pending }) => (
   <form>
     <label> Password:
       <input
@@ -31,11 +31,11 @@ const RecoverPasswordForm = ({ onChange, onClick, value, pending }) => (
   </form>
 );
 
-RecoverPasswordForm.propTypes = {
+NewPasswordForm.propTypes = {
   onChange: PropTypes.func,
   onClick: PropTypes.func,
   value: PropTypes.object,
   pending: PropTypes.bool,
 };
 
-export default RecoverPasswordForm;
+export default NewPasswordForm;

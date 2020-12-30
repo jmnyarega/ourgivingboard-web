@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const LoginForm = ({ onChange, onClick, value, pending }) => (
+const LoginForm = ({ onChange, onClick, value, pending, errors }) => (
   <>
-    <form> 
-      <label> Email:
+    <form>
+      <label>
+        Email:
         <input
           onChange={onChange}
           value={value.email || ""}
@@ -13,7 +14,11 @@ const LoginForm = ({ onChange, onClick, value, pending }) => (
           className="form-control"
         />
       </label>
-      <label> Password:
+      {errors.validate?.email && (
+        <div className="login-form__with-errors">{errors.validate?.email}</div>
+      )}
+      <label>
+        Password:
         <input
           onChange={onChange}
           value={value.password || ""}
@@ -22,17 +27,20 @@ const LoginForm = ({ onChange, onClick, value, pending }) => (
           className="form-control"
         />
       </label>
+      {errors.validate?.password && (
+        <div className="login-form__with-errors">{errors.validate?.password}</div>
+      )}
       <button
         onClick={onClick}
         disabled={pending}
-        className="login-form__btn btn btn-primary btn-block">
+        className="login-form__btn btn btn-primary btn-block"
+      >
         {pending ? "Sending..." : "Login"}
       </button>
     </form>
+    {JSON.stringify(errors.server, null, 2)}
     <div className="login-form__signup">
-      <button className="btn btn-outline-primary btn-block">
-        Sign Up
-      </button>
+      <button className="btn btn-outline-primary btn-block">Sign Up</button>
     </div>
   </>
 );
@@ -41,7 +49,8 @@ LoginForm.propTypes = {
   onChange: PropTypes.func,
   onClick: PropTypes.func,
   value: PropTypes.object,
-  pending: PropTypes.bool
-}
+  errors: PropTypes.object,
+  pending: PropTypes.bool,
+};
 
 export default LoginForm;

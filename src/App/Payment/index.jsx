@@ -3,16 +3,16 @@ import { useSelector } from "react-redux";
 
 //stripe
 import { loadStripe } from "@stripe/stripe-js";
-import { Elements, CardElement } from "@stripe/react-stripe-js";
+import {
+  Elements,
+  CardNumberElement,
+  CardCvcElement,
+  CardExpiryElement,
+} from "@stripe/react-stripe-js";
 
 // hooks
-import {
-  useCreatePayment,
-  useConfirmPayment,
-  useCompletePayment,
-  useBeginPayment,
-} from "../../hooks/payment.js";
-import {useCurrentUser} from "../../hooks/authentication.js";
+import { useCreatePayment, useCompletePayment } from "../../hooks/payment.js";
+import { useCurrentUser } from "../../hooks/authentication.js";
 
 //components
 import Dashboard from "../Dashboard";
@@ -21,29 +21,31 @@ const CheckoutForm = () => {
   const { payment } = useSelector((state) => state?.createPayment);
   const { user } = useSelector((state) => state?.currentUser);
   const { begin } = useSelector((state) => state?.beginPayment);
-  const { payment: confirmPayment } = useSelector(
-    (state) => state?.confirmPayment
-  );
 
   useCurrentUser();
 
-  // useBeginPayment -> useCreatePayment -> useConfirmPayment -> useCompletePayment
-  const [handleSubmit] = useBeginPayment(user?.email);
-  const [stripe] = useCreatePayment(CardElement, begin, {
+  const [stripe, handleSubmit] = useCreatePayment(CardNumberElement, begin, {
     email: user?.email,
     name: user?.name,
     phone: "8989898989",
   });
-  useConfirmPayment(payment);
-  useCompletePayment(confirmPayment);
+  useCompletePayment(payment);
 
   return (
-    <form onSubmit={handleSubmit} style={{ width: "60%", marginTop: "5rem" }}>
-      <CardElement />
-      <button type="submit" disabled={!stripe}>
-        Pay
-      </button>
-    </form>
+    <div className="payment">
+      <form onSubmit={handleSubmit}>
+        <h3 className="element-header">Enter Credit Card</h3>
+        <label>Card Number:</label>
+        <CardNumberElement className="payment-form form-control" />
+        <label>CVC:</label>
+        <CardCvcElement className="payment-form form-control" />
+        <label>CVC:</label>
+        <CardExpiryElement className="payment-form form-control" />
+        <button className="btn btn-primary" type="submit" disabled={!stripe}>
+          Save to Account
+        </button>
+      </form>
+    </div>
   );
 };
 

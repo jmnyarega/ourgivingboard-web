@@ -17,16 +17,20 @@ export const useBeginPayment = (evt, email) => {
   return [handleSubmit];
 };
 
-export const useCreatePayment = (CardElement, begin, user) => {
+export const useCreatePayment = (CardNumberElement, user) => {
   const stripe = useStripe();
   const elements = useElements();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (begin)
-      dispatch(createPayment(stripe, elements, CardElement, user));
-  }, [begin]);
-  return [stripe, CardElement];
+  const handleSubmit = (event) => {
+    if (event) {
+      event.preventDefault();
+      const cardElement = elements.getElement(CardNumberElement);
+      dispatch(createPayment(stripe, cardElement, user));
+    }
+  };
+
+  return [stripe, handleSubmit];
 };
 
 export const useConfirmPayment = (payment) => {

@@ -21,7 +21,7 @@ const invitationReducer = (state = initialState, action) => {
       };
     case INVITE_FAILURE:
       return {
-        error: action.payload,
+        error: action.error,
         pending: false,
       };
     default:

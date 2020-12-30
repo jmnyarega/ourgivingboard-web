@@ -11,4 +11,6 @@ if (process.env.NODE_ENV !== "development") {
   store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 }
 
+console.log(store.getState());
+
 export default store;
