@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Logo from "../../../Assets/logo.png";
+import Logo from "../../../common/Logo";
 import Links from "./Links";
 
 const TopBar = () => {
@@ -29,7 +29,7 @@ const TopBar = () => {
         <div className={`overlay ${fade.join(" ")} `}></div>
         <nav className="container container--pall flex flex-jc-sb flex-ai-c">
           <a href="/" className="header__logo">
-            <img src={Logo} alt="Gifting" />
+            <Logo />
           </a>
           <a id="btnHamburger" onClick={handleClick} className="header__toggle">
             <span />

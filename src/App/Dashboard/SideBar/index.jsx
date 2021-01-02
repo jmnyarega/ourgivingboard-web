@@ -1,11 +1,11 @@
 import React from "react";
 import Links from "../TopBar/Links";
-import Logo from "../../../Assets/logo.png";
+import Logo from "../../../common/Logo";
 
 const SideBar = () => (
   <aside className="hide-for-mobile sidebar">
     <div className="sidebar-link-wrapper">
-      <img src={Logo} />
+      <Logo />
       <input
         type="search"
         placeholder="Search..."
