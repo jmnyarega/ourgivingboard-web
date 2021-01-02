@@ -1,5 +1,5 @@
+import { http } from "../../helpers/axios";
 import { URL } from "../../helpers/constants";
-import { server } from "../../coverage/fakeServer";
 import {
   NEW_PASSWORD_PENDING,
   NEW_PASSWORD_SUCCESS,
@@ -23,9 +23,8 @@ export const newPasswordFailure = (error) => ({
 export const newPassword = (data) => {
   return (dispatch) => {
     dispatch(newPasswordPending());
-    // http()
-    // .get(URL, data)
-    server(URL, data)
+    http()
+      .get(URL, data)
       .then(() => dispatch(newPasswordSuccess(data)))
       .catch((error) => dispatch(newPasswordFailure(error)));
   };

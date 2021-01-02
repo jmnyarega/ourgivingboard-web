@@ -1,6 +1,5 @@
-// import { http } from "../../helpers/axios";
+import { http } from "../../helpers/axios";
 import { URL } from "../../helpers/constants";
-import { server } from "../../coverage/fakeServer";
 import {
   FORGOT_PASSWORD_PENDING,
   FORGOT_PASSWORD_SUCCESS,
@@ -24,9 +23,8 @@ export const forgotPasswordFailure = (error) => ({
 export const forgotPassword = (email) => {
   return (dispatch) => {
     dispatch(forgotPasswordPending());
-    // http()
-      // .get(URL, email)
-    server(URL, email)
+    http()
+      .get(URL, email)
       .then(() => dispatch(forgotPasswordSuccess(email)))
       .catch((error) => dispatch(forgotPasswordFailure(error)));
   };
