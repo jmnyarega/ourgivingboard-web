@@ -11,7 +11,7 @@ const validate = ({ email, password }) => {
   if (password?.length < 6 || !password) {
     errors.password = "password too short";
   }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !email) {
     errors.email = "invalid email";
   }
   return errors;

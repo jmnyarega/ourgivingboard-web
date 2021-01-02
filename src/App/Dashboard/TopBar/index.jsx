@@ -4,7 +4,7 @@ import Links from "./Links";
 
 const TopBar = () => {
   const [open, setOpen] = useState("");
-  const [header, setHeader] = useState(["header"]);
+  const [header, setHeader] = useState(["header hide-for-desktop"]);
   const [fade, setFade] = useState(["has-fade"]);
 
   const handleClick = () => {
@@ -24,23 +24,21 @@ const TopBar = () => {
   };
 
   return (
-    <header className={header.join(" ")}>
-      <div className={`overlay ${fade.join(" ")} `}></div>
-      <nav className="container container--pall flex flex-jc-sb flex-ai-c">
-        <a href="/" className="header__logo">
-          <img src={Logo} alt="Gifting" />
-        </a>
-        <a
-          id="btnHamburger"
-          onClick={handleClick}
-          className="header__toggle hide-for-desktop"
-        >
-          <span />
-          <span />
-          <span />
-        </a>
-      </nav>
-      <Links classes={`header__menu ${fade.join(" ")} `} />
+    <header>
+      <div className={header.join(" ")}>
+        <div className={`overlay ${fade.join(" ")} `}></div>
+        <nav className="container container--pall flex flex-jc-sb flex-ai-c">
+          <a href="/" className="header__logo">
+            <img src={Logo} alt="Gifting" />
+          </a>
+          <a id="btnHamburger" onClick={handleClick} className="header__toggle">
+            <span />
+            <span />
+            <span />
+          </a>
+        </nav>
+        <Links classes={`header__menu ${fade.join(" ")} `} />
+      </div>
     </header>
   );
 };

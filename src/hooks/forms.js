@@ -4,8 +4,7 @@ export const useCustomForm = (initial, callback, func, validate) => {
   const [inputs, setInputs] = useState(initial);
   const [validateErrors, setValidationErrors] = useState();
   const handleInputChange = (event) => {
-    if (event?.persist) {
-      event.persist();
+    if (event?.target) {
       setInputs((inputs) => ({
         ...inputs,
         [event.target.name]: event.target.value,
@@ -14,8 +13,6 @@ export const useCustomForm = (initial, callback, func, validate) => {
         setValidationErrors(validate(inputs));
       }
     }
-
-    console.log(event)
   };
   const handleSubmit = (event) => {
     event.preventDefault();

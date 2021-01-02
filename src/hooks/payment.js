@@ -33,20 +33,21 @@ export const useCreatePayment = (CardNumberElement, user) => {
   return [stripe, handleSubmit];
 };
 
-export const useConfirmPayment = (payment) => {
+export const useConfirmPayment = (paymentId, begin) => {
   const stripe = useStripe();
   const dispatch = useDispatch();
   useEffect(() => {
-    if (payment) {
+    if (begin) {
       dispatch(
         confirmPayment(
           stripe,
           process.env.REACT_APP_STRIPE_SECRET_INTENT,
-          payment.id
+          paymentId
         )
       );
     }
-  }, [payment]);
+  }, [paymentId, begin]);
+  return [stripe];
 };
 
 export const useCompletePayment = (payment) => {

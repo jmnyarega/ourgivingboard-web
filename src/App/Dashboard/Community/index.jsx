@@ -1,35 +1,44 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-const Community = ({ data }) => (
+const Community = () => (
   <>
-    <div className="wrapper">
-      <h3 className="element-header">Active Boards</h3>
-      {data.map((_, index) => (
-        <div className="community" key={index}>
-          <p className="community-description">
-            $80 Fundboard
-          </p>
-        </div>
-      ))}
+    <div className="community-card flex-row-gap-1">
+      <div className="element-box">
+        <h3 className="label">Active Boards</h3>
+        <p className="element-description">You have {10} active boards</p>
+        <button className="btn btn-min btn-link">view all</button>
+      </div>
+      <div className="element-box">
+        <h3 className="label">Preload Gift</h3>
+        <p className="element-description">Increase net pending</p>
+        <button className="btn btn-outline-primary">Preload</button>
+      </div>
+      <div className="element-box">
+        <h3 className="label">Enter Gift</h3>
+        <p className="element-description">Gift to board</p>
+        <Link to="/gift" className="btn btn-outline-primary">Enter</Link>
+      </div>
     </div>
-    <div>&nbsp;</div>
-    <div className="wrapper">
-      <h3 className="element-header">Community Boards</h3>
-      {data.map((_, index) => (
-        <div className="community" key={index}>
-          <p className="community-description">
-            $80 Fundboard
-          </p>
-          <button className="btn btn-outline-primary">Gift</button>
+    <div className="community-card flex-row-gap-1">
+      <div className="element-box">
+        <h3 className="label">Foundation Gifting</h3>
+        <p className="element-description">Foundation gifting</p>
+        <button className="btn btn-outline-primary">Gift</button>
+      </div>
+      <div className="element-box">
+        <h3 className="label">Waiting list</h3>
+        <p className="element-description">You are #159 on $80 Gift Board</p>
+        <button className="btn btn-outline-primary">Visit Board</button>
+      </div>
+      <div className="element-box">
+        <h3 className="label">Community Stats</h3>
+        <div className="flex-ai-c flex-jc-c flex community-stat">
+          <i className="fas fa-chart-bar btn btn-link" aria-hidden="true" />
         </div>
-      ))}
+      </div>
     </div>
   </>
 );
-
-Community.propTypes = {
-  data: PropTypes.array,
-};
 
 export default Community;

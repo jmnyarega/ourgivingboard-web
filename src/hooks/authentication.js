@@ -8,16 +8,19 @@ export const useVerifyLogin = (
   pending,
   error,
   history,
-  successMessage
+  successMessage,
+  path
 ) => {
   const [outputMesssage, setMessage] = useState();
   useEffect(() => {
     if (user && pending === false) {
       saveToken(user?.token);
-      setMessage(successMessage)
-      history.push("/home");
+      setMessage(successMessage);
+      if (path) {
+        history.push(path);
+      } else history.push("/home");
     } else if (error && pending === false) {
-      setMessage(error.message)
+      setMessage(error.message);
     }
   }, [user, pending, error]);
   return outputMesssage;
@@ -29,7 +32,7 @@ export const useForgotPasswordEmail = (user, pending, error) => {
     if (user) {
       setLoaded(true);
     } else if (error) {
-      setLoaded(false)
+      setLoaded(false);
     }
   }, [user, pending, error]);
   return loaded;

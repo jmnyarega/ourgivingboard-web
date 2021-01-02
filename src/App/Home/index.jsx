@@ -2,16 +2,18 @@ import React from "react";
 import SummaryContent from "../Dashboard/SummaryContent";
 import Community from "../Dashboard/Community";
 import Dashboard from "../Dashboard";
+import Line from "../../common/Line";
 
 const Home = () => (
   <Dashboard>
     <div className="dashboard-main">
       <div className="dashboard-summary">
-        <SummaryContent title="net pending" number={9.3} />
+        <SummaryContent title="potential" number={80} />
         <SummaryContent title="total gifted" number={80} />
-        <SummaryContent title="total potential" number={80} />
+        <SummaryContent title="pending gift" number={9.3} />
         <SummaryContent title="active boards" number={4} />
       </div>
+      <Line />
       <Community data={[1, 2, 3, 4]} />
     </div>
   </Dashboard>
