@@ -6,9 +6,15 @@ import { useVerifyLogin } from "../../hooks/authentication";
 import InviteForm from "./InviteForm";
 import { invite } from "../../actions/user/invite";
 
-const validate = ({ confirmPassword, password }) => {
+const validate = ({ confirmPassword, password, fname, lname }) => {
   let errors = {};
-  if (password?.length < 6) {
+  if (!fname?.length) {
+    errors.fname = "first name can not be empty";
+  }
+  if (!lname?.length) {
+    errors.lname = "last name can not be empty";
+  }
+  if (password?.length < 6 || !password?.length) {
     errors.password = "password too short";
   }
 
@@ -35,7 +41,8 @@ const Invite = () => {
     pending,
     error,
     history,
-    "invite success"
+    "invite success",
+    "/payment"
   );
   return (
     <div className="login flex-jc-c flex-ai-c">

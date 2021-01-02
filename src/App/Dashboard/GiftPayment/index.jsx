@@ -11,15 +11,13 @@ import {
 } from "@stripe/react-stripe-js";
 
 // hooks
-import { useCreatePayment, useCompletePayment } from "../../hooks/payment.js";
-import { useCurrentUser } from "../../hooks/authentication.js";
-import { useCustomForm } from "../../hooks/forms";
-
-//components
-import GuestTopBar from "../Dashboard/TopBar/GuestTopBar";
+import { useCompletePayment, useBeginPayment, useConfirmPayment } from "../../../hooks/payment.js";
+import { useCurrentUser } from "../../../hooks/authentication.js";
+import { useCustomForm } from "../../../hooks/forms";
 
 const CheckoutForm = () => {
   const { payment } = useSelector((state) => state?.createPayment);
+  const { begin } = useSelector((state) => state?.beginPayment);
   const { user } = useSelector((state) => state?.currentUser);
   const [inputs, handleInputChange] = useCustomForm(
     { name: "" },
@@ -30,52 +28,49 @@ const CheckoutForm = () => {
 
   useCurrentUser();
 
-  const [stripe, handleSubmit] = useCreatePayment(CardNumberElement, {
-    email: user?.email,
-    name: inputs?.name,
-    phone: "8989898989",
-  });
+  const [handleSubmit] = useBeginPayment(user?.email);
+  const [stripe] = useConfirmPayment(5, begin);
 
   useCompletePayment(payment);
 
   return (
-    <div className="payment">
+    <div className="gift-payment">
       <form onSubmit={handleSubmit}>
-        <h3 className="element-header">Payment Information</h3>
-        <label className="payment-card">
+        <h3 className="element-header">Checkout</h3>
+        <label className="gift-payment-card">
           Card Number:
           <CardNumberElement
-            className="payment-form form-control"
+            className="gift-payment-form form-control"
             options={{
               iconStyle: "solid",
               showIcon: true,
             }}
           />
         </label>
-        <label className="payment-name">
+        <label className="gift-payment-name">
           Name:
           <input
             placeholder="Name on Card"
-            className="payment-form form-control"
+            className="gift-payment-form form-control"
             name="name"
             value={inputs.name}
             onChange={handleInputChange}
           />
         </label>
-        <div className="flex flex-column-gap-1">
-          <label className="payment-cvc">
+        <div className="flex flex-jc-sb">
+          <label className="gift-payment-cvc">
             CVC
             <CardCvcElement
               options={{
                 iconStyle: "solid",
                 showIcon: true,
               }}
-              className="payment-form form-control"
+              className="gift-payment-form form-control"
             />
           </label>
-          <label className="payment-expiry">
+          <label className="gift-payment-expiry">
             Expiry Date
-            <CardExpiryElement className="payment-form form-control" />
+            <CardExpiryElement className="gift-payment-form form-control" />
           </label>
         </div>
         <button className="btn btn-primary" type="submit" disabled={!stripe}>
@@ -88,13 +83,12 @@ const CheckoutForm = () => {
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_SECRET);
 
-const Payment = () => (
+const GiftPayment = () => (
   <>
-    <GuestTopBar />
     <Elements stripe={stripePromise}>
       <CheckoutForm />
     </Elements>
   </>
 );
 
-export default Payment;
+export default GiftPayment;

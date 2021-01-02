@@ -1,0 +1,57 @@
+.gift {
+    width: 100%;
+    background-color: $white;
+    margin: 5% auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 2px 5px $veryLight;
+    @include breakpoint-up(large) {
+        width: 100%;
+    }
+
+    &-summary {
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        gap: 1rem;
+        input {
+            width: 40%;
+        }
+
+        &-header {
+            font-weight: bold;
+        }
+        &-line {
+            grid-column: 1 / -1;
+            height: 1px;
+            width: 100%;
+            margin: 0;
+        }
+        &-total {
+            font-weight: bold;
+            grid-column-start: 3;
+            &::before {
+                content: "";
+                display: block;
+                background-color: $black;
+                height: 1px;
+                width: 100%;
+                margin-bottom: 1rem;
+                font-weight: bold;
+            }
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        @include breakpoint-up(large) {
+            width: 80%;
+            margin: 0 auto;
+        }
+    }
+
+    button {
+        margin: 1rem 0;
+        align-self: flex-end;
+        min-width: 5rem;
+    }
+}

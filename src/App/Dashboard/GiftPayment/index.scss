@@ -1,20 +1,14 @@
-.payment {
+.gift-payment {
     width: 100%;
     background-color: $white;
-    margin: 5% auto;
     border-radius: 0.5rem;
     box-shadow: 0 0 2px 5px $veryLight;
-    @include breakpoint-up(large) {
-        width: 60%;
-    }
 
     label + .payment-form {
         margin-bottom: 1rem;
     }
 
-    .payment-form {
-        padding: 0.5rem 1rem;
-        font-family: Roboto, Open Sans, Segoe UI, sans-serif;
+    .gift-payment-form {
         font-size: 16px;
         font-weight: 500;
     }
@@ -23,8 +17,7 @@
         display: flex;
         flex-direction: column;
         @include breakpoint-up(large) {
-            width: 40%;
-            margin: 0 auto;
+            margin: 0 3rem;
         }
     }
 

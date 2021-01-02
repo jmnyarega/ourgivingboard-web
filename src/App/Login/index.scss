@@ -28,9 +28,18 @@
             margin-bottom: 1rem;
         }
         &__header {
-            padding-top: 0.5rem;
-            font-size: 1.25rem;
-            max-width: 30ch;
+            padding-bottom: 1rem;
+            position: relative;
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 85%;
+                top: 70%;
+                background-color: $gold;
+                height: 3px;
+                border-radius: 0.8rem;
+            }
         }
         &__signup {
             background:  rgba(255, 255, 255, 0.12);

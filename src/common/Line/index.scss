@@ -1,0 +1,10 @@
+.line {
+    margin: 1.5rem 3rem;
+    &::after {
+        content: "";
+        display: block;
+        height: 1px;
+        background-color: $lightGray;
+        width: 100%;
+    }
+}
