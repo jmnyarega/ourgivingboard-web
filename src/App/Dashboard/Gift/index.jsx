@@ -46,8 +46,7 @@ const Gift = () => {
                 <input
                   className="form-control"
                   onChange={handleInputChange}
-                  value={inputs[board]}
-                  default={0}
+                  value={inputs[board] || 0}
                   type="number"
                   name={board}
                   min="0"
