@@ -14,6 +14,7 @@
         @include breakpoint-up(large) {
             width: 60%;
             align-items: flex-end;
+            margin: 0 auto;
         }
         i {
             display: inline-block;
