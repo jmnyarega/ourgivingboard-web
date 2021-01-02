@@ -11,7 +11,6 @@ const Home = () => (
         <SummaryContent title="potential" number={80} />
         <SummaryContent title="total gifted" number={80} />
         <SummaryContent title="pending gift" number={9.3} />
-        <SummaryContent title="active boards" number={4} />
       </div>
       <Line />
       <Community data={[1, 2, 3, 4]} />
