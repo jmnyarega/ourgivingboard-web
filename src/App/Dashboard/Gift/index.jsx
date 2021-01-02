@@ -19,13 +19,13 @@ const Gift = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    total && setCheckout(true);
+    total > 0 ? setCheckout(true) : setCheckout(false);
   };
 
   useEffect(() => {
     let sum = 0;
     Object.keys(inputs).forEach((board) => {
-      sum += board * inputs[board];
+      if (inputs[board] > 0) sum += board * inputs[board];
     });
     setTotal(sum);
   }, [inputs]);
@@ -52,7 +52,9 @@ const Gift = () => {
                   name={board}
                   min="0"
                 />
-                <div>${(inputs[board] || 0) * board}</div>
+                <div>
+                  ${((inputs[board] > 0 && inputs[board]) || 0) * board}
+                </div>
               </>
             ))}
             <div className="gift-summary-total">${total}</div>
