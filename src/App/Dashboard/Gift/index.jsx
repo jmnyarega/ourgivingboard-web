@@ -26,6 +26,7 @@ const Gift = () => {
     let sum = 0;
     Object.keys(inputs).forEach((board) => {
       if (inputs[board] > 0) sum += board * inputs[board];
+      else setCheckout(false);
     });
     setTotal(sum);
   }, [inputs]);

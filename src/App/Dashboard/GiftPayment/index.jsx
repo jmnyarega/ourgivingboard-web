@@ -74,7 +74,7 @@ const CheckoutForm = () => {
           </label>
         </div>
         <button className="btn btn-primary" type="submit" disabled={!stripe && !begin}>
-          Save to Account
+          Checkout
         </button>
       </form>
     </div>
