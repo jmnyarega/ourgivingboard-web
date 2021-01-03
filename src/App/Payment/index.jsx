@@ -11,15 +11,14 @@ import {
 } from "@stripe/react-stripe-js";
 
 // hooks
-import { useCreatePayment, useCompletePayment } from "../../hooks/payment.js";
-import { useCurrentUser } from "../../hooks/authentication.js";
+import { useCreatePayment } from "../../hooks/payment";
+import { useCurrentUser } from "../../hooks/authentication";
 import { useCustomForm } from "../../hooks/forms";
 
 //components
 import GuestTopBar from "../Dashboard/TopBar/GuestTopBar";
 
 const CheckoutForm = () => {
-  const { payment } = useSelector((state) => state?.createPayment);
   const { user } = useSelector((state) => state?.currentUser);
   const [inputs, handleInputChange] = useCustomForm(
     { name: "" },
@@ -35,8 +34,6 @@ const CheckoutForm = () => {
     name: inputs?.name,
     phone: "8989898989",
   });
-
-  useCompletePayment(payment);
 
   return (
     <div className="payment">

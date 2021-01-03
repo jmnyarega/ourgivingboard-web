@@ -101,7 +101,7 @@ a:hover {
 
 // visibility
 .hide-for-mobile {
-  @include breakpoint-down(medium){
+  @include breakpoint-down(small){
     display: none;
   }
 }

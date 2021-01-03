@@ -29,7 +29,7 @@ const CheckoutForm = () => {
   useCurrentUser();
 
   const [handleSubmit] = useBeginPayment(user?.email);
-  const [stripe] = useConfirmPayment(5, begin);
+  const [stripe] = useConfirmPayment("5", begin);
 
   useCompletePayment(payment);
 
@@ -73,7 +73,7 @@ const CheckoutForm = () => {
             <CardExpiryElement className="gift-payment-form form-control" />
           </label>
         </div>
-        <button className="btn btn-primary" type="submit" disabled={!stripe}>
+        <button className="btn btn-primary" type="submit" disabled={!stripe && !begin}>
           Save to Account
         </button>
       </form>

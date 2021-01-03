@@ -18,7 +18,7 @@ const Dashboard = (props) => (
 );
 
 Dashboard.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.any,
 };
 
 export default Dashboard;

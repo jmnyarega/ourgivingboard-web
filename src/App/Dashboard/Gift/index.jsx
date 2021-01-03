@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useCustomForm } from "../../../hooks/forms";
 
 // components
-import Dashboard from "../index.jsx";
+import Dashboard from "../index";
 import GiftPayment from "../GiftPayment";
 
 const Gift = () => {

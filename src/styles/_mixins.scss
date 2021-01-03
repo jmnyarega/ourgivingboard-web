@@ -25,7 +25,6 @@ $breakpoints-down: (
 
 @mixin gap($top, $right, $bottom, $left, $class, $space) {
   flex-wrap: wrap;
-  width: calc(100% + #{$space});
   gap: $space;
 
   .#{$class} > * {

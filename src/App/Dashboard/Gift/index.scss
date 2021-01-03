@@ -7,6 +7,10 @@
     @include breakpoint-up(large) {
         width: 100%;
     }
+    
+    &-payment-form {
+        padding: 0.6rem .75rem;
+    }
 
     &-summary {
         display: grid;

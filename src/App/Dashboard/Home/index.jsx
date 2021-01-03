@@ -1,8 +1,8 @@
 import React from "react";
-import SummaryContent from "../Dashboard/SummaryContent";
-import Community from "../Dashboard/Community";
-import Dashboard from "../Dashboard";
-import Line from "../../common/Line";
+import SummaryContent from "../SummaryContent";
+import Community from "../Community";
+import Dashboard from "../index";
+import Line from "../../../common/Line";
 
 const Home = () => (
   <Dashboard>

@@ -37,7 +37,7 @@ export const useConfirmPayment = (paymentId, begin) => {
   const stripe = useStripe();
   const dispatch = useDispatch();
   useEffect(() => {
-    if (begin) {
+    if (begin && stripe) {
       dispatch(
         confirmPayment(
           stripe,

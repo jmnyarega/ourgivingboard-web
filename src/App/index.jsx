@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Home from "./Home";
+import Home from "./Dashboard/Home";
 import Payment from "./Payment";
 import Gift from "./Dashboard/Gift";
 import Login from "./Login";
