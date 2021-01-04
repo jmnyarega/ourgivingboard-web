@@ -24,10 +24,10 @@ export const completePayment = (customer) => {
   return (dispatch) => {
     dispatch(completePaymentPending());
     http()
-      .put(`${URL}/payment/customer`, customer)
+      .put(`${URL}/payments/customer`, customer)
       .then((response) => dispatch(completePaymentSuccess(response)))
       .catch((error) =>
-        dispatch(completePaymentError(error.response.statusText))
+        dispatch(completePaymentError(error))
       );
   };
 };
