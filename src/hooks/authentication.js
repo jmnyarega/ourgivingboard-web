@@ -13,7 +13,7 @@ export const useVerifyLogin = (
 ) => {
   const [outputMesssage, setMessage] = useState();
   useEffect(() => {
-    if (user && pending === false) {
+    if (user && pending === false && !error) {
       saveToken(user?.token);
       setMessage(successMessage);
       if (path) {
