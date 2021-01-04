@@ -55,7 +55,9 @@ export const useCompletePayment = (payment) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (payment) {
-      dispatch(completePayment(payment));
+    const {id, billing_details: {email}} = payment;
+    const customer = {id, email};
+    dispatch(completePayment(customer));
     }
   }, [payment]);
 };

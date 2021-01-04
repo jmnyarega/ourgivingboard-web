@@ -20,16 +20,14 @@ const completePaymentError = (error) => ({
   error,
 });
 
-export const completePayment = (email) => {
-  const user = {
-    email,
-    password: "josiah",
-  };
+export const completePayment = (customer) => {
   return (dispatch) => {
     dispatch(completePaymentPending());
     http()
-      .put(`${URL}/auth/invitation`, { user, invite_token: "1212" })
+      .put(`${URL}/payment/customer`, customer)
       .then((response) => dispatch(completePaymentSuccess(response)))
-      .catch((error) => dispatch(completePaymentError(error)));
+      .catch((error) =>
+        dispatch(completePaymentError(error.response.statusText))
+      );
   };
 };

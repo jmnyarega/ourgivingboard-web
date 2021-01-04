@@ -30,7 +30,7 @@ const CheckoutForm = () => {
   );
   const {
     complete,
-    errors: completeError,
+    error: completeError,
     pending: completePending,
   } = useSelector((state) => state?.completePayment);
   const [inputs, handleInputChange] = useCustomForm(
@@ -108,6 +108,9 @@ const CheckoutForm = () => {
           {pending || completePending ? "Processing..." : "Save to Account"}
         </button>
         {errors && <div className="alert alert-danger">{errors}</div>}
+        {completeError && (
+          <div className="alert alert-danger">{completeError}</div>
+        )}
       </form>
     </div>
   );
