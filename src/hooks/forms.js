@@ -9,6 +9,9 @@ export const useCustomForm = (initial, callback, func, validate) => {
         ...inputs,
         [event.target.name]: event.target.value,
       }));
+      if (validate) {
+        setValidationErrors(validate(inputs));
+      }
     }
   };
   const handleSubmit = (event) => {

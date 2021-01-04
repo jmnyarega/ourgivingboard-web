@@ -1,0 +1,49 @@
+.invite {
+    display: flex;
+    background-color: $white;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 2px 5px $veryLight;
+    width: 50%;
+    margin: 5% auto;
+    &-form {
+        width: 80%;
+        padding: 1.5rem;
+        &__with-errors {
+            color: #e65252;
+            margin: 0 0 1rem;
+            font-weight: bold;
+        }
+        &__btn, label {
+            display: block;
+            margin-bottom: 1rem;
+        }
+        &__header {
+            padding-bottom: 1rem;
+            position: relative;
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 85%;
+                top: 70%;
+                background-color: $gold;
+                height: 3px;
+                border-radius: 0.8rem;
+            }
+        }
+        &__signup {
+            background:  rgba(255, 255, 255, 0.12);
+            position: relative;
+            margin-top: 3rem;
+            &::before {
+                content: "";
+                background: $lightGray;
+                height: 1px;
+                bottom: 3.5rem;
+                left: 0;
+                right: 0;
+                position: absolute;
+            }
+        }
+    }
+}

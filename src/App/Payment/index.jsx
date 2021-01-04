@@ -32,7 +32,10 @@ const CheckoutForm = () => {
     complete,
     error: completeError,
     pending: completePending,
-  } = useSelector((state) => state?.completePayment);
+  } = useSelector((state) => {
+    console.log(state);
+    return state?.completePayment 
+  });
   const [inputs, handleInputChange] = useCustomForm(
     { name: "" },
     null,
@@ -57,6 +60,8 @@ const CheckoutForm = () => {
       setErrors(completeError?.message);
     }
   }, [error, completeError]);
+
+  console.log(complete);
 
   usePaymentInfoSaved(complete);
 
@@ -84,7 +89,7 @@ const CheckoutForm = () => {
             onChange={handleInputChange}
           />
         </label>
-        <div className="flex flex-column-gap-1">
+        <div className="flex flex-column-gap-1 flex-jc-sb">
           <label className="payment-cvc">
             CVC
             <CardCvcElement

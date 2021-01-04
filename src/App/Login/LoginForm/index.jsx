@@ -40,9 +40,11 @@ const LoginForm = ({ onChange, onClick, value, pending, errors }) => (
         {pending ? "Sending..." : "Login"}
       </button>
     </form>
-    <div className="alert alert-danger">
-      {JSON.stringify(errors.server, null, 2)}
-    </div>
+    {errors?.server && (
+      <div className="alert alert-danger">
+        {JSON.stringify(errors.server, null, 2)}
+      </div>
+    )}
     <div className="login-form__signup">
       <button className="btn btn-outline-primary btn-block">Sign Up</button>
     </div>

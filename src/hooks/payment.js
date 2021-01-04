@@ -64,6 +64,7 @@ export const useCompletePayment = (payment) => {
 
 export const usePaymentInfoSaved = (complete) => {
   const history = useHistory();
+  console.log(complete);
   useEffect(() => {
     if (complete) {
       history.push("/home");

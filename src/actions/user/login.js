@@ -20,7 +20,7 @@ export const login = (user) => {
   return (dispatch) => {
     dispatch(loginPending());
     http()
-      .get(URL, user)
+      .post(`${URL}/users/sign_in`, user)
       .then(() => dispatch(loginSuccess(user)))
       .catch((error) => dispatch(loginFailure(error)));
   };

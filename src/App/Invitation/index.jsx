@@ -5,6 +5,7 @@ import { useCustomForm } from "../../hooks/forms";
 import { useVerifyLogin } from "../../hooks/authentication";
 import InviteForm from "./InviteForm";
 import { invite } from "../../actions/user/invite";
+import GuestTopBar from "../Dashboard/TopBar/GuestTopBar";
 
 const validate = ({ confirmPassword, password, fname, lname }) => {
   let errors = {};
@@ -45,18 +46,21 @@ const Invite = () => {
     "/payment"
   );
   return (
-    <div className="login flex-jc-c flex-ai-c">
-      <div className="login-form">
-        <h3 className="login-form__header">Welcome to your Gifting Board</h3>
-        <InviteForm
-          onChange={handleChange}
-          onClick={handleSubmit}
-          value={value}
-          pending={pending}
-          errors={{ validate: validationErrors, server: inviteError }}
-        />
+    <>
+      <GuestTopBar />
+      <div className="invite flex-jc-c flex-ai-c">
+        <div className="invite-form">
+          <h3 className="invite-form__header">Welcome to your Gifting Board</h3>
+          <InviteForm
+            onChange={handleChange}
+            onClick={handleSubmit}
+            value={value}
+            pending={pending}
+            errors={{ validate: validationErrors, server: inviteError }}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

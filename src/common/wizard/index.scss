@@ -1,0 +1,61 @@
+
+.wizard-progress {
+    width: 80vh;
+    margin: 3rem auto;
+}
+
+.wizard-progress .dot {
+    background-color: #e5e5e5;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -8px;
+}
+
+.wizard-progress .step.complete .dot, .wizard-progress .step.active .dot {
+    background-color: #f00;
+}
+
+.wizard-progress .step {
+    position: relative;
+    height: 4px;
+    padding: 0;
+    float: left;
+    width: 20%; /* change to fit however many steps are needed, rounded down (e.g. 20% = 5 dots, 16.66% = 6 dots) */
+    left: 0px;
+}
+
+.wizard-progress .progress {
+    height: 100%;
+    margin: 5px 0;
+    padding: 0;
+    position: relative;
+    box-shadow: none;
+    border-radius: 0;
+    background-color: #e5e5e5;
+}
+
+.step:first-child .progress {
+    left: 50%;
+    width: 50%;
+}
+
+.wizard-progress .step:last-child .progress {
+    width: 50%;
+}
+
+.wizard-progress .step .progress-bar {
+    background-color: #f00;
+}
+
+.wizard-progress .step.active .progress-bar {
+    width: 50%;
+}
+
+.wizard-progress .step.complete .progress-bar {
+    width: 100%;
+}
+

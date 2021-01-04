@@ -8,6 +8,7 @@ const InviteForm = ({ onChange, onClick, value, pending, errors }) => (
         onChange={onChange}
         value={value.fname || ""}
         type="text"
+        placeholder="First Name"
         name="fname"
         className="form-control"
       />
@@ -20,6 +21,7 @@ const InviteForm = ({ onChange, onClick, value, pending, errors }) => (
         onChange={onChange}
         value={value.lname || ""}
         type="text"
+        placeholder="Last Name"
         name="lname"
         className="form-control"
       />
@@ -31,6 +33,7 @@ const InviteForm = ({ onChange, onClick, value, pending, errors }) => (
       <input
         onChange={onChange}
         value={value.password || ""}
+        placeholder="******"
         type="password"
         name="password"
         className="form-control"
@@ -43,6 +46,7 @@ const InviteForm = ({ onChange, onClick, value, pending, errors }) => (
       <input
         onChange={onChange}
         value={value.confirmPassword || ""}
+        placeholder="******"
         type="password"
         name="confirmPassword"
         className="form-control"
