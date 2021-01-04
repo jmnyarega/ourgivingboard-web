@@ -1,14 +1,14 @@
 .gift {
     width: 100%;
     background-color: $white;
-    margin: 5% auto;
+    margin: 0 auto 3rem auto;
     border-radius: 0.5rem;
     box-shadow: 0 0 2px 5px $veryLight;
     padding: 2rem;
     @include breakpoint-up(large) {
         width: 100%;
     }
-    
+
     &-summary {
         display: grid;
         grid-template-columns: repeat(3, auto);

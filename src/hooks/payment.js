@@ -36,8 +36,9 @@ export const useCreatePayment = (CardNumberElement, user) => {
 export const useConfirmPayment = (paymentId, begin) => {
   const stripe = useStripe();
   const dispatch = useDispatch();
+  console.log(paymentId, begin);
   useEffect(() => {
-    if (begin && stripe) {
+    if (begin) {
       dispatch(
         confirmPayment(
           stripe,
@@ -46,7 +47,7 @@ export const useConfirmPayment = (paymentId, begin) => {
         )
       );
     }
-  }, [paymentId, begin]);
+  }, [begin]);
   return [stripe];
 };
 

@@ -22,7 +22,7 @@ export const confirmPayment = (stripe, secretIntent, paymentId) => {
   return (dispatch) => {
     dispatch(confirmPaymentPending());
     stripe
-      .confirmCardPayment(secretIntent, {
+      ?.confirmCardPayment(secretIntent, {
         payment_method: paymentId,
       })
       .then((response) => {

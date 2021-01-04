@@ -12,9 +12,9 @@
 
     &-desktop__bar {
         @include breakpoint-up(large) {
-            width: 60%;
+            flex: 1 1 58%;
             align-items: flex-end;
-            margin: 0 auto;
+            margin-left: 2%;
         }
         i {
             display: inline-block;

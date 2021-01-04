@@ -22,6 +22,7 @@ const beginPaymentReducer = (state = initialState, action) => {
     case BEGIN_PAYMENT_FAILURE:
       return {
         error: action.error,
+        begin: [],
         pending: false,
       };
     default:

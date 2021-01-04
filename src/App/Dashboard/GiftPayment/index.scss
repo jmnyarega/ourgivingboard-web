@@ -5,6 +5,14 @@
     box-shadow: 0 0 2px 5px $veryLight;
     padding: 2rem;
 
+    .label {
+        font-size: 0.9rem;
+        color: $purple;
+        margin-bottom: 0;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
     label + .payment-form {
         margin-bottom: 1rem;
     }
