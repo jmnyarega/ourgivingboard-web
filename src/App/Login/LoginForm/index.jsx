@@ -28,7 +28,9 @@ const LoginForm = ({ onChange, onClick, value, pending, errors }) => (
         />
       </label>
       {errors.validate?.password && (
-        <div className="login-form__with-errors">{errors.validate?.password}</div>
+        <div className="login-form__with-errors">
+          {errors.validate?.password}
+        </div>
       )}
       <button
         onClick={onClick}
@@ -38,7 +40,9 @@ const LoginForm = ({ onChange, onClick, value, pending, errors }) => (
         {pending ? "Sending..." : "Login"}
       </button>
     </form>
-    {JSON.stringify(errors.server, null, 2)}
+    <div className="alert alert-danger">
+      {JSON.stringify(errors.server, null, 2)}
+    </div>
     <div className="login-form__signup">
       <button className="btn btn-outline-primary btn-block">Sign Up</button>
     </div>
