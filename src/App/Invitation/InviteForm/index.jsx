@@ -12,9 +12,9 @@ const InviteForm = ({ onChange, onClick, value, pending, errors }) => (
         className="form-control"
       />
     </label>
-      {errors.validate?.fname && (
-        <div className="login-form__with-errors">{errors.validate?.fname}</div>
-      )}
+    {errors.validate?.fname && (
+      <div className="login-form__with-errors">{errors.validate?.fname}</div>
+    )}
     <label> Last Name:
       <input
         onChange={onChange}
@@ -24,9 +24,9 @@ const InviteForm = ({ onChange, onClick, value, pending, errors }) => (
         className="form-control"
       />
     </label>
-      {errors.validate?.lname && (
-        <div className="login-form__with-errors">{errors.validate?.lname}</div>
-      )}
+    {errors.validate?.lname && (
+      <div className="login-form__with-errors">{errors.validate?.lname}</div>
+    )}
     <label> Password:
       <input
         onChange={onChange}
@@ -36,9 +36,9 @@ const InviteForm = ({ onChange, onClick, value, pending, errors }) => (
         className="form-control"
       />
     </label>
-      {errors.validate?.password && (
-        <div className="login-form__with-errors">{errors.validate?.password}</div>
-      )}
+    {errors.validate?.password && (
+      <div className="login-form__with-errors">{errors.validate?.password}</div>
+    )}
     <label> Confirm Password:
       <input
         onChange={onChange}
@@ -48,9 +48,11 @@ const InviteForm = ({ onChange, onClick, value, pending, errors }) => (
         className="form-control"
       />
     </label>
-      {errors.validate?.confirmPassword && (
-        <div className="login-form__with-errors">{errors.validate?.confirmPassword}</div>
-      )}
+    {errors.validate?.confirmPassword && (
+      <div className="login-form__with-errors">
+        {errors.validate?.confirmPassword}
+      </div>
+    )}
     <button
       onClick={onClick}
       disabled={pending}
@@ -58,7 +60,7 @@ const InviteForm = ({ onChange, onClick, value, pending, errors }) => (
     >
       {pending ? "Sending..." : "Login"}
     </button>
-    {JSON.stringify(errors.server, null, 2)}
+    { errors?.server && <div className="alert alert-danger">{errors.server}</div> }
   </form>
 );
 

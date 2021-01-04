@@ -5,7 +5,7 @@ import Logo from "../../../../common/Logo";
 const GuestTopBar = () => (
   <header className="header">
     <nav className="container container--pall flex flex-jc-sb flex-ai-c">
-      <Link to="/home" className="header__logo">
+      <Link to="#" className="header__logo">
         <Logo />
       </Link>
     </nav>

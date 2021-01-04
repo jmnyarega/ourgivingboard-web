@@ -24,7 +24,7 @@ export const beginPayment = (email) => {
   return (dispatch) => {
     dispatch(beginPaymentPending());
     http()
-      .get(URL, email)
+      .post(URL, email)
       .then((response) => dispatch(beginPaymentSuccess(response)))
       .catch((error) => dispatch(beginPaymentError(error)));
   };

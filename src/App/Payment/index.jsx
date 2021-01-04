@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 //stripe
@@ -11,7 +11,11 @@ import {
 } from "@stripe/react-stripe-js";
 
 // hooks
-import { useCreatePayment } from "../../hooks/payment";
+import {
+  useCreatePayment,
+  useCompletePayment,
+  usePaymentInfoSaved,
+} from "../../hooks/payment";
 import { useCurrentUser } from "../../hooks/authentication";
 import { useCustomForm } from "../../hooks/forms";
 
@@ -19,7 +23,16 @@ import { useCustomForm } from "../../hooks/forms";
 import GuestTopBar from "../Dashboard/TopBar/GuestTopBar";
 
 const CheckoutForm = () => {
+  const [errors, setErrors] = useState("");
   const { user } = useSelector((state) => state?.currentUser);
+  const { payment, error, pending } = useSelector(
+    (state) => state?.createPayment
+  );
+  const {
+    complete,
+    errors: completeError,
+    pending: completePending,
+  } = useSelector((state) => state?.completePayment);
   const [inputs, handleInputChange] = useCustomForm(
     { name: "" },
     null,
@@ -28,12 +41,24 @@ const CheckoutForm = () => {
   );
 
   useCurrentUser();
+  useCompletePayment(payment);
 
   const [stripe, handleSubmit] = useCreatePayment(CardNumberElement, {
     email: user?.email,
     name: inputs?.name,
     phone: "8989898989",
   });
+
+  useEffect(() => {
+    if (error) {
+      setErrors(error?.error.message);
+    }
+    if (completeError) {
+      setErrors(completeError?.message);
+    }
+  }, [error, completeError]);
+
+  usePaymentInfoSaved(complete);
 
   return (
     <div className="payment">
@@ -75,9 +100,14 @@ const CheckoutForm = () => {
             <CardExpiryElement className="payment-form form-control" />
           </label>
         </div>
-        <button className="btn btn-primary" type="submit" disabled={!stripe}>
-          Save to Account
+        <button
+          className="btn btn-primary"
+          type="submit"
+          disabled={!stripe || pending || completePending}
+        >
+          {pending || completePending ? "Processing..." : "Save to Account"}
         </button>
+        {errors && <div className="alert alert-danger">{errors}</div>}
       </form>
     </div>
   );

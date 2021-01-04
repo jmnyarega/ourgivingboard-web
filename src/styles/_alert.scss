@@ -1,0 +1,29 @@
+.alert {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 2px solid transparent;
+  border-radius: 6px;
+
+  &-success {
+    color: #104f09;
+    background-color: #6acb5f;
+    border-color: #36b927;
+  }
+
+  &-info {
+    color: #285462;
+    background-color: #8fd4e9;
+    border-color: #68c5e1;
+  }
+  &-warning {
+    color: #6e6446;
+    background-color: #fcedbe;
+    border-color: #fbe6a8;
+  }
+  &-danger {
+    color: #652424;
+    background-color: #ee8989;
+    border-color: #e86060;
+  }
+}

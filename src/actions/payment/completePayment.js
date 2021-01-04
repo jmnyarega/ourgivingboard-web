@@ -21,10 +21,14 @@ const completePaymentError = (error) => ({
 });
 
 export const completePayment = (email) => {
+  const user = {
+    email,
+    password: "josiah",
+  };
   return (dispatch) => {
     dispatch(completePaymentPending());
     http()
-      .get(URL, email)
+      .put(`${URL}/auth/invitation`, { user, invite_token: "1212" })
       .then((response) => dispatch(completePaymentSuccess(response)))
       .catch((error) => dispatch(completePaymentError(error)));
   };

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createPayment } from "../actions/payment/createPayment";
 import { confirmPayment } from "../actions/payment/confirmPayment";
@@ -36,7 +37,6 @@ export const useCreatePayment = (CardNumberElement, user) => {
 export const useConfirmPayment = (paymentId, begin) => {
   const stripe = useStripe();
   const dispatch = useDispatch();
-  console.log(paymentId, begin);
   useEffect(() => {
     if (begin) {
       dispatch(
@@ -59,3 +59,15 @@ export const useCompletePayment = (payment) => {
     }
   }, [payment]);
 };
+
+export const usePaymentInfoSaved = (complete) => {
+  const history = useHistory();
+  useEffect(() => {
+    if (complete) {
+      history.push("/home");
+    }
+  }, [complete]);
+};
+
+
+// create payment intent 

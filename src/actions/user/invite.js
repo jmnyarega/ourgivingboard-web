@@ -20,7 +20,7 @@ export const invite = (user) => {
   return (dispatch) => {
     dispatch(invitePending());
     http()
-      .post(URL, { user, token: "1,2,3,4" })
+      .put(`${URL}/auth/invitation`, { user, invitation_token: "1,2,3,4" })
       .then(() => dispatch(inviteSuccess(user)))
       .catch((error) => dispatch(inviteFailure(error)));
   };

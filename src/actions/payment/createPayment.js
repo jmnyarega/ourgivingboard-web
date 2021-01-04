@@ -19,7 +19,6 @@ const createPaymentError = (error) => ({
 });
 
 export const createPayment = (stripe, CardNumberElement, billingDetails) => {
-  console.log(billingDetails);
   return (dispatch) => {
     dispatch(createPaymentPending());
     stripe
