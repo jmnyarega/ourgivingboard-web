@@ -1,23 +1,19 @@
 .login {
-    display: flex;
-    min-height: 100vh;
-    &::before {
-        content: "";
-        background: url("../../Assets/login-background.png") no-repeat;
-        background-size: cover;
-        position: absolute;
-        top: 0px;
-        right: 0px;
-        bottom: 0px;
-        left: 0px;
-        filter: blur(0.75rem);
-        z-index: -1;
+    background-color: $white;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 2px 5px $veryLight;
+    @include breakpoint-up(medium) {
+        margin: 1rem auto;
+        width: 50%;
+        display: flex;
     }
+
     &-form {
+        width: 100%;
         padding: 1.5rem;
-        border-radius: 6px;
-        background-color: #fff;
-        box-shadow: 0px 2px 4px rgba(126, 142, 177, 0.12); 
+        @include breakpoint-up(medium) {
+            width: 100%;
+        }
         &__with-errors {
             color: #e65252;
             margin: 0 0 1rem;

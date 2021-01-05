@@ -5,6 +5,7 @@ import { useCustomForm } from "../../hooks/forms";
 import { useVerifyLogin } from "../../hooks/authentication";
 import LoginForm from "./LoginForm";
 import { login } from "../../actions/user/login";
+import GuestTopBar from "../Dashboard/TopBar/GuestTopBar";
 
 const validate = ({ email, password }) => {
   let errors = {};
@@ -37,6 +38,9 @@ const Login = () => {
   );
 
   return (
+
+    <>
+    <GuestTopBar />
     <div className="login flex-jc-c flex-ai-c">
       <div className="login-form">
         <h3 className="login-form__header">Welcome to your Gifting Board</h3>
@@ -49,6 +53,7 @@ const Login = () => {
         />
       </div>
     </div>
+    </>
   );
 };
 

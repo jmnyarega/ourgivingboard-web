@@ -1,10 +1,12 @@
 .payment {
-    display: flex;
     background-color: $white;
     border-radius: 0.5rem;
     box-shadow: 0 0 2px 5px $veryLight;
-    width: 50%;
-    margin: 5% auto;
+    @include breakpoint-up(large) {
+        margin: 0 auto;
+        width: 50%;
+        display: flex;
+    }
 
     label + .payment-form {
         margin-bottom: 1rem;
@@ -12,7 +14,6 @@
 
     .payment-form {
         padding: 0.5rem 1rem;
-        font-family: Roboto, Open Sans, Segoe UI, sans-serif;
         font-size: 16px;
         font-weight: 500;
     }
@@ -20,11 +21,12 @@
     form {
         display: flex;
         flex-direction: column;
-        @include breakpoint-up(large) {
-            padding: 1.5rem;
-            width: 80%;
+        @include breakpoint-up(medium) {
             margin: 0 auto;
+            width: 100%;
+            padding: 1.5rem;
         }
+
     }
 
     button {

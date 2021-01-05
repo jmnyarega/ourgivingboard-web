@@ -12,6 +12,7 @@ const LoginForm = ({ onChange, onClick, value, pending, errors }) => (
           type="email"
           name="email"
           className="form-control"
+          placeholder="Email Address..."
         />
       </label>
       {errors.validate?.email && (
@@ -25,6 +26,7 @@ const LoginForm = ({ onChange, onClick, value, pending, errors }) => (
           type="password"
           name="password"
           className="form-control"
+          placeholder="******"
         />
       </label>
       {errors.validate?.password && (
@@ -32,21 +34,23 @@ const LoginForm = ({ onChange, onClick, value, pending, errors }) => (
           {errors.validate?.password}
         </div>
       )}
-      <button
-        onClick={onClick}
-        disabled={pending}
-        className="login-form__btn btn btn-primary btn-block"
-      >
-        {pending ? "Sending..." : "Login"}
-      </button>
+      <div className="flex flex-jc-fe">
+        <button
+          onClick={onClick}
+          disabled={pending}
+          className="login-form__btn btn btn-primary"
+        >
+          {pending ? "Sending..." : "Login"}
+        </button>
+      </div>
     </form>
     {errors?.server && (
       <div className="alert alert-danger">
         {JSON.stringify(errors.server, null, 2)}
       </div>
     )}
-    <div className="login-form__signup">
-      <button className="btn btn-outline-primary btn-block">Sign Up</button>
+    <div className="login-form__signup flex flex-jc-c flex-ai-c">
+      Need an account? <button className="btn btn-link"> Sign up here </button>
     </div>
   </>
 );

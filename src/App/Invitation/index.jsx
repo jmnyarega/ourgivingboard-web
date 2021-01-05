@@ -6,6 +6,7 @@ import { useVerifyLogin } from "../../hooks/authentication";
 import InviteForm from "./InviteForm";
 import { invite } from "../../actions/user/invite";
 import GuestTopBar from "../Dashboard/TopBar/GuestTopBar";
+import Wizard from "../../common/wizard";
 
 const validate = ({ confirmPassword, password, fname, lname }) => {
   let errors = {};
@@ -48,6 +49,7 @@ const Invite = () => {
   return (
     <>
       <GuestTopBar />
+      <Wizard classes="hide-for-mobile" steps={["active", "active"]}  />
       <div className="invite flex-jc-c flex-ai-c">
         <div className="invite-form">
           <h3 className="invite-form__header">Welcome to your Gifting Board</h3>

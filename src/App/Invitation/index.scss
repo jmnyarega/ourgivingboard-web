@@ -1,13 +1,19 @@
 .invite {
-    display: flex;
     background-color: $white;
     border-radius: 0.5rem;
     box-shadow: 0 0 2px 5px $veryLight;
-    width: 50%;
-    margin: 5% auto;
+    @include breakpoint-up(medium) {
+        margin: 0 auto;
+        width: 50%;
+        display: flex;
+    }
+
     &-form {
-        width: 80%;
+        width: 100%;
         padding: 1.5rem;
+        @include breakpoint-up(medium) {
+            width: 100%;
+        }
         &__with-errors {
             color: #e65252;
             margin: 0 0 1rem;
@@ -44,6 +50,9 @@
                 right: 0;
                 position: absolute;
             }
+        }
+        &__btn {
+            min-width: 5rem;
         }
     }
 }

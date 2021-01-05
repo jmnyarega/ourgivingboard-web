@@ -14,7 +14,7 @@ const InviteForm = ({ onChange, onClick, value, pending, errors }) => (
       />
     </label>
     {errors.validate?.fname && (
-      <div className="login-form__with-errors">{errors.validate?.fname}</div>
+      <div className="invite-form__with-errors">{errors.validate?.fname}</div>
     )}
     <label> Last Name:
       <input
@@ -27,7 +27,7 @@ const InviteForm = ({ onChange, onClick, value, pending, errors }) => (
       />
     </label>
     {errors.validate?.lname && (
-      <div className="login-form__with-errors">{errors.validate?.lname}</div>
+      <div className="invite-form__with-errors">{errors.validate?.lname}</div>
     )}
     <label> Password:
       <input
@@ -40,7 +40,9 @@ const InviteForm = ({ onChange, onClick, value, pending, errors }) => (
       />
     </label>
     {errors.validate?.password && (
-      <div className="login-form__with-errors">{errors.validate?.password}</div>
+      <div className="invite-form__with-errors">
+        {errors.validate?.password}
+      </div>
     )}
     <label> Confirm Password:
       <input
@@ -53,18 +55,22 @@ const InviteForm = ({ onChange, onClick, value, pending, errors }) => (
       />
     </label>
     {errors.validate?.confirmPassword && (
-      <div className="login-form__with-errors">
+      <div className="invite-form__with-errors">
         {errors.validate?.confirmPassword}
       </div>
     )}
-    <button
-      onClick={onClick}
-      disabled={pending}
-      className="login-form__btn btn btn-primary btn-block"
-    >
-      {pending ? "Sending..." : "Login"}
-    </button>
-    { errors?.server && <div className="alert alert-danger">{errors.server}</div> }
+    <div className="flex flex-jc-fe">
+      <button
+        onClick={onClick}
+        disabled={pending}
+        className="btn btn-primary btn"
+      >
+        {pending ? "Sending..." : "Sign Up"}
+      </button>
+    </div>
+    {errors?.server && (
+      <div className="alert alert-danger">{errors.server}</div>
+    )}
   </form>
 );
 

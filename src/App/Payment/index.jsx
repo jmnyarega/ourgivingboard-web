@@ -21,6 +21,7 @@ import { useCustomForm } from "../../hooks/forms";
 
 //components
 import GuestTopBar from "../Dashboard/TopBar/GuestTopBar";
+import Wizard from "../../common/wizard";
 
 const CheckoutForm = () => {
   const [errors, setErrors] = useState("");
@@ -33,8 +34,7 @@ const CheckoutForm = () => {
     error: completeError,
     pending: completePending,
   } = useSelector((state) => {
-    console.log(state);
-    return state?.completePayment 
+    return state?.completePayment;
   });
   const [inputs, handleInputChange] = useCustomForm(
     { name: "" },
@@ -61,60 +61,61 @@ const CheckoutForm = () => {
     }
   }, [error, completeError]);
 
-  console.log(complete);
-
   usePaymentInfoSaved(complete);
 
   return (
-    <div className="payment">
-      <form onSubmit={handleSubmit}>
-        <h3 className="element-header">Payment Information</h3>
-        <label className="payment-card">
-          Card Number:
-          <CardNumberElement
-            className="payment-form form-control"
-            options={{
-              iconStyle: "solid",
-              showIcon: true,
-            }}
-          />
-        </label>
-        <label className="payment-name">
-          Name:
-          <input
-            placeholder="Name on Card"
-            className="payment-form form-control"
-            name="name"
-            value={inputs.name}
-            onChange={handleInputChange}
-          />
-        </label>
-        <div className="flex flex-column-gap-1 flex-jc-sb">
-          <label className="payment-cvc">
-            CVC
-            <CardCvcElement
+    <>
+      <Wizard classes="hide-for-mobile" steps={["active", "active", "active"]} />
+      <div className="payment">
+        <form onSubmit={handleSubmit}>
+          <h3 className="element-header">Payment Information</h3>
+          <label className="payment-card">
+            Card Number:
+            <CardNumberElement
+              className="payment-form form-control"
               options={{
                 iconStyle: "solid",
                 showIcon: true,
               }}
-              className="payment-form form-control"
             />
           </label>
-          <label className="payment-expiry">
-            Expiry Date
-            <CardExpiryElement className="payment-form form-control" />
+          <label className="payment-name">
+            Name:
+            <input
+              placeholder="Name on Card"
+              className="payment-form form-control"
+              name="name"
+              value={inputs.name}
+              onChange={handleInputChange}
+            />
           </label>
-        </div>
-        <button
-          className="btn btn-primary"
-          type="submit"
-          disabled={!stripe || pending || completePending}
-        >
-          {pending || completePending ? "Processing..." : "Save to Account"}
-        </button>
-        {errors && <div className="alert alert-danger">{errors}</div>}
-      </form>
-    </div>
+          <div className="flex flex-column-gap-1 flex-jc-sb">
+            <label className="payment-cvc">
+              CVC
+              <CardCvcElement
+                options={{
+                  iconStyle: "solid",
+                  showIcon: true,
+                }}
+                className="payment-form form-control"
+              />
+            </label>
+            <label className="payment-expiry">
+              Expiry Date
+              <CardExpiryElement className="payment-form form-control" />
+            </label>
+          </div>
+          <button
+            className="btn btn-primary"
+            type="submit"
+            disabled={!stripe || pending || completePending}
+          >
+            {pending || completePending ? "Processing..." : "Save to Account"}
+          </button>
+          {errors && <div className="alert alert-danger">{errors}</div>}
+        </form>
+      </div>
+    </>
   );
 };
 
