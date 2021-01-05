@@ -65,7 +65,7 @@ const CheckoutForm = () => {
 
   return (
     <>
-      <Wizard classes="hide-for-mobile" steps={["active", "active", "active"]} />
+      <Wizard classes="hide-for-mobile" steps={["active", "active", "progress"]} />
       <div className="payment">
         <form onSubmit={handleSubmit}>
           <h3 className="element-header">Payment Information</h3>

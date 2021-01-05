@@ -12,6 +12,7 @@
     position: relative;
     width:33%;
     text-align:center;
+    font-weight: bold;
 }
 
 .progressbar li:before {
@@ -44,16 +45,23 @@
 }
 
 .progressbar li.active {
-    color:green;
+    color:$purple;
 
 }
 
 .progressbar li.active:before {
     font-family: "FontAwesome";
     content: "\f00c";
-    border-color:green;
+    border-color:$purple;
 }
 
-.progressbar li.active +li:after {
-    background-color:green;
+.progressbar li.progress:before {
+    font-family: "FontAwesome";
+    content: "\f251";
+    color: $lightGray;
+    border-color:currentColor;
+}
+
+.progressbar li.progress +li:after {
+    background-color:$lightGray;
 }
