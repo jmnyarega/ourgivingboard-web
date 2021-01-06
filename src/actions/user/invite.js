@@ -22,7 +22,7 @@ export const invite = (user, invitation_token) => {
     dispatch(invitePending());
     http()
       // fakeServer(user)
-      .put(`${URL}/auth/invitation`, { ...user, invitation_token })
+      .put(`${URL}/users/invitation`, { ...user, invitation_token })
       .then(() => dispatch(inviteSuccess(user)))
       .catch((error) => dispatch(inviteFailure(error)));
   };
