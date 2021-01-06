@@ -55,9 +55,17 @@ export const useCompletePayment = (payment) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (payment) {
-    const {id, billing_details: {email}} = payment;
-    const customer = {id, email};
-    dispatch(completePayment(customer));
+      const {
+        id,
+        billing_details: { email },
+      } = payment;
+      const customer = {
+        customer: {
+          email: email || "jmnyarega@gmail.com",
+          payment_method_id: id,
+        },
+      };
+      dispatch(completePayment(customer));
     }
   }, [payment]);
 };

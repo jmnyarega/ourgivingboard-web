@@ -47,8 +47,8 @@ const CheckoutForm = () => {
   useCompletePayment(payment);
 
   const [stripe, handleSubmit] = useCreatePayment(CardNumberElement, {
-    email: user?.email,
-    name: inputs?.name,
+    email: user?.email || "jpstokes@plecco.net",
+    name: inputs?.name || "johndoe",
     phone: "8989898989",
   });
 
@@ -65,10 +65,13 @@ const CheckoutForm = () => {
 
   return (
     <>
-      <Wizard classes="hide-for-mobile" steps={["active", "active", "progress"]} />
+      <Wizard
+        classes="hide-for-mobile"
+        steps={["active", "active", "progress"]}
+      />
       <div className="payment">
         <form onSubmit={handleSubmit}>
-          <h3 className="element-header">Payment Information</h3>
+          <h3 className="element-header title">Payment Information</h3>
           <label className="payment-card">
             Card Number:
             <CardNumberElement
@@ -112,7 +115,9 @@ const CheckoutForm = () => {
           >
             {pending || completePending ? "Processing..." : "Save to Account"}
           </button>
-          {errors && <div className="alert alert-danger">{errors}</div>}
+          {errors && !pending && (
+            <div className="alert alert-danger">{errors}</div>
+          )}
         </form>
       </div>
     </>

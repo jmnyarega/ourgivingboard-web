@@ -16,6 +16,14 @@
             align-items: flex-end;
             margin-left: 2%;
         }
+        @include breakpoint-up(medium) {
+            flex: 1 1 30%;
+            align-items: flex-end;
+            margin-left: 2%;
+        }
+        @include breakpoint-down(medium) {
+            flex: 1 1 30%;
+        }
         i {
             display: inline-block;
             cursor: pointer;

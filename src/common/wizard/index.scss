@@ -12,7 +12,7 @@
     position: relative;
     width:33%;
     text-align:center;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .progressbar li:before {
@@ -45,23 +45,33 @@
 }
 
 .progressbar li.active {
-    color:$purple;
-
+    color:$lightPurple;
 }
 
 .progressbar li.active:before {
     font-family: "FontAwesome";
     content: "\f00c";
-    border-color:$purple;
+    border-color:$lightPurple;
+}
+
+.progressbar li.progress {
+    color:$purple;
 }
 
 .progressbar li.progress:before {
     font-family: "FontAwesome";
     content: "\f251";
-    color: $lightGray;
+    color: $purple;
     border-color:currentColor;
 }
 
-.progressbar li.progress +li:after {
-    background-color:$lightGray;
+.progressbar li.inactive {
+    color:$lightGray;
+}
+
+.progressbar li.inactive:before {
+    font-family: "FontAwesome";
+    content: "\f240";
+    color: $lightGray;
+    border-color:currentColor;
 }

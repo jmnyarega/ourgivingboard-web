@@ -4,7 +4,7 @@ import Links from "./Links";
 
 const TopBar = () => {
   const [open, setOpen] = useState("");
-  const [header, setHeader] = useState(["header hide-for-desktop"]);
+  const [header, setHeader] = useState(["header hide-for-desktop hide-for-tablet"]);
   const [fade, setFade] = useState(["has-fade"]);
 
   const handleClick = () => {

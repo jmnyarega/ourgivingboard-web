@@ -43,7 +43,7 @@ const Login = () => {
     <GuestTopBar />
     <div className="login flex-jc-c flex-ai-c">
       <div className="login-form">
-        <h3 className="login-form__header">Welcome to your Gifting Board</h3>
+        <h3 className="login-form__header title">Welcome to your Gifting Board</h3>
         <LoginForm
           onChange={handleChange}
           onClick={handleSubmit}
