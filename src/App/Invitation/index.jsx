@@ -62,7 +62,7 @@ const Invite = () => {
       <Wizard classes="hide-for-mobile" steps={["active", "progress", "inactive"]}  />
       <div className="invite flex-jc-c flex-ai-c">
         <div className="invite-form">
-          <h3 className="invite-form__header">Welcome to your Gifting Board</h3>
+          <h3 className="invite-form__header title">Welcome to your Gifting Board</h3>
           <InviteForm
             onChange={handleChange}
             onClick={handleSubmit}
