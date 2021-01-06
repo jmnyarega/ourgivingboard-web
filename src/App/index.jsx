@@ -11,7 +11,7 @@ import "../styles/index.scss";
 const App = () => (
   <Switch>
     <Route path="/home" component={Home} />
-    <Route path="/invite" component={Invite} />
+    <Route path="/invite/:invitation_token" component={Invite} />
     <Route path="/payment" component={Payment} />
     <Route path="/gift" component={Gift} />
     <Route path="/recover" component={Recover} />

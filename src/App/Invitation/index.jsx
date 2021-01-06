@@ -41,10 +41,11 @@ const Invite = () => {
     {},
     dispatch,
     invite,
-    validate
+    validate,
+    invitation_token
   );
 
-  console.log(invitation_token, "testing")
+  console.log(invitation_token);
 
   const history = useHistory();
   const inviteError = useVerifyLogin(
@@ -53,7 +54,7 @@ const Invite = () => {
     error,
     history,
     "invite success",
-    "/payment"
+    "/payment",
   );
   return (
     <>

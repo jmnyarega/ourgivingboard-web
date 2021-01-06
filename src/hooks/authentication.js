@@ -9,7 +9,7 @@ export const useVerifyLogin = (
   error,
   history,
   successMessage,
-  path
+  path,
 ) => {
   const [outputMesssage, setMessage] = useState();
   useEffect(() => {

@@ -1,7 +1,8 @@
 import { useState } from "react";
 
-export const useCustomForm = (initial, callback, func, validate) => {
+export const useCustomForm = (initial, callback, func, validate, data) => {
   const [inputs, setInputs] = useState(initial);
+  const [rest] = useState(data);
   const [validateErrors, setValidationErrors] = useState();
   const handleInputChange = (event) => {
     if (event?.target) {
@@ -20,7 +21,7 @@ export const useCustomForm = (initial, callback, func, validate) => {
       setValidationErrors(validate(inputs));
       validateErrors &&
         Object.keys(validateErrors).length === 0 &&
-        callback(func(inputs));
+        callback(func(inputs, rest));
     } else {
       callback(func(inputs));
     }
