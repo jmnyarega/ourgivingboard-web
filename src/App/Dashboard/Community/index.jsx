@@ -7,11 +7,7 @@ const Community = () => (
       <div className="element-box">
         <h3 className="label title">Active Boards</h3>
         <p className="element-description">You have {10} active boards</p>
-<<<<<<< HEAD
         <button className="btn btn-outline-primary">View All</button>
-=======
-        <button className="btn btn-min btn-primary">view all</button>
->>>>>>> 62cb6efc8f4969522fdb0efe8e8adfe036f38bfe
       </div>
       <div className="element-box">
         <h3 className="label title">Preload Gift</h3>
