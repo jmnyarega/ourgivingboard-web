@@ -17,9 +17,9 @@ const Home = () => {
       <div className="dashboard-main">
         <div className="title">{email}</div>
         <div className="dashboard-summary">
-          <SummaryElement title="total potential" number={80} />
-          <SummaryElement title="total gifted" number={80} />
-          <SummaryElement title="net payout" number={9.3} />
+          <SummaryElement title="total potential" number={0} />
+          <SummaryElement title="total gifted" number={0} />
+          <SummaryElement title="net payout" number={0} />
         </div>
         <Line />
         <Community data={[1, 2, 3, 4]} />
