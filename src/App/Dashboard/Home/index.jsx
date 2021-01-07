@@ -17,7 +17,7 @@ const Home = () => {
       <div className="dashboard-main">
         <div className="title">{email}</div>
         <div className="dashboard-summary">
-          <SummaryElement title="potential" number={80} />
+          <SummaryElement title="full potential" number={80} />
           <SummaryElement title="total gifted" number={80} />
           <SummaryElement title="pending gift" number={9.3} />
         </div>
