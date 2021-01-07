@@ -6,7 +6,7 @@ const Community = () => (
     <div className="community-card flex-row-gap-1">
       <div className="element-box">
         <h3 className="label title">Active Boards</h3>
-        <p className="element-description">You have {10} active boards</p>
+        <p className="element-description">You have {0} active boards</p>
         <button className="btn btn-outline-primary">View All</button>
       </div>
       <div className="element-box">
