@@ -28,7 +28,7 @@ const Community = () => (
       </div>
       <div className="element-box">
         <h3 className="label title">Waiting list</h3>
-        <p className="element-description">You are #159 on $80 Gift Board</p>
+        <p className="element-description">You are not on any boards.</p>
         <button className="btn btn-outline-primary">Visit Board</button>
       </div>
       <div className="element-box">
