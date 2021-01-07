@@ -9,7 +9,7 @@ const Dashboard = (props) => (
     <TopBar />
     <div className="container flex flex-column-gap-1">
       <SideBar />
-      <div className="flex flex-d-column dashboard-desktop__bar"> {/* breaks mobile version */}
+      <div className="flex flex-d-column dashboard-desktop__bar">
       <DesktopBar />
       {props.children}
       </div>
