@@ -7,7 +7,7 @@ const Community = () => (
       <div className="element-box">
         <h3 className="label title">Active Boards</h3>
         <p className="element-description">You have {10} active boards</p>
-        <button className="btn btn-min btn-link">view all</button>
+        <button className="btn btn-outline-primary">View All</button>
       </div>
       <div className="element-box">
         <h3 className="label title">Preload Gift</h3>
@@ -33,9 +33,8 @@ const Community = () => (
       </div>
       <div className="element-box">
         <h3 className="label title">Community Stats</h3>
-        <div className="flex-ai-c flex-jc-c flex community-stat">
-          <i className="fas fa-chart-bar btn btn-link" aria-hidden="true" />
-        </div>
+        <p className="element-description">&nbsp;</p>
+        <button className="btn btn-outline-primary">View Stats</button>
       </div>
     </div>
   </>
