@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { saveToken } from "../helpers/axios";
+import { saveEmail, saveToken } from "../helpers/axios";
 import { getUserByToken } from "../actions/user/currentUser";
 
 export const useVerifyLogin = (
@@ -9,18 +9,19 @@ export const useVerifyLogin = (
   error,
   history,
   successMessage,
-  path,
+  path
 ) => {
   const [outputMesssage, setMessage] = useState();
   useEffect(() => {
     if (user && pending === false && !error) {
-      saveToken(user?.token);
+      saveEmail(user?.uid);
+      saveToken(user?.auth_token);
       setMessage(successMessage);
       if (path) {
         history.push(path);
       } else history.push("/home");
     } else if (error && pending === false) {
-      setMessage(error.message);
+      setMessage(error);
     }
   }, [user, pending, error]);
   return outputMesssage;

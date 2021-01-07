@@ -22,8 +22,19 @@ export const invite = (user, invitation_token) => {
     dispatch(invitePending());
     http()
       // fakeServer(user)
-      .put(`${URL}/users/invitation`, { ...user, invitation_token })
-      .then(() => dispatch(inviteSuccess(user)))
-      .catch((error) => dispatch(inviteFailure(error)));
+      .put(`${URL}/users/invitation`, {
+        accept_invitation: {
+          ...user,
+          invitation_token,
+        },
+      })
+      .then((response) => dispatch(inviteSuccess(response.data)))
+      .catch((error) => {
+        if (error.response) {
+          return dispatch(inviteFailure(error.response?.data.invitation_token));
+        } else {
+          return dispatch(inviteFailure("something went wrong"));
+        }
+      });
   };
 };

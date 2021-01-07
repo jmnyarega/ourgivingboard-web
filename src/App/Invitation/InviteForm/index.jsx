@@ -47,16 +47,16 @@ const InviteForm = ({ onChange, onClick, value, pending, errors }) => (
     <label> Confirm Password:
       <input
         onChange={onChange}
-        value={value.confirmPassword || ""}
+        value={value.password_confirmation || ""}
         placeholder="******"
         type="password"
-        name="confirmPassword"
+        name="password_confirmation"
         className="form-control"
       />
     </label>
     {errors.validate?.confirmPassword && (
       <div className="invite-form__with-errors">
-        {errors.validate?.confirmPassword}
+        {errors.validate?.password_confirmation}
       </div>
     )}
     <div className="flex flex-jc-fe">
@@ -68,7 +68,7 @@ const InviteForm = ({ onChange, onClick, value, pending, errors }) => (
         {pending ? "Sending..." : "Sign Up"}
       </button>
     </div>
-    {errors?.server && (
+    {errors?.server && !pending && (
       <div className="alert alert-danger">{errors.server}</div>
     )}
   </form>

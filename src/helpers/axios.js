@@ -6,6 +6,12 @@ export const saveToken = (token) => {
   localStorage.setItem("jwt", token);
 };
 
+export const saveEmail = (email) => {
+  const { localStorage } = window;
+  console.log(email)
+  localStorage.setItem("email", email);
+};
+
 export const removeToken = () => {
   const { localStorage } = window;
   localStorage.removeItem("jwt");

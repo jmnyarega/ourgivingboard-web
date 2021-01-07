@@ -14,7 +14,7 @@ import InviteForm from "./InviteForm";
 import GuestTopBar from "../Dashboard/TopBar/GuestTopBar";
 import Wizard from "../../common/wizard";
 
-const validate = ({ confirmPassword, password, fname, lname }) => {
+const validate = ({ password_confirmation, password, fname, lname }) => {
   let errors = {};
   if (!fname?.length) {
     errors.fname = "first name can not be empty";
@@ -26,8 +26,8 @@ const validate = ({ confirmPassword, password, fname, lname }) => {
     errors.password = "password too short";
   }
 
-  if (password && confirmPassword !== password) {
-    errors.confirmPassword = "must be same as password";
+  if (password && password_confirmation !== password) {
+    errors.password_confirmation = "must be same as password";
   }
 
   return errors;
@@ -53,7 +53,7 @@ const Invite = () => {
     pending,
     error,
     history,
-    "invite success",
+    "Invitation Accepted!",
     "/payment",
   );
   return (

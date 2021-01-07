@@ -23,9 +23,13 @@ import { useCustomForm } from "../../hooks/forms";
 import GuestTopBar from "../Dashboard/TopBar/GuestTopBar";
 import Wizard from "../../common/wizard";
 
+
+// remove this code
+const email = localStorage.getItem("email");
+
 const CheckoutForm = () => {
   const [errors, setErrors] = useState("");
-  const { user } = useSelector((state) => state?.currentUser);
+  // const { user } = useSelector((state) => state?.currentUser);
   const { payment, error, pending } = useSelector(
     (state) => state?.createPayment
   );
@@ -47,7 +51,7 @@ const CheckoutForm = () => {
   useCompletePayment(payment);
 
   const [stripe, handleSubmit] = useCreatePayment(CardNumberElement, {
-    email: user?.email || "jpstokes@plecco.net",
+    email: email || "jpstokes@plecco.net",
     name: inputs?.name || "johndoe",
     phone: "8989898989",
   });
