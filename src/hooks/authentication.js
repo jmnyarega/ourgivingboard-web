@@ -18,7 +18,7 @@ export const useVerifyLogin = (
       saveToken(user?.auth_token);
       setMessage(successMessage);
       if (path) {
-        history.push(path);
+        location.href="/#/payment";
       } else history.push("/home");
     } else if (error && pending === false) {
       setMessage(error);

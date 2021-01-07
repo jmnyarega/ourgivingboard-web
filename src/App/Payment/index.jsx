@@ -51,7 +51,7 @@ const CheckoutForm = () => {
   useCompletePayment(payment);
 
   const [stripe, handleSubmit] = useCreatePayment(CardNumberElement, {
-    email: email || "jpstokes@plecco.net",
+    email,
     name: inputs?.name || "johndoe",
     phone: "8989898989",
   });
