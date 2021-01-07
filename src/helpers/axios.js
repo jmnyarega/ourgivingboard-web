@@ -8,7 +8,6 @@ export const saveToken = (token) => {
 
 export const saveEmail = (email) => {
   const { localStorage } = window;
-  console.log(email)
   localStorage.setItem("email", email);
 };
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 //stripe
 import { loadStripe } from "@stripe/stripe-js";
@@ -46,6 +47,11 @@ const CheckoutForm = () => {
     null,
     null
   );
+
+  const history = useHistory();
+  if (!email) {
+    history.push("/");
+  }
 
   useCurrentUser();
   useCompletePayment(payment);

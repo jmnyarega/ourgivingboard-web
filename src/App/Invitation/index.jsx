@@ -45,8 +45,6 @@ const Invite = () => {
     invitation_token
   );
 
-  console.log(invitation_token);
-
   const history = useHistory();
   const inviteError = useVerifyLogin(
     user,
