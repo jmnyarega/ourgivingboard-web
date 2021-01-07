@@ -41,7 +41,7 @@ const Gift = () => {
             <div className="gift-summary-header">Quantity</div>
             <div className="gift-summary-header">Total</div>
             <hr className="gift-summary-line" />
-            {[80, 480].map((board) => (
+            {[10, 60].map((board) => (
               <>
                 <div>${board}</div>
                 <input
