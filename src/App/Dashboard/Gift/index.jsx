@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 
 // components
 import Dashboard from "../index";
@@ -14,23 +13,31 @@ const range = (start, length) => Array.from({ length }, (_, i) => start + i);
 
 const Gift = () => {
   const stored = getCart();
-  const [total, setTotal] = useState(stored.total);
+  const [total, setTotal] = useState(stored.total || 0);
   const [intialQuantity] = useState(range(0, 20));
-  const history = useHistory();
 
-  const [inputs, handleInputChange] = useCustomForm(stored.inputs, Function, Function);
+  const [inputs, handleInputChange] = useCustomForm(
+    stored.inputs,
+    Function,
+    Function
+  );
 
   const handleProceedToPayment = () => {
-    addcart({ inputs, total });
-    history.push("/gift-payment");
+    if (total > 0) {
+      addcart({ inputs, total });
+      location.href = "/#/gift-payment";
+      location.reload();
+    }
   };
 
   useEffect(() => {
-    if (Object.values(inputs).length) {
+    if (inputs && Object.values(inputs).length) {
       let total = 0;
-      total = Object.keys(inputs).reduce((acc, board) => {
-        return acc + Number(inputs[board]) * Number(board);
-      }, 0);
+      total =
+        inputs &&
+        Object.keys(inputs).reduce((acc, board) => {
+          return acc + Number(inputs[board]) * Number(board);
+        }, 0);
       setTotal(total);
     }
   }, [inputs]);
@@ -55,7 +62,7 @@ const Gift = () => {
                   <select
                     className="form-control"
                     name={board}
-                    value={inputs[board]}
+                    value={inputs && inputs[board]}
                     onChange={handleInputChange}
                   >
                     {intialQuantity.map((value) => (
@@ -63,7 +70,7 @@ const Gift = () => {
                     ))}
                   </select>
                 </td>
-                <td>${board * inputs[board] || 0}</td>
+                <td>${(inputs && board * inputs[board]) || 0}</td>
               </tr>
             ))}
             <tr>

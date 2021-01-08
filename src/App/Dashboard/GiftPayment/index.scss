@@ -55,7 +55,6 @@
         width: 100%;
         display: flex;
         flex-wrap: wrap;
-        margin: 1rem 0;
         @include breakpoint-down(medium) {
             flex-direction: column-reverse;
         }

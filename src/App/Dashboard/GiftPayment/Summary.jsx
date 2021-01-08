@@ -13,13 +13,14 @@ const Summary = ({ cart, handleToCart }) => (
         </tr>
       </thead>
       <tbody>
-        {Object.keys(cart?.inputs).map((board) => (
-          <tr key={board}>
-            <td>${board}</td>
-            <td>{cart?.inputs[board]}</td>
-            <td>${cart?.inputs[board] * board}</td>
-          </tr>
-        ))}
+        {cart?.inputs &&
+          Object.keys(cart.inputs).map((board) => (
+            <tr key={board}>
+              <td>${board}</td>
+              <td>{cart?.inputs[board]}</td>
+              <td>${cart?.inputs[board] * board}</td>
+            </tr>
+          ))}
         <tr>
           <td></td>
           <td></td>
