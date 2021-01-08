@@ -4,11 +4,11 @@ import SummaryElement from "../SummaryContent";
 import Community from "../Community";
 import Dashboard from "../index";
 import Line from "../../../common/Line";
-
-const email = localStorage.getItem("email");
+import { getEmail } from "../../../helpers/localStorage";
 
 const Home = () => {
   const history = useHistory();
+  const email = getEmail();
   if (!email) {
     history.push("/login");
   }
