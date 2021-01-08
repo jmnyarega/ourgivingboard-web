@@ -1,12 +1,12 @@
 .gift {
     width: 100%;
-    margin: 0 auto 3rem auto;
+    margin: 1rem auto 3rem auto;
     border-radius: 0.5rem;
     padding: 2rem;
     background-color: $white;
     box-shadow: 0 0 2px 5px $veryLight;
     @include breakpoint-up(large) {
-        width: 50%;
+        width: 80%;
         margin: 0 auto;
     }
 
@@ -18,15 +18,13 @@
         border-collapse: collapse;
         width: 100%;
         td, th {
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid $veryLight;
             padding: 8px;
         }
 
         th {
             padding: 12px 0;
             text-align: left;
-            background-color: $purple;
-            color: white;
         }
     }
 
