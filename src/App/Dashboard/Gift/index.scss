@@ -1,58 +1,80 @@
 .gift {
     width: 100%;
-    background-color: $white;
     margin: 0 auto 3rem auto;
     border-radius: 0.5rem;
-    box-shadow: 0 0 2px 5px $veryLight;
     padding: 2rem;
+    background-color: $white;
+    box-shadow: 0 0 2px 5px $veryLight;
     @include breakpoint-up(large) {
-        width: 100%;
+        width: 50%;
+        margin: 0 auto;
     }
 
-    &-summary {
-        display: grid;
-        grid-template-columns: repeat(3, auto);
-        gap: 1rem;
-        input {
-            width: 40%;
+    &-title {
+        text-transform: uppercase;
+    }
+
+    &-container {
+        border-collapse: collapse;
+        width: 100%;
+        td, th {
+            border-bottom: 1px solid #ddd;
+            padding: 8px;
         }
 
-        &-header {
-            font-weight: bold;
+        th {
+            padding: 12px 0;
+            text-align: left;
+            background-color: $purple;
+            color: white;
         }
-        &-line {
-            grid-column: 1 / -1;
-            height: 1px;
-            width: 100%;
-            margin: 0;
+    }
+
+    &-board__box {
+        @extend .element-box;
+        border-radius: 0.2rem;
+        cursor: pointer;
+        text-align: center;
+        margin-bottom: 2rem;
+        &-title {
+            font-size: 1.5rem;
         }
-        &-total {
-            font-weight: bold;
-            grid-column-start: 3;
-            &::before {
+
+        small {
+            color: $gray;
+        }
+
+        &:hover {
+            opacity: 0.6;
+        }
+
+        &__active {
+            position: relative;
+            &::after {
                 content: "";
-                display: block;
-                background-color: $black;
-                height: 1px;
-                width: 100%;
-                margin-bottom: 1rem;
-                font-weight: bold;
+                left: 0;
+                right: 0;
+                position: absolute;
+                top: 100%;
+                background-color: $lightPurple;
+                height: 0.5rem;
             }
         }
     }
 
-    form {
+    &-btn {
+        margin-top: 1.5rem;
         display: flex;
-        flex-direction: column;
-        @include breakpoint-up(large) {
-            width: 80%;
-            margin: 0 auto;
-        }
-    }
+        width: 100%;
+        justify-content: flex-end;
 
-    button {
-        margin: 1rem 0;
-        align-self: flex-end;
-        min-width: 5rem;
+        a {
+            color: $white;
+            text-decoration: none;
+            &:hover {
+                text-decoration: none;
+                opacity: 1;
+            }
+        }
     }
 }

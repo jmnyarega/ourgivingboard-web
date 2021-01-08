@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { saveEmail, saveToken } from "../helpers/axios";
+import { saveEmail, saveToken } from "../helpers/localStorage";
 import { getUserByToken } from "../actions/user/currentUser";
 
 export const useVerifyLogin = (

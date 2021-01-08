@@ -14,6 +14,18 @@ import confirmPaymentReducer from "./payment/confirmPayment";
 import beginPaymentReducer from "./payment/beginPayment";
 import completePaymentReducer from "./payment/completePayment";
 
+// boards
+import getBoardReducer from "./boards/get";
+import deleteBoardReducer from "./boards/delete";
+import updateBoardReducer from "./boards/update";
+import createBoardReducer from "./boards/create";
+
+// communities
+import getCommunitiesReducer from "./communities/get";
+import deleteCommunityReducer from "./communities/delete";
+import updateCommunityReducer from "./communities/update";
+import createCommunityReducer from "./communities/create";
+
 export default combineReducers({
   invite: invitationReducer,
   login: loginReducer,
@@ -25,4 +37,12 @@ export default combineReducers({
   beginPayment: beginPaymentReducer,
   forgotPassword: forgotPasswordReducer,
   newPassword: newPasswordReducer,
+  board: getBoardReducer,
+  deleteBoard: deleteBoardReducer,
+  updateBoard: updateBoardReducer,
+  createBoard: createBoardReducer,
+  communities: getCommunitiesReducer,
+  deleteCommunity: deleteCommunityReducer,
+  updateCommunity: updateCommunityReducer,
+  createComminuty: createCommunityReducer,
 }); 

@@ -1,4 +1,4 @@
-import { decodeUser } from "../../helpers/axios";
+import { decodeUser } from "../../helpers/localStorage";
 import {
   CURRENT_USER_PENDING,
   CURRENT_USER_SUCCESS,

@@ -3,12 +3,7 @@ import { useSelector } from "react-redux";
 
 //stripe
 import { loadStripe } from "@stripe/stripe-js";
-import {
-  Elements,
-  CardNumberElement,
-  CardCvcElement,
-  CardExpiryElement,
-} from "@stripe/react-stripe-js";
+import { Elements, CardNumberElement } from "@stripe/react-stripe-js";
 
 // hooks
 import {
@@ -22,6 +17,7 @@ import { useCustomForm } from "../../hooks/forms";
 //components
 import GuestTopBar from "../Dashboard/TopBar/GuestTopBar";
 import Wizard from "../../common/wizard";
+import PayForm from "./PayForm";
 
 
 // remove this code
@@ -73,57 +69,15 @@ const CheckoutForm = () => {
         classes="hide-for-mobile"
         steps={["active", "active", "progress"]}
       />
-      <div className="payment">
-        <form onSubmit={handleSubmit}>
-          <h3 className="element-header title">Payment Information</h3>
-          <label className="payment-card">
-            Card Number:
-            <CardNumberElement
-              className="payment-form form-control"
-              options={{
-                iconStyle: "solid",
-                showIcon: true,
-              }}
-            />
-          </label>
-          <label className="payment-name">
-            Name:
-            <input
-              placeholder="Name on Card"
-              className="payment-form form-control"
-              name="name"
-              value={inputs.name}
-              onChange={handleInputChange}
-            />
-          </label>
-          <div className="flex flex-column-gap-1 flex-jc-sb">
-            <label className="payment-cvc">
-              CVC
-              <CardCvcElement
-                options={{
-                  iconStyle: "solid",
-                  showIcon: true,
-                }}
-                className="payment-form form-control"
-              />
-            </label>
-            <label className="payment-expiry">
-              Expiry Date
-              <CardExpiryElement className="payment-form form-control" />
-            </label>
-          </div>
-          <button
-            className="btn btn-primary"
-            type="submit"
-            disabled={!stripe || pending || completePending}
-          >
-            {pending || completePending ? "Processing..." : "Save to Account"}
-          </button>
-          {errors && !pending && (
-            <div className="alert alert-danger">{errors}</div>
-          )}
-        </form>
-      </div>
+      <PayForm
+        handleSubmit={handleSubmit}
+        inputs={inputs}
+        handleInputChange={handleInputChange}
+        stripe={stripe}
+        pending={pending}
+        completePending={completePending}
+        errors={errors}
+      />
     </>
   );
 };
