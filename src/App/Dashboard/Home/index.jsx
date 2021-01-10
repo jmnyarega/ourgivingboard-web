@@ -1,5 +1,4 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import SummaryElement from "../SummaryContent";
 import Community from "../Community";
 import Dashboard from "../index";
@@ -7,11 +6,7 @@ import Line from "../../../common/Line";
 import { getEmail } from "../../../helpers/localStorage";
 
 const Home = () => {
-  const history = useHistory();
   const email = getEmail();
-  if (!email) {
-    history.push("/login");
-  }
   return (
     <Dashboard>
       <div className="dashboard-main">
