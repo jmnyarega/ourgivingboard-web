@@ -44,9 +44,9 @@ const LoginForm = ({ onChange, onClick, value, pending, errors }) => (
         </button>
       </div>
     </form>
-    {errors?.server && (
+    {errors?.server && !pending && (
       <div className="alert alert-danger">
-        {JSON.stringify(errors.server, null, 2)}
+        {errors.server}
       </div>
     )}
     <div className="login-form__signup flex flex-jc-c flex-ai-c">

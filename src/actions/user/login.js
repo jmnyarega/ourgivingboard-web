@@ -22,6 +22,12 @@ export const login = (user) => {
     http()
       .post(`${URL}/users/sign_in`, user)
       .then(() => dispatch(loginSuccess(user)))
-      .catch((error) => dispatch(loginFailure(error)));
+      .catch((error) => {
+        if (error.response && error.response?.status !== 404) {
+          return dispatch(loginFailure(error.response?.data.errors));
+        } else {
+          return dispatch(loginFailure("something went wrong"));
+        }
+      });
   };
 };

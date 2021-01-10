@@ -10,9 +10,11 @@ export const saveEmail = (email) => {
   localStorage.setItem("email", email);
 };
 
-export const removeToken = () => {
+export const cleanLocalStorage = () => {
   const { localStorage } = window;
   localStorage.removeItem("jwt");
+  localStorage.removeItem("email");
+  localStorage.removeItem("cart");
 };
 
 
@@ -44,4 +46,4 @@ export const addcart = (value) => {
 
 export const getCart = () => JSON.parse(localStorage.getItem("cart") || "{}");
 
-export const getEmail = () => localStorage.getItem("email") || "{}";
+export const getEmail = () => localStorage.getItem("email");

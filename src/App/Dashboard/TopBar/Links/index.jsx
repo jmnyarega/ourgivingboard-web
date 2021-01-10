@@ -1,8 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { cleanLocalStorage } from "../../../../helpers/localStorage";
 
-const Links = ({ classes, icons=[] }) => (
+const logout = () => {
+  cleanLocalStorage();
+};
+
+const Links = ({ classes, icons = [] }) => (
   <div className={classes}>
     <div>
       <i className={`fa fa-${icons[0]}`} />
@@ -22,7 +27,9 @@ const Links = ({ classes, icons=[] }) => (
     </div>
     <div>
       <i className={`fa fa-${icons[4]}`} />
-      <Link to="/">Log out</Link>
+      <Link to="/" onClick={logout}>
+        Log out
+      </Link>
     </div>
   </div>
 );
