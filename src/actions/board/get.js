@@ -1,6 +1,6 @@
-import { http } from "../../helpers/axios";
-import { URL } from "../../helpers/constants";
-// import { server as fakeServer } from "../../coverage/fakeServer";
+// import { http } from "../../helpers/axios";
+// import { URL } from "../../helpers/constants";
+import { server as fakeServer } from "../../coverage/fakeServer";
 import {
   GET_BOARD_PENDING,
   GET_BOARD_SUCCESS,
@@ -24,10 +24,10 @@ export const getBoardFailure = (error) => ({
 export const getBoards = (data) => {
   return (dispatch) => {
     dispatch(getBoardPending());
-    http()
-      // fakeServer(user)
-      .get(`${URL}/adim/board`, data)
-      .then((response) => dispatch(getBoardSuccess(response.data)))
+    // http()
+      fakeServer(data)
+      // .get(`${URL}/adim/board`, data)
+      .then(() => dispatch(getBoardSuccess(data)))
       .catch((error) => {
         if (error.response) {
           return dispatch(

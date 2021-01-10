@@ -1,6 +1,6 @@
-import { http } from "../../helpers/axios";
-import { URL } from "../../helpers/constants";
-// import { server as fakeServer } from "../../coverage/fakeServer";
+// import { http } from "../../helpers/axios";
+// import { URL } from "../../helpers/constants";
+import { server as fakeServer } from "../../coverage/fakeServer";
 import {
   CREATE_COMMUNITY_PENDING,
   CREATE_COMMUNITY_SUCCESS,
@@ -22,13 +22,15 @@ export const createCommunityFailure = (error) => ({
 });
 
 export const createComminuty = (data) => {
+  console.log(data, "josiah")
   return (dispatch) => {
     dispatch(createCommunityPending());
-    http()
-      // fakeServer(user)
-      .put(`${URL}/adim/board`, data)
-      .then((response) => dispatch(createCommunitySuccess(response.data)))
+    // http()
+      fakeServer(data)
+      // .put(`${URL}/adim/board`, data)
+      .then(() => dispatch(createCommunitySuccess(data)))
       .catch((error) => {
+        console.log(error)
         if (error.response) {
           return dispatch(
             createCommunityFailure(error.response?.data.errrs)

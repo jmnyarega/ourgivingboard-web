@@ -7,6 +7,8 @@ import GiftPayment from "./Dashboard/GiftPayment";
 import Login from "./Login";
 import Invite from "./Invitation";
 import Recover from "./RecoverPassword";
+import Community from "./Dashboard/Admin/Community";
+import FunBoard from "./Dashboard/Admin/FunBoard";
 import "../styles/index.scss";
 
 const App = () => (
@@ -17,6 +19,8 @@ const App = () => (
     <Route path="/gift-payment" component={GiftPayment} />
     <Route path="/gift" component={Gift} />
     <Route path="/recover" component={Recover} />
+    <Route path="/community" component={Community} />
+    <Route path="/board" component={FunBoard} />
     <Route exact path="/" component={Login} />
   </Switch>
 );
