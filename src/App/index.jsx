@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import Home from "./Dashboard/Home";
 import Payment from "./Payment";
 import Gift from "./Dashboard/Gift";
+import GiftPayment from "./Dashboard/GiftPayment";
 import Login from "./Login";
 import Invite from "./Invitation";
 import Recover from "./RecoverPassword";
@@ -13,6 +14,7 @@ const App = () => (
     <Route path="/home" component={Home} />
     <Route path="/invite/:invitation_token" component={Invite} />
     <Route path="/payment" component={Payment} />
+    <Route path="/gift-payment" component={GiftPayment} />
     <Route path="/gift" component={Gift} />
     <Route path="/recover" component={Recover} />
     <Route exact path="/" component={Login} />

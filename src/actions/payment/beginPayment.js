@@ -26,6 +26,12 @@ export const beginPayment = (email) => {
     http()
       .post(URL, email)
       .then((response) => dispatch(beginPaymentSuccess(response)))
-      .catch((error) => dispatch(beginPaymentError(error)));
+      .catch((error) => {
+        if (error.response && error.response?.status !== 404) {
+          return dispatch(beginPaymentError(error.response?.data.errors));
+        } else {
+          return dispatch(beginPaymentError("something went wrong"));
+        }
+      });
   };
 };

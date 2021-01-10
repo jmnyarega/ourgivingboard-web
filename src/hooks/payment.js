@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
+
+//actions
 import { createPayment } from "../actions/payment/createPayment";
 import { confirmPayment } from "../actions/payment/confirmPayment";
 import { completePayment } from "../actions/payment/completePayment";
@@ -9,7 +11,7 @@ import { beginPayment } from "../actions/payment/beginPayment";
 
 export const useBeginPayment = (evt, email) => {
   const dispatch = useDispatch();
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     if (event) {
       event.preventDefault();
       dispatch(beginPayment(email));
@@ -34,11 +36,11 @@ export const useCreatePayment = (CardNumberElement, user) => {
   return [stripe, handleSubmit];
 };
 
-export const useConfirmPayment = (paymentId, begin) => {
+export const useConfirmPayment = (paymentId, begin, error) => {
   const stripe = useStripe();
   const dispatch = useDispatch();
   useEffect(() => {
-    if (begin) {
+    if (begin && !error) {
       dispatch(
         confirmPayment(
           stripe,
@@ -47,7 +49,7 @@ export const useConfirmPayment = (paymentId, begin) => {
         )
       );
     }
-  }, [begin]);
+  }, [begin, error]);
   return [stripe];
 };
 
@@ -78,6 +80,3 @@ export const usePaymentInfoSaved = (complete) => {
     }
   }, [complete]);
 };
-
-
-// create payment intent 

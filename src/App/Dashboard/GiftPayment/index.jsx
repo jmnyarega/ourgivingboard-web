@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 //stripe
 import { loadStripe } from "@stripe/stripe-js";
@@ -11,19 +12,25 @@ import { useCurrentUser } from "../../../hooks/authentication.js";
 import { useCustomForm } from "../../../hooks/forms";
 
 // components
-import SavedCards from "../../../common/SaveCards";
 import PayForm from "./PayForm";
+import Summary from "./Summary";
+import Dashboard from "../index";
+
+// helpers
+import { getCart, getEmail } from "../../../helpers/localStorage";
 
 const CheckoutForm = () => {
-  const { payment } = useSelector((state) => state?.createPayment);
-  const { begin } = useSelector((state) => state?.beginPayment);
-  const { user } = useSelector((state) => state?.currentUser);
-  const [cards] = useState([
-    { last4: "1234", paymentId: "1" },
-    { last4: "4321", paymentId: "2" },
-  ]);
-  const [savedCards, setSavedCards] = useState(false);
-  const [paymentId, setPaymentId] = useState(false);
+  const {
+    payment,
+    errors: paymentError,
+    pending: paymentPending,
+  } = useSelector((state) => state?.createPayment);
+  const { begin, error: beginError, pending: beginPending } = useSelector(
+    (state) => state?.beginPayment
+  );
+  // const { user } = useSelector((state) => state?.currentUser);
+  const email = getEmail();
+
   const [inputs, handleInputChange] = useCustomForm(
     { name: "" },
     null,
@@ -31,47 +38,53 @@ const CheckoutForm = () => {
     null
   );
 
-  const handleUsedCards = (id) => {
-    setSavedCards(!savedCards);
-    setPaymentId(id);
-  };
-
   useCurrentUser();
-
-  const [handleSubmit] = useBeginPayment(user?.email);
-  const [stripe] = useConfirmPayment(paymentId ? paymentId : payment, begin);
+  const [handleSubmit] = useBeginPayment(email);
+  const [stripe] = useConfirmPayment(payment, begin, beginError);
 
   useCompletePayment(payment);
-
   return (
     <div className="gift-payment">
       <h3 className="element-header">Payment Details</h3>
       <form>
-        {cards.length ? (
-          <SavedCards handleUsedCards={handleUsedCards} cards={cards} />
-        ) : (
-          <PayForm inputs={inputs} handleInputChange={handleInputChange} />
-        )}
+        <PayForm inputs={inputs} handleInputChange={handleInputChange} />
         <button
           className="btn btn-primary"
           onClick={handleSubmit}
-          disabled={!((stripe && begin) || savedCards)}
+          disabled={!stripe || paymentPending || beginPending}
         >
-          Checkout
+          {paymentPending || beginPending ? "Processing" : "Checkout"}
         </button>
       </form>
+      {paymentError ||
+        (beginError && (
+          <div className="alert alert-danger">
+            {paymentError}
+            {beginError}
+          </div>
+        ))}
     </div>
   );
 };
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_SECRET);
+const cart = getCart();
 
-const GiftPayment = () => (
-  <>
-    <Elements stripe={stripePromise}>
-      <CheckoutForm />
-    </Elements>
-  </>
-);
+const GiftPayment = () => {
+  const history = useHistory();
+  const handleToCart = () => {
+    history.push("/gift");
+  };
+  return (
+    <Dashboard>
+      <div className="gift-wrapper">
+        <Elements stripe={stripePromise}>
+          <CheckoutForm />
+        </Elements>
+        <Summary cart={cart} handleToCart={handleToCart} />
+      </div>
+    </Dashboard>
+  );
+};
 
 export default GiftPayment;

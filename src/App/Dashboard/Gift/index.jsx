@@ -1,70 +1,94 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+
+// components
+import Dashboard from "../index";
 
 // hooks
 import { useCustomForm } from "../../../hooks/forms";
 
-// components
-import Dashboard from "../index";
-import GiftPayment from "../GiftPayment";
+// helpers
+import { addcart, getCart } from "../../../helpers/localStorage";
+
+const range = (start, length) => Array.from({ length }, (_, i) => start + i);
 
 const Gift = () => {
-  const [total, setTotal] = useState(0);
-  const [checkout, setCheckout] = useState(false);
+  const stored = getCart();
+  const [total, setTotal] = useState(stored.total || 0);
+  const [intialQuantity] = useState(range(0, 20));
+
   const [inputs, handleInputChange] = useCustomForm(
-    {},
-    () => {},
-    () => {},
-    null
+    stored.inputs,
+    Function,
+    Function
   );
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    total > 0 ? setCheckout(true) : setCheckout(false);
+  const handleProceedToPayment = () => {
+    if (total > 0) {
+      addcart({ inputs, total });
+      location.href = "/#/gift-payment";
+      location.reload();
+    }
   };
 
   useEffect(() => {
-    let sum = 0;
-    Object.keys(inputs).forEach((board) => {
-      if (inputs[board] > 0) sum += board * inputs[board];
-      else setCheckout(false);
-    });
-    setTotal(sum);
+    if (inputs && Object.values(inputs).length) {
+      let total = 0;
+      total =
+        inputs &&
+        Object.keys(inputs).reduce((acc, board) => {
+          return acc + Number(inputs[board]) * Number(board);
+        }, 0);
+      setTotal(total);
+    }
   }, [inputs]);
 
   return (
     <Dashboard>
       <div className="gift">
-        <form onSubmit={handleSubmit}>
-          <h3 className="element-header">Gift</h3>
-          <div className="gift-summary">
-            <div className="gift-summary-header">Board</div>
-            <div className="gift-summary-header">Quantity</div>
-            <div className="gift-summary-header">Total</div>
-            <hr className="gift-summary-line" />
+        <h3 className="element-header gift-title">Select Amount ($USD)</h3>
+        <table className="gift-container">
+          <thead>
+            <tr>
+              <th>Board</th>
+              <th>Quantity</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
             {[10, 60].map((board) => (
-              <>
-                <div>${board}</div>
-                <input
-                  className="form-control"
-                  onChange={handleInputChange}
-                  value={inputs[board] || 0}
-                  type="number"
-                  name={board}
-                  min="0"
-                />
-                <div>
-                  ${((inputs[board] > 0 && inputs[board]) || 0) * board}
-                </div>
-              </>
+              <tr key={board}>
+                <td className="gift-board__box-title">${board}</td>
+                <td>
+                  <select
+                    className="form-control"
+                    name={board}
+                    value={inputs && inputs[board]}
+                    onChange={handleInputChange}
+                  >
+                    {intialQuantity.map((value) => (
+                      <option key={value}>{value}</option>
+                    ))}
+                  </select>
+                </td>
+                <td>${(inputs && board * inputs[board]) || 0}</td>
+              </tr>
             ))}
-            <div className="gift-summary-total">${total}</div>
-          </div>
-          <button className="btn btn-primary" type="submit">
-            Gift
+            <tr>
+              <td /> <td />
+              <td className="title gift-total">Total = ${total}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div className="gift-btn">
+          <button
+            className="btn btn-primary"
+            disabled={total <= 0}
+            onClick={handleProceedToPayment}
+          >
+            Proceed To Payment
           </button>
-        </form>
+        </div>
       </div>
-      {checkout && <GiftPayment />}
     </Dashboard>
   );
 };

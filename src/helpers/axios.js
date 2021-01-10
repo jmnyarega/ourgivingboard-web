@@ -1,30 +1,9 @@
 import axios from "axios";
-import jwtDecode from "jwt-decode";
-
-export const saveToken = (token) => {
-  const { localStorage } = window;
-  localStorage.setItem("jwt", token);
-};
-
-export const saveEmail = (email) => {
-  const { localStorage } = window;
-  localStorage.setItem("email", email);
-};
-
-export const removeToken = () => {
-  const { localStorage } = window;
-  localStorage.removeItem("jwt");
-};
+import { getToken } from "./localStorage";
 
 export const http = () => {
-  const { localStorage } = window;
-  const token = localStorage.getItem("jwt");
+  const token = getToken();
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   return axios;
 };
 
-export const decodeUser = () => {
-  const token = localStorage.getItem("jwt");
-  const user = token ? jwtDecode(token) : {};
-  return user;
-};
