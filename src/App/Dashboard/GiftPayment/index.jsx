@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // hooks
-import { useCompletePayment, useBeginPayment, useConfirmPayment } from "../../../hooks/payment";
+import { /*useCompletePayment,**/ useBeginPayment, useConfirmPayment } from "../../../hooks/payment";
 
 // components
 import Dashboard from "../index";
@@ -38,13 +38,13 @@ const CheckoutForm = () => {
   // gets the confirm payment response, to stripe
   const {
     payment,
-    errors: paymentError,
+    error: paymentError,
     pending: paymentPending,
-  } = useSelector((state) => state?.confirmPayment);
+  } = useSelector((state) => state?.confirmPayment );
 
   // confirm & complete payment
   const [stripe] = useConfirmPayment(payment, begin, beginError);
-  useCompletePayment(payment);
+  // useCompletePayment(payment);
 
   // calculates the total on state change
   useEffect(() => {
@@ -79,6 +79,7 @@ const CheckoutForm = () => {
       changed={handleInputChange}
       boards={boards}
       inputs={inputs}
+      message={payment}
     />
   );
 };

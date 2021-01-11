@@ -44,8 +44,8 @@ export const useConfirmPayment = (paymentId, begin, error) => {
       dispatch(
         confirmPayment(
           stripe,
-          begin.secrete_intent,
-          begin.payment_id
+          begin.payment_intent_client_secret,
+          begin.payment_method_id
         )
       );
     }

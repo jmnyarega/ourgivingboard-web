@@ -11,6 +11,7 @@ const Gift = ({
   changed,
   inputs,
   boards,
+  message,
 }) => (
   <div className="gift">
     <h3 className="element-header gift-title">Select Amount ($USD)</h3>
@@ -24,7 +25,7 @@ const Gift = ({
       </thead>
       <tbody>
         {boards &&
-          boards.map(({gift_in}) => (
+          boards.map(({ gift_in }) => (
             <tr key={gift_in}>
               <td>${gift_in}</td>
               <td>
@@ -51,19 +52,15 @@ const Gift = ({
     <div className="gift-btn">
       <button
         className="btn btn-primary"
-        disabled={total <= 0 || pending || disabled}
+        disabled={total <= 0 || disabled}
         onClick={handleSubmit}
       >
         {pending ? "Processing" : "Make Order"}
       </button>
     </div>
-    {paymentError ||
-      (beginError && (
-        <div className="alert alert-danger">
-          {paymentError}
-          {beginError}
-        </div>
-      ))}
+    {beginError && <div className="alert alert-danger">{beginError}</div>}
+    {paymentError && <div className="alert alert-danger">{paymentError}</div>}
+    {message && <div className="alert alert-success">{message}</div>}
   </div>
 );
 
@@ -71,13 +68,14 @@ Gift.propTypes = {
   handleSubmit: PropTypes.func,
   disabled: PropTypes.bool,
   pending: PropTypes.bool,
-  paymentError: PropTypes.object,
+  paymentError: PropTypes.any,
   beginError: PropTypes.any,
   total: PropTypes.number,
   initialQuantity: PropTypes.array,
   changed: PropTypes.func,
   boards: PropTypes.array,
-  inputs: PropTypes.object
+  inputs: PropTypes.object,
+  message: PropTypes.string,
 }
 
 export default Gift;
