@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import FunBoardList from "./FunBoardList";
+import FundBoardList from "./FundBoardList";
 import Dashboard from "../../index";
 import { createBoard } from "../../../../actions/board/create";
 import { getBoards } from "../../../../actions/board/get";
 import { useCustomForm } from "../../../../hooks/forms";
 
-const FunBoard = () => {
+const FundBoard = () => {
   const dispatch = useDispatch();
   const { board } = useSelector((state) => state?.createBoard);
   const [inputs, handleInputChange, handleSubmit] = useCustomForm(
@@ -67,10 +67,10 @@ const FunBoard = () => {
             Add
           </button>
         </form>
-        <FunBoardList boards={[board]} />
+        <FundBoardList boards={[board]} />
       </div>
     </Dashboard>
   );
 };
 
-export default FunBoard;
+export default FundBoard;

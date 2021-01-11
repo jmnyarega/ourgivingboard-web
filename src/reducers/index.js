@@ -37,7 +37,7 @@ export default combineReducers({
   beginPayment: beginPaymentReducer,
   forgotPassword: forgotPasswordReducer,
   newPassword: newPasswordReducer,
-  board: getBoardReducer,
+  boards: getBoardReducer,
   deleteBoard: deleteBoardReducer,
   updateBoard: updateBoardReducer,
   createBoard: createBoardReducer,

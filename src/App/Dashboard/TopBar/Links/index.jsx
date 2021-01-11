@@ -5,6 +5,8 @@ import { cleanLocalStorage } from "../../../../helpers/localStorage";
 
 const logout = () => {
   cleanLocalStorage();
+  location.href = "/#/";
+  location.reload();
 };
 
 const Links = ({ classes, icons = [] }) => (

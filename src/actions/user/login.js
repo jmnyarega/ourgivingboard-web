@@ -21,7 +21,7 @@ export const login = (user) => {
     dispatch(loginPending());
     http()
       .post(`${URL}/users/sign_in`, user)
-      .then(() => dispatch(loginSuccess(user)))
+      .then((response) => dispatch(loginSuccess(response?.data)))
       .catch((error) => {
         if (error.response && error.response?.status !== 404) {
           return dispatch(loginFailure(error.response?.data.errors));

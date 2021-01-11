@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const BoardList = ({ boards }) => {
+const FundBoardList = ({ boards }) => {
   return (
     <div className="admin-community-summary">
       <table className="gift-container">
@@ -29,8 +29,8 @@ const BoardList = ({ boards }) => {
   );
 };
 
-BoardList.propTypes = {
+FundBoardList.propTypes = {
   boards: PropTypes.array,
 };
 
-export default BoardList;
+export default FundBoardList;

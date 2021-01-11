@@ -1,6 +1,8 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Our Giving",
+  "name": "Our giving board",
+  "version": "1",
+  "manifest_version": 2,
   "icons": [
     {
       "src": "favicon.ico",

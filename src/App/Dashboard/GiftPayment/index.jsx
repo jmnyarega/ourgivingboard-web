@@ -1,87 +1,97 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-
-//stripe
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 // hooks
 import { useCompletePayment, useBeginPayment, useConfirmPayment } from "../../../hooks/payment";
 import { useCurrentUser } from "../../../hooks/authentication.js";
-import { useCustomForm } from "../../../hooks/forms";
 
 // components
-import PayForm from "./PayForm";
-import Summary from "./Summary";
 import Dashboard from "../index";
+import Checkout from "../../../common/Checkout";
+import Gift from "./Gift";
+
+// actions
+import { getBoards } from "../../../actions/board/get";
+
+// hooks
+import { useCustomForm } from "../../../hooks/forms";
 
 // helpers
-import { getCart, getEmail } from "../../../helpers/localStorage";
+import { getEmail } from "../../../helpers/localStorage";
 
 const CheckoutForm = () => {
+  useCurrentUser();
+  const email = getEmail();
+
+  const [total, setTotal] = useState(0);
+  const [boardInfo, setBoardInfo] = useState([]);
+
+  const dispatch = useDispatch();
+  const { boards = [10, 60] } = useSelector((state) => state?.boards);
+
+  // handles inputs & sends input to server
+  const [inputs, handleInputChange] = useCustomForm({}, Function, Function);
+  const [handleSubmit] = useBeginPayment(email, boardInfo);
+
+  // begin payment response
+  const { begin, error: beginError, pending: beginPending } = useSelector(
+    (state) => state?.beginPayment
+  );
+
+  // gets the confirm payment response, to stripe
   const {
     payment,
     errors: paymentError,
     pending: paymentPending,
-  } = useSelector((state) => state?.createPayment);
-  const { begin, error: beginError, pending: beginPending } = useSelector(
-    (state) => state?.beginPayment
-  );
-  // const { user } = useSelector((state) => state?.currentUser);
-  const email = getEmail();
+  } = useSelector((state) => state?.confirmPayment);
 
-  const [inputs, handleInputChange] = useCustomForm(
-    { name: "" },
-    null,
-    null,
-    null
-  );
-
-  useCurrentUser();
-  const [handleSubmit] = useBeginPayment(email);
+  // confirm & complete payment
   const [stripe] = useConfirmPayment(payment, begin, beginError);
-
   useCompletePayment(payment);
+
+  // calculates the total on state change
+  useEffect(() => {
+    if (inputs && Object.values(inputs).length) {
+      let total = 0;
+      let data = [];
+      total =
+        inputs &&
+        Object.keys(inputs).reduce((acc, board) => {
+          data.push({ board, quantity: inputs[board] });
+          return acc + Number(inputs[board]) * Number(board);
+        }, 0);
+      setTotal(total);
+      setBoardInfo(data)
+    }
+  }, [inputs]);
+
+  // loads the boads on component-did-update
+  useEffect(() => {
+    dispatch(getBoards());
+  }, []);
+
   return (
-    <div className="gift-payment">
-      <h3 className="element-header">Payment Details</h3>
-      <form>
-        <PayForm inputs={inputs} handleInputChange={handleInputChange} />
-        <button
-          className="btn btn-primary"
-          onClick={handleSubmit}
-          disabled={!stripe || paymentPending || beginPending}
-        >
-          {paymentPending || beginPending ? "Processing" : "Checkout"}
-        </button>
-      </form>
-      {paymentError ||
-        (beginError && (
-          <div className="alert alert-danger">
-            {paymentError}
-            {beginError}
-          </div>
-        ))}
-    </div>
+    <Gift
+      handleSubmit={handleSubmit}
+      disabled={!stripe || paymentPending || beginPending}
+      pending={paymentPending || beginPending}
+      paymentError={paymentError}
+      beginError={beginError}
+      total={total}
+      changed={handleInputChange}
+      boards={boards}
+      inputs={inputs}
+    />
   );
 };
 
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_SECRET);
-const cart = getCart();
-
 const GiftPayment = () => {
-  const history = useHistory();
-  const handleToCart = () => {
-    history.push("/gift");
-  };
   return (
     <Dashboard>
       <div className="gift-wrapper">
-        <Elements stripe={stripePromise}>
+        <Checkout>
           <CheckoutForm />
-        </Elements>
-        <Summary cart={cart} handleToCart={handleToCart} />
+        </Checkout>
       </div>
     </Dashboard>
   );

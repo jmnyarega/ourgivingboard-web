@@ -14,7 +14,6 @@ export const cleanLocalStorage = () => {
   const { localStorage } = window;
   localStorage.removeItem("jwt");
   localStorage.removeItem("email");
-  localStorage.removeItem("cart");
 };
 
 
@@ -29,21 +28,5 @@ export const getToken = () => {
   const token = localStorage.getItem("jwt");
   return token;
 };
-
-/*
- * This should not be the final solution, adding cart items to localStorage looks insecure
- */
-export const addcart = (value) => {
-  const { localStorage } = window;
-  const data = localStorage.getItem("cart") || "{}";
-
-  const updatedCart = {
-    ...JSON.parse(data),
-    ...value,
-  };
-  localStorage.setItem("cart", JSON.stringify(updatedCart));
-};
-
-export const getCart = () => JSON.parse(localStorage.getItem("cart") || "{}");
 
 export const getEmail = () => localStorage.getItem("email");

@@ -9,12 +9,12 @@ import { confirmPayment } from "../actions/payment/confirmPayment";
 import { completePayment } from "../actions/payment/completePayment";
 import { beginPayment } from "../actions/payment/beginPayment";
 
-export const useBeginPayment = (evt, email) => {
+export const useBeginPayment = (email, board) => {
   const dispatch = useDispatch();
   const handleSubmit = (event) => {
     if (event) {
       event.preventDefault();
-      dispatch(beginPayment(email));
+      dispatch(beginPayment(email, board));
     }
   };
   return [handleSubmit];
@@ -44,8 +44,8 @@ export const useConfirmPayment = (paymentId, begin, error) => {
       dispatch(
         confirmPayment(
           stripe,
-          process.env.REACT_APP_STRIPE_SECRET_INTENT,
-          paymentId
+          begin.secrete_intent,
+          begin.payment_id
         )
       );
     }
@@ -63,7 +63,7 @@ export const useCompletePayment = (payment) => {
       } = payment;
       const customer = {
         customer: {
-          email: email || "jmnyarega@gmail.com",
+          email: email,
           payment_method_id: id,
         },
       };

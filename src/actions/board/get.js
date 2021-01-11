@@ -1,6 +1,5 @@
-// import { http } from "../../helpers/axios";
-// import { URL } from "../../helpers/constants";
-import { server as fakeServer } from "../../coverage/fakeServer";
+import { http } from "../../helpers/axios";
+import { URL } from "../../helpers/constants";
 import {
   GET_BOARD_PENDING,
   GET_BOARD_SUCCESS,
@@ -21,18 +20,15 @@ export const getBoardFailure = (error) => ({
   error,
 });
 
-export const getBoards = (data) => {
+export const getBoards = () => {
   return (dispatch) => {
     dispatch(getBoardPending());
-    // http()
-      fakeServer(data)
-      // .get(`${URL}/adim/board`, data)
-      .then(() => dispatch(getBoardSuccess(data)))
+    http()
+      .get(`${URL}/communities/0/fundboards`)
+      .then((response) => dispatch(getBoardSuccess(response?.data)))
       .catch((error) => {
         if (error.response) {
-          return dispatch(
-            getBoardFailure(error.response?.data.errrs)
-          );
+          return dispatch(getBoardFailure(error.response?.data.errrs));
         } else {
           return dispatch(getBoardFailure("something went wrong"));
         }

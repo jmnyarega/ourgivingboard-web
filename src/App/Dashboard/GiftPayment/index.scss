@@ -1,54 +1,13 @@
 .gift {
-    &-payment {
-        width: 70%;
-        background-color: $white;
-        border-radius: 0.5rem;
-        box-shadow: 0 0 2px 0.3125rem $veryLight;
-        padding: 2rem;
-        @include breakpoint-down(medium) {
-            width: 100%;
-        }
-        .label {
-            font-size: 0.9rem;
-            color: $purple;
-            margin-bottom: 0;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        label + .payment-form {
-            margin-bottom: 1rem;
-        }
-
-        .gift-payment-form {
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            @include breakpoint-up(large) {
-                margin: 0 3rem;
-            }
-        }
-
-        button {
-            margin: 1rem 0;
-            align-self: flex-end;
-            min-width: 5rem;
-        }
-
-        &-expiry {
-            width: 47%;
-        }
-        &-cvc {
-            width: 47%;
-        }
-
-        &-card, &-name {
-            margin-bottom: 1rem;
-        }
+    width: 100%;
+    margin: 1rem auto 3rem auto;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    background-color: $white;
+    box-shadow: 0 0 2px 5px $veryLight;
+    @include breakpoint-up(large) {
+        width: 80%;
+        margin: 0 auto;
     }
 
     &-wrapper {
@@ -59,32 +18,71 @@
             flex-direction: column-reverse;
         }
     }
-    &-summary {
-        background-color: $white;
-        box-shadow: 0 0 0.125rem 0.3125rem $veryLight;
-        margin: 0 auto 3rem auto;
-        border-radius: 0.5rem;
-        width: calc(30% - 1rem);
-        padding: 1rem;
-        @include breakpoint-down(medium) {
-            width: 100%;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            td, th {
-                border-bottom: 1px solid $veryLight;
-                padding: 0.5rem;
-            }
 
-            th {
-                padding: 0.75rem 0.1875rem;
-                text-align: left;
-                color: $darkGray;
+    &-title {
+        @extend .title;
+        text-transform: uppercase;
+    }
+
+    &-container {
+        border-collapse: collapse;
+        width: 100%;
+        td, th {
+            border-bottom: 1px solid $veryLight;
+            padding: 8px;
+        }
+
+        th {
+            padding: 12px 0;
+            text-align: left;
+        }
+    }
+
+    &-board__box {
+        @extend .element-box;
+        border-radius: 0.2rem;
+        cursor: pointer;
+        text-align: center;
+        margin-bottom: 2rem;
+        &-title {
+            font-size: 1.5rem;
+        }
+
+        small {
+            color: $gray;
+        }
+
+        &:hover {
+            opacity: 0.6;
+        }
+
+        &__active {
+            position: relative;
+            &::after {
+                content: "";
+                left: 0;
+                right: 0;
+                position: absolute;
+                top: 100%;
+                background-color: $lightPurple;
+                height: 0.5rem;
             }
         }
-        button {
-            margin-top: 1rem;
+    }
+
+    &-btn {
+        margin-top: 1.5rem;
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+
+        a {
+            color: $white;
+            text-decoration: none;
+            &:hover {
+                text-decoration: none;
+                opacity: 1;
+            }
         }
     }
 }

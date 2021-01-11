@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 const Community = () => {
   const history = useHistory();
   const handleToGift = () => {
-    history.push("/gift");
+    history.push("/gift-payment");
   };
   return (
     <>

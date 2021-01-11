@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
-//stripe
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements, CardNumberElement } from "@stripe/react-stripe-js";
+import { CardNumberElement } from "@stripe/react-stripe-js";
 
 // hooks
 import {
@@ -18,6 +16,7 @@ import { useCustomForm } from "../../hooks/forms";
 import GuestTopBar from "../Dashboard/TopBar/GuestTopBar";
 import Wizard from "../../common/wizard";
 import PayForm from "./PayForm";
+import Checkout from "../../common/Checkout";
 
 
 // remove this code
@@ -82,14 +81,12 @@ const CheckoutForm = () => {
   );
 };
 
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_SECRET);
-
 const Payment = () => (
   <>
     <GuestTopBar />
-    <Elements stripe={stripePromise}>
+    <Checkout>
       <CheckoutForm />
-    </Elements>
+    </Checkout>
   </>
 );
 
