@@ -8,6 +8,7 @@ import Invite from "./Invitation";
 import Recover from "./RecoverPassword";
 import Community from "./Dashboard/Admin/Community";
 import FundBoard from "./Dashboard/Admin/FundBoard";
+import Preload from "./Dashboard/Preload";
 import "../styles/index.scss";
 
 const App = () => (
@@ -19,6 +20,7 @@ const App = () => (
     <Route path="/recover" component={Recover} />
     <Route path="/community" component={Community} />
     <Route path="/board" component={FundBoard} />
+    <Route path="/preload" component={Preload} />
     <Route exact path="/" component={Login} />
   </Switch>
 );
