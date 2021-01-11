@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 // hooks
 import { useCompletePayment, useBeginPayment, useConfirmPayment } from "../../../hooks/payment";
-import { useCurrentUser } from "../../../hooks/authentication.js";
 
 // components
 import Dashboard from "../index";
@@ -16,22 +15,20 @@ import { getBoards } from "../../../actions/board/get";
 // hooks
 import { useCustomForm } from "../../../hooks/forms";
 
-// helpers
-import { getEmail } from "../../../helpers/localStorage";
+const getFundBoardId = (boards, value) =>
+  boards?.find((board) => board.gift_in === value).id;
 
 const CheckoutForm = () => {
-  useCurrentUser();
-  const email = getEmail();
 
   const [total, setTotal] = useState(0);
   const [boardInfo, setBoardInfo] = useState([]);
 
   const dispatch = useDispatch();
-  const { boards = [10, 60] } = useSelector((state) => state?.boards);
+  const { boards } = useSelector((state) => state?.boards);
 
   // handles inputs & sends input to server
   const [inputs, handleInputChange] = useCustomForm({}, Function, Function);
-  const [handleSubmit] = useBeginPayment(email, boardInfo);
+  const [handleSubmit] = useBeginPayment(boardInfo);
 
   // begin payment response
   const { begin, error: beginError, pending: beginPending } = useSelector(
@@ -57,7 +54,8 @@ const CheckoutForm = () => {
       total =
         inputs &&
         Object.keys(inputs).reduce((acc, board) => {
-          data.push({ board, quantity: inputs[board] });
+          const fundboard_id = getFundBoardId(boards, board);
+          data.push({ fundboard_id, quantity: Number(inputs[board]) });
           return acc + Number(inputs[board]) * Number(board);
         }, 0);
       setTotal(total);

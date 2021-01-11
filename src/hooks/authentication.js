@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { saveEmail, saveToken } from "../helpers/localStorage";
-import { getUserByToken } from "../actions/user/currentUser";
+import {
+  saveToken,
+  saveUid,
+  saveTokenType,
+  saveExpiry,
+  saveClient,
+} from "../helpers/localStorage";
+import { getCurrentUser } from "../actions/user/currentUser";
 
 export const useVerifyLogin = (
   user,
@@ -14,11 +20,13 @@ export const useVerifyLogin = (
   const [outputMesssage, setMessage] = useState();
   useEffect(() => {
     if (user && pending === false && !error) {
-      saveEmail(user?.uid);
-      saveToken(user?.auth_token);
-      setMessage(successMessage);
+      saveToken(user?.token);
+      saveTokenType(user?.token_type);
+      saveClient(user?.client);
+      saveExpiry(user?.expiry);
+      saveUid(user?.uid);
       if (path) {
-        location.href="/#/payment";
+        location.href = "/#/payment";
       } else history.push("/home");
     } else if (error && pending === false) {
       setMessage(error);
@@ -41,5 +49,5 @@ export const useForgotPasswordEmail = (user, pending, error) => {
 
 export const useCurrentUser = () => {
   const dispatch = useDispatch();
-  useEffect(() => dispatch(getUserByToken()), []);
+  useEffect(() => dispatch(getCurrentUser()), []);
 };

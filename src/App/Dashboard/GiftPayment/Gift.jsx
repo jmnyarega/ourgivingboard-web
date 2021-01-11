@@ -24,14 +24,14 @@ const Gift = ({
       </thead>
       <tbody>
         {boards &&
-          boards.map((board) => (
-            <tr key={board}>
-              <td className="gift-board__box-title">${board}</td>
+          boards.map(({gift_in}) => (
+            <tr key={gift_in}>
+              <td>${gift_in}</td>
               <td>
                 <select
                   className="form-control"
-                  name={board}
-                  value={inputs && inputs[board]}
+                  name={gift_in}
+                  value={inputs && inputs[gift_in]}
                   onChange={changed}
                 >
                   {[0, 1, 2, 3, 4, 5].map((value) => (
@@ -39,7 +39,7 @@ const Gift = ({
                   ))}
                 </select>
               </td>
-              <td>${(inputs && board * inputs[board]) || 0}</td>
+              <td>${(inputs && gift_in * inputs[gift_in]) || 0}</td>
             </tr>
           ))}
         <tr>

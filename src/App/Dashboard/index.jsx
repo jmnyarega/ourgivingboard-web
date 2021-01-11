@@ -4,12 +4,12 @@ import { useHistory } from "react-router-dom";
 import TopBar from "./TopBar";
 import DesktopBar from "./TopBar/Desktop";
 import SideBar from "./SideBar";
-import { getEmail } from "../../helpers/localStorage";
+import { getToken } from "../../helpers/localStorage";
 
 const Dashboard = (props) => {
   const history = useHistory();
-  const email = getEmail();
-  if (!email) {
+  const token = getToken();
+  if (!token) {
     history.push("/");
   }
   return (

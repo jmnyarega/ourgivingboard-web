@@ -3,14 +3,12 @@ import SummaryElement from "../SummaryContent";
 import Community from "../Community";
 import Dashboard from "../index";
 import Line from "../../../common/Line";
-import { getEmail } from "../../../helpers/localStorage";
 
 const Home = () => {
-  const email = getEmail();
   return (
     <Dashboard>
       <div className="dashboard-main">
-        <div className="title">{email}</div>
+        <div className="title"></div>
         <div className="dashboard-summary">
           <SummaryElement title="total potential" number={0} />
           <SummaryElement title="total gifted" number={0} />

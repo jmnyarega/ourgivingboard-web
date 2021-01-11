@@ -1,4 +1,5 @@
-import { decodeUser } from "../../helpers/localStorage";
+import { http } from "../../helpers/axios";
+import { URL } from "../../helpers/constants";
 import {
   CURRENT_USER_PENDING,
   CURRENT_USER_SUCCESS,
@@ -19,14 +20,18 @@ export const currentUserFailure = (error) => ({
   error,
 });
 
-export const getUserByToken = () => {
+export const getCurrentUser = () => {
   return (dispatch) => {
     dispatch(currentUserPending());
-    try {
-      const user = decodeUser();
-      dispatch(currentUserSuccess(user));
-    } catch (error) {
-      dispatch(currentUserFailure());
-    }
+    http()
+      .get(`${URL}/dashboards/me`)
+      .then((response) => dispatch(currentUserSuccess(response.data)))
+      .catch((error) => {
+        if (error.response) {
+          return dispatch(currentUserFailure(error.response?.data));
+        } else {
+          return dispatch(currentUserFailure("something went wrong"));
+        }
+      });
   };
 };

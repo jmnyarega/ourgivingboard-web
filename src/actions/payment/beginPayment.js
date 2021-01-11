@@ -20,11 +20,15 @@ const beginPaymentError = (error) => ({
   error,
 });
 
-export const beginPayment = (email, boards) => {
+export const beginPayment = (boards) => {
   return (dispatch) => {
+    const data = {
+      order_params: { ...boards }
+    }
+    console.log(data)
     dispatch(beginPaymentPending());
     http()
-      .post(URL, {email, boards})
+      .post(`${URL}/orders`, { order_params: boards })
       .then((response) => dispatch(beginPaymentSuccess(response)))
       .catch((error) => {
         if (error.response && error.response?.status !== 404) {

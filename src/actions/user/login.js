@@ -20,8 +20,19 @@ export const login = (user) => {
   return (dispatch) => {
     dispatch(loginPending());
     http()
-      .post(`${URL}/users/sign_in`, user)
-      .then((response) => dispatch(loginSuccess(response?.data)))
+      .post(`${URL}/auth/sign_in`, user)
+      .then((response) => {
+        return dispatch(
+          loginSuccess({
+            data: response?.data,
+            token: response?.headers["access-token"],
+            token_type: response?.headers["token-type"],
+            uid: response?.headers["uid"],
+            expiry: response?.headers["expiry"],
+            client: response?.headers["client"],
+          })
+        );
+      })
       .catch((error) => {
         if (error.response && error.response?.status !== 404) {
           return dispatch(loginFailure(error.response?.data.errors));

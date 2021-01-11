@@ -24,11 +24,12 @@ export const getBoards = () => {
   return (dispatch) => {
     dispatch(getBoardPending());
     http()
-      .get(`${URL}/communities/0/fundboards`)
-      .then((response) => dispatch(getBoardSuccess(response?.data)))
+      .get(`${URL}/communities/1/fundboards`)
+      .then((response) => dispatch(getBoardSuccess(response?.data?.fundboards)))
       .catch((error) => {
+        console.log(error);
         if (error.response) {
-          return dispatch(getBoardFailure(error.response?.data.errrs));
+          return dispatch(getBoardFailure(error.response?.data.errors));
         } else {
           return dispatch(getBoardFailure("something went wrong"));
         }

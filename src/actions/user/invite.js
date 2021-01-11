@@ -1,6 +1,5 @@
 import { http } from "../../helpers/axios";
 import { URL } from "../../helpers/constants";
-// import { server as fakeServer } from "../../coverage/fakeServer";
 import { INVITE_PENDING, INVITE_SUCCESS, INVITE_FAILURE } from "./types";
 
 export const invitePending = () => ({
@@ -21,7 +20,6 @@ export const invite = (user, invitation_token) => {
   return (dispatch) => {
     dispatch(invitePending());
     http()
-      // fakeServer(user)
       .put(`${URL}/users/invitation`, {
         accept_invitation: {
           ...user,

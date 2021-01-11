@@ -19,12 +19,9 @@ import PayForm from "./PayForm";
 import Checkout from "../../common/Checkout";
 
 
-// remove this code
-const email = localStorage.getItem("email");
-
 const CheckoutForm = () => {
   const [errors, setErrors] = useState("");
-  // const { user } = useSelector((state) => state?.currentUser);
+  const { user } = useSelector((state) => state?.currentUser);
   const { payment, error, pending } = useSelector(
     (state) => state?.createPayment
   );
@@ -46,9 +43,9 @@ const CheckoutForm = () => {
   useCompletePayment(payment);
 
   const [stripe, handleSubmit] = useCreatePayment(CardNumberElement, {
-    email,
-    name: inputs?.name || "johndoe",
-    phone: "8989898989",
+    email: user?.email,
+    name: user?.name || "johndoe",
+    phone: "00000",
   });
 
   useEffect(() => {

@@ -9,12 +9,12 @@ import { confirmPayment } from "../actions/payment/confirmPayment";
 import { completePayment } from "../actions/payment/completePayment";
 import { beginPayment } from "../actions/payment/beginPayment";
 
-export const useBeginPayment = (email, board) => {
+export const useBeginPayment = (board) => {
   const dispatch = useDispatch();
   const handleSubmit = (event) => {
     if (event) {
       event.preventDefault();
-      dispatch(beginPayment(email, board));
+      dispatch(beginPayment(board));
     }
   };
   return [handleSubmit];

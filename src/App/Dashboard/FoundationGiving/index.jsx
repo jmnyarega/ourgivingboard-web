@@ -76,7 +76,7 @@ const CheckoutForm = () => {
   );
 };
 
-const PreloadGift = () => {
+const FoundationGiving = () => {
   return (
     <Dashboard>
       <div className="preload-wrapper">
@@ -88,4 +88,4 @@ const PreloadGift = () => {
   );
 };
 
-export default PreloadGift;
+export default FoundationGiving;

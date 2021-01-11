@@ -24,20 +24,6 @@
         text-transform: uppercase;
     }
 
-    &-container {
-        border-collapse: collapse;
-        width: 100%;
-        td, th {
-            border-bottom: 1px solid $veryLight;
-            padding: 8px;
-        }
-
-        th {
-            padding: 12px 0;
-            text-align: left;
-        }
-    }
-
     &-board__box {
         @extend .element-box;
         border-radius: 0.2rem;
