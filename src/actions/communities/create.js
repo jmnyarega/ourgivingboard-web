@@ -29,7 +29,6 @@ export const createComminuty = (data) => {
       // .put(`${URL}/adim/board`, data)
       .then(() => dispatch(createCommunitySuccess(data)))
       .catch((error) => {
-        console.log(error)
         if (error.response) {
           return dispatch(
             createCommunityFailure(error.response?.data.errrs)

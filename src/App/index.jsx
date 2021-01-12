@@ -29,6 +29,7 @@ const App = () => (
     <Route path="/board" component={FundBoard} />
     <Route path="/preload" component={Preload} />
     <Route path="/waiting-list" component={WaitingList} />
+    <Route path="/foundation" component={FoundationGiving} />
     <Route exact path="/" component={Login} />
   </Switch>
 );

@@ -41,7 +41,7 @@ const CheckoutForm = () => {
 
   return (
     <div className="preload">
-      <h3 className="element-header gift-title">Preload Gift</h3>
+      <h3 className="element-header gift-title">Foundation Gifting</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name"> Enter Amount:
           <input
