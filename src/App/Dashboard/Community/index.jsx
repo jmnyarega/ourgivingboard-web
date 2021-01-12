@@ -17,13 +17,17 @@ const Community = () => {
     location.href="/#/waiting-list";
     location.reload();
   };
+  const handleActiveBoards = () => {
+    location.href="/#/active-boards";
+    location.reload();
+  };
   return (
     <>
       <div className="community-card flex-row-gap-1">
         <div className="element-box">
           <h3 className="label title">Active Boards</h3>
           <p className="element-description">You have {0} active boards</p>
-          <button className="btn btn-outline-primary">View All</button>
+          <button className="btn btn-outline-primary" onClick={handleActiveBoards}>View All</button>
         </div>
         <div className="element-box">
           <h3 className="label title">Preload Gift</h3>

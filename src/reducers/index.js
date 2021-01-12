@@ -29,6 +29,9 @@ import createCommunityReducer from "./communities/create";
 // waiting list
 import waitingListReducer from "./waitingList/get"
 
+// active boards
+import activeBoardsReducer from "./activeBoards/get"
+
 export default combineReducers({
   invite: invitationReducer,
   login: loginReducer,
@@ -49,4 +52,5 @@ export default combineReducers({
   updateCommunity: updateCommunityReducer,
   createComminuty: createCommunityReducer,
   waitingList: waitingListReducer,
+  activeBoards: activeBoardsReducer,
 });

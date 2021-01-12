@@ -11,6 +11,7 @@ import FundBoard from "./Dashboard/Admin/FundBoard";
 import Preload from "./Dashboard/Preload";
 import FoundationGiving from "./Dashboard/FoundationGiving";
 import WaitingList from "./Dashboard/WaitingList";
+import ActiveBoards from "./Dashboard/ActiveBoards";
 import "../styles/index.scss";
 
 const App = () => (
@@ -19,6 +20,7 @@ const App = () => (
     <Route path="/invite/:invitation_token" component={Invite} />
     <Route path="/payment" component={Payment} />
     <Route path="/gift-payment" component={GiftPayment} />
+    <Route path="/active-boards" component={ActiveBoards} />
     <Route path="/recover" component={Recover} />
     <Route path="/community" component={Community} />
     <Route path="/gift-payment" component={FoundationGiving} />
