@@ -18,7 +18,6 @@ import Wizard from "../../common/wizard";
 import PayForm from "./PayForm";
 import Checkout from "../../common/Checkout";
 
-
 const CheckoutForm = () => {
   const [errors, setErrors] = useState("");
   const { user } = useSelector((state) => state?.currentUser);

@@ -22,7 +22,6 @@ export const createCommunityFailure = (error) => ({
 });
 
 export const createComminuty = (data) => {
-  console.log(data, "josiah")
   return (dispatch) => {
     dispatch(createCommunityPending());
     // http()

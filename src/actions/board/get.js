@@ -27,7 +27,6 @@ export const getBoards = () => {
       .get(`${URL}/communities/1/fundboards`)
       .then((response) => dispatch(getBoardSuccess(response?.data?.fundboards)))
       .catch((error) => {
-        console.log(error);
         if (error.response) {
           return dispatch(getBoardFailure(error.response?.data.errors));
         } else {

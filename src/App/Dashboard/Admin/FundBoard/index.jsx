@@ -19,8 +19,6 @@ const FundBoard = () => {
     dispatch(getBoards());
   }, []);
 
-  console.log(board)
-
   return (
     <Dashboard>
       <div className="admin-board">

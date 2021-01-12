@@ -27,6 +27,7 @@ export const useVerifyLogin = (
       saveUid(user?.uid);
       if (path) {
         location.href = "/#/payment";
+        location.reload();
       } else history.push("/home");
     } else if (error && pending === false) {
       setMessage(error);

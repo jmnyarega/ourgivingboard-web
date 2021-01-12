@@ -26,7 +26,18 @@ export const invite = (user, invitation_token) => {
           invitation_token,
         },
       })
-      .then((response) => dispatch(inviteSuccess(response.data)))
+      .then((response) =>
+        dispatch(
+          inviteSuccess({
+            data: response?.data,
+            token: response?.headers["access-token"],
+            token_type: response?.headers["token-type"],
+            uid: response?.headers["uid"],
+            expiry: response?.headers["expiry"],
+            client: response?.headers["client"],
+          })
+        )
+      )
       .catch((error) => {
         if (error.response) {
           return dispatch(inviteFailure(error.response?.data.invitation_token));
