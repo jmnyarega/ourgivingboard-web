@@ -13,6 +13,10 @@ const Community = () => {
     location.href="/#/foundation-gift";
     location.reload();
   };
+  const handleWaitingList = () => {
+    location.href="/#/waiting-list";
+    location.reload();
+  };
   return (
     <>
       <div className="community-card flex-row-gap-1">
@@ -45,7 +49,9 @@ const Community = () => {
         <div className="element-box">
           <h3 className="label title">Waiting list</h3>
           <p className="element-description">You are not on any boards.</p>
-          <button className="btn btn-outline-primary">Visit Board</button>
+          <button className="btn btn-outline-primary" onClick={handleWaitingList}>
+            Visit Board
+          </button>
         </div>
         <div className="element-box">
           <h3 className="label title">Community Stats</h3>

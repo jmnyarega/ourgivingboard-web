@@ -10,6 +10,7 @@ import Community from "./Dashboard/Admin/Community";
 import FundBoard from "./Dashboard/Admin/FundBoard";
 import Preload from "./Dashboard/Preload";
 import FoundationGiving from "./Dashboard/FoundationGiving";
+import WaitingList from "./Dashboard/WaitingList";
 import "../styles/index.scss";
 
 const App = () => (
@@ -23,6 +24,7 @@ const App = () => (
     <Route path="/gift-payment" component={FoundationGiving} />
     <Route path="/board" component={FundBoard} />
     <Route path="/preload" component={Preload} />
+    <Route path="/waiting-list" component={WaitingList} />
     <Route exact path="/" component={Login} />
   </Switch>
 );

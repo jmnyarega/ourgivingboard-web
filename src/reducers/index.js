@@ -26,6 +26,9 @@ import deleteCommunityReducer from "./communities/delete";
 import updateCommunityReducer from "./communities/update";
 import createCommunityReducer from "./communities/create";
 
+// waiting list
+import waitingListReducer from "./waitingList/get"
+
 export default combineReducers({
   invite: invitationReducer,
   login: loginReducer,
@@ -45,4 +48,5 @@ export default combineReducers({
   deleteCommunity: deleteCommunityReducer,
   updateCommunity: updateCommunityReducer,
   createComminuty: createCommunityReducer,
-}); 
+  waitingList: waitingListReducer,
+});

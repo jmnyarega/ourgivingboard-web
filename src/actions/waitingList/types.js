@@ -1,0 +1,4 @@
+// login
+export const WAIT_LIST_PENDING = "WAIT_LIST_PENDING";
+export const WAIT_LIST_SUCCESS = "WAIT_LIST_SUCCESS";
+export const WAIT_LIST_FAILURE = "WAIT_LIST_FAILURE";
