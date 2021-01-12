@@ -19,6 +19,8 @@
         }
     }
 
+
+
     &-title {
         @extend .title;
         text-transform: uppercase;
@@ -30,6 +32,9 @@
         td, th {
             border-bottom: 1px solid $veryLight;
             padding: 8px;
+            select {
+                width: 80%;
+            }
         }
 
         th {

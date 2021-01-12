@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Loader from "../../../Assets/25.gif";
 
 const Gift = ({
   handleSubmit,
@@ -43,10 +44,12 @@ const Gift = ({
               <td>${(inputs && gift_in * inputs[gift_in]) || 0}</td>
             </tr>
           ))}
+        {boards ?
         <tr>
           <td /> <td />
           <td className="title gift-total">Total = ${total}</td>
         </tr>
+        : <img src={Loader} />}
       </tbody>
     </table>
     <div className="gift-btn">

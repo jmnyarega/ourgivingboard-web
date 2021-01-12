@@ -72,11 +72,20 @@ export const useCompletePayment = (payment) => {
   }, [payment]);
 };
 
-export const usePaymentInfoSaved = (complete) => {
+export const useCompleteJoinBoard = (payment) => {
   const history = useHistory();
   useEffect(() => {
+    if (payment) {
+      setTimeout(() => history.push("/home"), 3000);
+    }
+  }, [payment]);
+};
+
+export const usePaymentInfoSaved = (complete) => {
+  useEffect(() => {
     if (complete) {
-      history.push("/home");
+      location.href="/#/home";
+      location.reload();
     }
   }, [complete]);
 };

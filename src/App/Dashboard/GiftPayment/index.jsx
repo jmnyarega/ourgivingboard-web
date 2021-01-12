@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // hooks
-import { /*useCompletePayment,**/ useBeginPayment, useConfirmPayment } from "../../../hooks/payment";
+import { /*useCompletePayment,**/ useBeginPayment, useConfirmPayment, useCompleteJoinBoard } from "../../../hooks/payment";
 
 // components
 import Dashboard from "../index";
@@ -44,6 +44,7 @@ const CheckoutForm = () => {
 
   // confirm & complete payment
   const [stripe] = useConfirmPayment(payment, begin, beginError);
+  useCompleteJoinBoard(payment)
   // useCompletePayment(payment);
 
   // calculates the total on state change

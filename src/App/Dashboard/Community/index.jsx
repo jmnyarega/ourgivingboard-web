@@ -1,10 +1,9 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 
 const Community = () => {
-  const history = useHistory();
   const handleToGift = () => {
-    history.push("/gift-payment");
+    location.href="/#/gift-payment";
+    location.reload();
   };
   return (
     <>

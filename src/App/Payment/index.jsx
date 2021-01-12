@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
+// stripe
 import { CardNumberElement } from "@stripe/react-stripe-js";
 
 // hooks
