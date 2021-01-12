@@ -1,8 +1,16 @@
 import React from "react";
 
 const Community = () => {
-  const handleToGift = () => {
+  const handleGift = () => {
     location.href="/#/gift-payment";
+    location.reload();
+  };
+  const handlePreload = () => {
+    location.href="/#/preload";
+    location.reload();
+  };
+  const handleFundationGift = () => {
+    location.href="/#/foundation-gift";
     location.reload();
   };
   return (
@@ -16,12 +24,14 @@ const Community = () => {
         <div className="element-box">
           <h3 className="label title">Preload Gift</h3>
           <p className="element-description">Increase net pending</p>
-          <button className="btn btn-outline-primary">Preload</button>
+          <button className="btn btn-outline-primary" onClick={handlePreload}>
+            Preload
+          </button>
         </div>
         <div className="element-box">
           <h3 className="label title">Enter Gift</h3>
           <p className="element-description">Gift to board</p>
-          <button onClick={handleToGift} className="btn btn-outline-primary">
+          <button onClick={handleGift} className="btn btn-outline-primary">
             Enter
           </button>
         </div>
@@ -30,7 +40,7 @@ const Community = () => {
         <div className="element-box">
           <h3 className="label title">Foundation Gifting</h3>
           <p className="element-description">Foundation gifting</p>
-          <button className="btn btn-outline-primary">Gift</button>
+          <button className="btn btn-outline-primary" onClick={handleFundationGift}>Gift</button>
         </div>
         <div className="element-box">
           <h3 className="label title">Waiting list</h3>
