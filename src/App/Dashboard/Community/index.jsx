@@ -9,16 +9,20 @@ const Community = () => {
     location.href="/#/preload";
     location.reload();
   };
-  const handleFundationGift = () => {
-    location.href="/#/foundation-gift";
-    location.reload();
-  };
+  // const handleFundationGift = () => {
+  //   location.href="/#/foundation-gift";
+  //   location.reload();
+  // };
   const handleWaitingList = () => {
     location.href="/#/waiting-list";
     location.reload();
   };
   const handleActiveBoards = () => {
     location.href="/#/active-boards";
+    location.reload();
+  };
+  const handleCommunityStats = () => {
+    location.href="/#/community-stats";
     location.reload();
   };
   return (
@@ -48,7 +52,7 @@ const Community = () => {
         <div className="element-box">
           <h3 className="label title">Foundation Gifting</h3>
           <p className="element-description">Foundation gifting</p>
-          <button className="btn btn-outline-primary" onClick={handleFundationGift}>Gift</button>
+          <button className="btn btn-outline-primary" onClick={handleGift}>Gift</button>
         </div>
         <div className="element-box">
           <h3 className="label title">Waiting list</h3>
@@ -60,7 +64,9 @@ const Community = () => {
         <div className="element-box">
           <h3 className="label title">Community Stats</h3>
           <p className="element-description">&nbsp;</p>
-          <button className="btn btn-outline-primary">View Stats</button>
+          <button className="btn btn-outline-primary" onClick={handleCommunityStats}>
+            View Stats
+          </button>
         </div>
       </div>
     </>

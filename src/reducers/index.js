@@ -32,6 +32,9 @@ import waitingListReducer from "./waitingList/get"
 // active boards
 import activeBoardsReducer from "./activeBoards/get"
 
+// community stats
+import communityStatsReducer from "./communityStats/get"
+
 export default combineReducers({
   invite: invitationReducer,
   login: loginReducer,
@@ -53,4 +56,5 @@ export default combineReducers({
   createComminuty: createCommunityReducer,
   waitingList: waitingListReducer,
   activeBoards: activeBoardsReducer,
+  communityStats: communityStatsReducer,
 });

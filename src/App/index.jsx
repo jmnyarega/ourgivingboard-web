@@ -7,6 +7,7 @@ import Login from "./Login";
 import Invite from "./Invitation";
 import Recover from "./RecoverPassword";
 import Community from "./Dashboard/Admin/Community";
+import CommunityStats from "./Dashboard/CommunityStats";
 import FundBoard from "./Dashboard/Admin/FundBoard";
 import Preload from "./Dashboard/Preload";
 import FoundationGiving from "./Dashboard/FoundationGiving";
@@ -20,6 +21,7 @@ const App = () => (
     <Route path="/invite/:invitation_token" component={Invite} />
     <Route path="/payment" component={Payment} />
     <Route path="/gift-payment" component={GiftPayment} />
+    <Route path="/community-stats" component={CommunityStats} />
     <Route path="/active-boards" component={ActiveBoards} />
     <Route path="/recover" component={Recover} />
     <Route path="/community" component={Community} />
