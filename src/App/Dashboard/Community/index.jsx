@@ -9,10 +9,10 @@ const Community = () => {
     location.href="/#/preload";
     location.reload();
   };
-  // const handleFundationGift = () => {
-  //   location.href="/#/foundation-gift";
-  //   location.reload();
-  // };
+  const handleFundationGift = () => {
+    location.href="/#/foundation-gift";
+    location.reload();
+  };
   const handleWaitingList = () => {
     location.href="/#/waiting-list";
     location.reload();
@@ -52,7 +52,7 @@ const Community = () => {
         <div className="element-box">
           <h3 className="label title">Foundation Gifting</h3>
           <p className="element-description">Foundation gifting</p>
-          <button className="btn btn-outline-primary" onClick={handleGift}>Gift</button>
+          <button className="btn btn-outline-primary" onClick={handleFundationGift}>Gift</button>
         </div>
         <div className="element-box">
           <h3 className="label title">Waiting list</h3>

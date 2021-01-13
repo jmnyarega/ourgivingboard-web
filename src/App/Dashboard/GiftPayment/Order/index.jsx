@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
 
 // components
 import Dashboard from "../../index";
@@ -24,7 +25,7 @@ import {
 const getFundBoardId = (boards, value) =>
   boards?.find((board) => board.gift_in == value).id;
 
-const GiftOrder = () => {
+const GiftOrder = ({ type, title="Select Board To Join" }) => {
   const stored = getCart();
   const history = useHistory();
 
@@ -48,7 +49,7 @@ const GiftOrder = () => {
     (state) => state?.beginPayment
   );
 
-  const [handleSubmit] = useBeginPayment(boardInfo);
+  const [handleSubmit] = useBeginPayment(boardInfo, type);
 
   // loads the boads on component-did-update
   useEffect(() => {
@@ -67,7 +68,7 @@ const GiftOrder = () => {
           return acc + Number(inputs[board]) * Number(board);
         }, 0);
       setTotal(total);
-      data = data.filter(b => b.quantity > 0);
+      data = data.filter((b) => b.quantity > 0);
       setBoardInfo(data);
     }
   }, [inputs]);
@@ -87,7 +88,7 @@ const GiftOrder = () => {
   return (
     <Dashboard>
       <div className="gift">
-        <h3 className="element-header gift-title">Select Amount ($USD)</h3>
+        <h2 className="title element-header">{title}</h2>
         <table className="gift-container">
           <thead>
             <tr>
@@ -141,6 +142,11 @@ const GiftOrder = () => {
       </div>
     </Dashboard>
   );
+};
+
+GiftOrder.propTypes = {
+  type: PropTypes.string,
+  title: PropTypes.string
 };
 
 export default GiftOrder;

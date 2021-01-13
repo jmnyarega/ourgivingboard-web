@@ -11,12 +11,12 @@ import { beginPayment } from "../actions/payment/beginPayment";
 // helpers
 import { clearCart } from "../helpers/localStorage";
 
-export const useBeginPayment = (board) => {
+export const useBeginPayment = (board, type="normal") => {
   const dispatch = useDispatch();
   const handleSubmit = (event) => {
     if (event) {
       event.preventDefault();
-      dispatch(beginPayment(board));
+      dispatch(beginPayment(board, type));
     }
   };
   return [handleSubmit];

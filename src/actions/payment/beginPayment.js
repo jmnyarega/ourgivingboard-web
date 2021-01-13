@@ -20,17 +20,17 @@ const beginPaymentError = (error) => ({
   error,
 });
 
-export const beginPayment = (boards) => {
+export const beginPayment = (boards, type) => {
   return (dispatch) => {
     dispatch(beginPaymentPending());
     http()
       .post(`${URL}/orders`, {
         line_item_params: boards,
-        order_params: { gift_type: "normal", source: "CC" },
+        order_params: { gift_type: type, source: "CC" },
       })
       .then((response) => dispatch(beginPaymentSuccess(response?.data)))
       .catch((error) => {
-        if (error?.response?.data === "") {
+        if (error?.response?.data === "" || error?.message === "Network Error") {
           return dispatch(beginPaymentError("something went wrong, please try again."));
         } else {
           return dispatch(beginPaymentError(error.response?.data.errors));
