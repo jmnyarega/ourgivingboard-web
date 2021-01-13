@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 
 //helpers
-import { formatter, currencyToNumber, toActual } from "../../../helpers/currency";
+import { formatter, currencyToNumber } from "../../../helpers/currency";
 
-const SummaryElement = ({ title, number }) => {
+const SummaryElement = ({ title, number, actual }) => {
   return (
     <div className="element-box">
       <p className="label title">{title}</p>
@@ -24,6 +24,7 @@ const SummaryElement = ({ title, number }) => {
 SummaryElement.propTypes = {
   title: PropTypes.string,
   number: PropTypes.number,
+  actual: PropTypes.number,
 };
 
 export default SummaryElement;
