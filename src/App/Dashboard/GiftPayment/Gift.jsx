@@ -28,7 +28,7 @@ const Gift = ({
         {boards &&
           boards.map(({ gift_in }) => (
             <tr key={gift_in}>
-              <td>${gift_in}</td>
+              <td>${parseInt(gift_in)}</td>
               <td>
                 <select
                   className="form-control"
