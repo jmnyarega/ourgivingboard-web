@@ -22,8 +22,6 @@ const Home = () => {
     dispatch(getStat());
   }, []);
 
-  console.log(stat)
-
   useCurrentUser();
   return (
     <Dashboard>

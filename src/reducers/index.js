@@ -35,6 +35,7 @@ import activeBoardsReducer from "./activeBoards/get";
 // community stats
 import communityStatsReducer from "./communityStats/get";
 import statReducer from "./stats/get";
+import billingDetailsReducer from "./billingDetails/get";
 
 export default combineReducers({
   invite: invitationReducer,
@@ -59,4 +60,5 @@ export default combineReducers({
   activeBoards: activeBoardsReducer,
   communityStats: communityStatsReducer,
   stat: statReducer,
+  billing: billingDetailsReducer,
 });

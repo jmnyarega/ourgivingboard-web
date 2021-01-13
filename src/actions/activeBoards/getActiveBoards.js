@@ -20,7 +20,7 @@ export const activeBoards = () => {
   return (dispatch) => {
     dispatch(activeBoardsPending());
     http()
-      .get(`${URL}/communities/1/fundboards`)
+      .get(`${URL}/fundboards`)
       .then((response) =>
         dispatch(
           activeBoardsSuccess({

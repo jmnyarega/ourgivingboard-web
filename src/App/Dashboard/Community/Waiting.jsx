@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { waitingList as waitingListAction } from "../../../actions/waitingList/getWaitingList";
 
+// helpers
+import { currencyToNumber } from "../../../helpers/currency";
+
 const nearestPosition = (waitingList) => {
   const positions = waitingList?.data
     .filter(({ position }) => position > 0)
@@ -44,7 +47,7 @@ const Waiting = () => {
         <p className="element-description">You are not on any boards.</p>
       ) : (
         <p className="element-description">
-          You are #{position} on ${board}.
+          You are #{position} on ${currencyToNumber(board)}
         </p>
       )}
       <button className="btn btn-outline-primary" onClick={handleWaitingList}>
