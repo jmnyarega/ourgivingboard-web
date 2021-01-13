@@ -14,7 +14,7 @@ const SummaryElement = ({ title, number }) => {
     <div className="element-box">
       <p className="label title">{title}</p>
       <p className="value">{number}</p>
-      <div className="flex flex-jc-sb element-box-footer">
+      <div className="flex element-box-footer">
         {title === "net payout" && (
           <span>Actual: {formatter.format(currency)}</span>
         )}

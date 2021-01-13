@@ -30,7 +30,11 @@
             }
         }
         .element-box-btn {
-            justify-self: end;
+            flex: 1 1/2;
+        }
+
+        span {
+            flex: 1 1;
         }
     }
     &-header {
