@@ -11,7 +11,7 @@ const SummaryElement = ({ title, number }) => {
       <p className="value">{formatter.format(currencyToNumber(number))}</p>
       <div className="flex element-box-footer">
         {title === "net payout" && (
-          <span>Actual: {formatter.format(toActual(number))}</span>
+          <span>Actual: {formatter.format(currencyToNumber(actual))}</span>
         )}
         {/* <button className="btn btn-link element-box-btn"> */}
         {/*   <i className="fa fa-arrow-right" /> */}

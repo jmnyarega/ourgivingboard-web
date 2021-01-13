@@ -30,7 +30,7 @@ const Home = () => {
         <div className="dashboard-summary">
           <SummaryElement title="total potential" number={stat?.full_potential} />
           <SummaryElement title="total gifted" number={stat?.total_gifted} />
-          <SummaryElement title="net payout" number={stat?.net_payout} />
+          <SummaryElement title="net payout" number={stat?.net_payout} actual={stat?.actual_balance}/>
         </div>
         <Line />
         <Community data={[1, 2, 3, 4]} />
