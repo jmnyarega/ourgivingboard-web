@@ -2,7 +2,7 @@ import React from "react";
 
 const Community = () => {
   const handleGift = () => {
-    location.href="/#/gift-payment";
+    location.href="/#/gift-order";
     location.reload();
   };
   const handlePreload = () => {

@@ -24,13 +24,16 @@ export const beginPayment = (boards) => {
   return (dispatch) => {
     dispatch(beginPaymentPending());
     http()
-      .post(`${URL}/orders`, { order_params: boards })
+      .post(`${URL}/orders`, {
+        line_item_params: boards,
+        order_params: { gift_type: "normal", source: "CC" },
+      })
       .then((response) => dispatch(beginPaymentSuccess(response?.data)))
       .catch((error) => {
-        if (error.response && error.response?.status !== 404) {
-          return dispatch(beginPaymentError(error.response?.data.errors));
+        if (error?.response?.data === "") {
+          return dispatch(beginPaymentError("something went wrong, please try again."));
         } else {
-          return dispatch(beginPaymentError("something went wrong"));
+          return dispatch(beginPaymentError(error.response?.data.errors));
         }
       });
   };

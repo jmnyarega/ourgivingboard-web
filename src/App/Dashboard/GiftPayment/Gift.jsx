@@ -58,7 +58,7 @@ const Gift = ({
         disabled={total <= 0 || disabled}
         onClick={handleSubmit}
       >
-        {pending ? "Processing" : "Make Order"}
+        {pending ? "Processing" : "Proceed"}
       </button>
     </div>
     {beginError && <div className="alert alert-danger">{beginError}</div>}

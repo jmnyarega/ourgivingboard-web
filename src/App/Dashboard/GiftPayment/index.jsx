@@ -31,9 +31,9 @@ const CheckoutForm = () => {
   const [handleSubmit] = useBeginPayment(boardInfo);
 
   // begin payment response
-  const { begin, error: beginError, pending: beginPending } = useSelector(
-    (state) => state?.beginPayment
-  );
+  // const { begin, error: beginError, pending: beginPending } = useSelector(
+  //   (state) => state?.beginPayment
+  // );
 
   // gets the confirm payment response, to stripe
   const {
@@ -43,8 +43,8 @@ const CheckoutForm = () => {
   } = useSelector((state) => state?.confirmPayment );
 
   // confirm & complete payment
-  const [stripe] = useConfirmPayment(payment, begin, beginError);
-  useCompleteJoinBoard(payment)
+  // const [stripe] = useConfirmPayment(payment, begin, beginError);
+  // useCompleteJoinBoard(payment)
   // useCompletePayment(payment);
 
   // calculates the total on state change

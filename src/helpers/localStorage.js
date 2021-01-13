@@ -36,6 +36,7 @@ export const cleanLocalStorage = () => {
   localStorage.removeItem("expiry");
   localStorage.removeItem("client");
   localStorage.removeItem("uid");
+  localStorage.removeItem("cart");
 };
 
 export const getToken = () => {
@@ -62,4 +63,44 @@ export const getClient = () => {
 export const getTokenType = () => {
   const { localStorage } = window;
   return localStorage.getItem("token_type");
+};
+
+export const saveIntent = (secret) => {
+  const { localStorage } = window;
+  localStorage.setItem("intent", secret);
+}
+
+export const savePaymentId = (paymentId) => {
+  const { localStorage } = window;
+  localStorage.setItem("paymentId", paymentId);
+}
+
+export const getIntent = () => {
+  const { localStorage } = window;
+  return localStorage.getItem("intent");
+}
+
+export const getPaymentId = () => {
+  const { localStorage } = window;
+  return localStorage.getItem("paymentId");
+}
+
+export const addcart = (value) => {
+  const { localStorage } = window;
+  const data = localStorage.getItem("cart") || "{}";
+
+  const updatedCart = {
+    ...JSON.parse(data),
+    ...value,
+  };
+  localStorage.setItem("cart", JSON.stringify(updatedCart));
+};
+
+export const getCart = () => JSON.parse(localStorage.getItem("cart") || "{}");
+
+export const clearCart = () => {
+  const { localStorage } = window;
+  localStorage.removeItem("intent");
+  localStorage.removeItem("paymentId");
+  localStorage.removeItem("cart");
 };
