@@ -20,18 +20,28 @@ const beginPaymentError = (error) => ({
   error,
 });
 
-export const beginPayment = (boards) => {
+export const beginPayment = (boards, type, rest) => {
+  const payload = {
+    line_item_params: boards,
+    order_params: { gift_type: type, source: "CC" },
+  };
+
+  if (type === "preload") {
+    payload.preload_params = { amount: rest[0] };
+  }
   return (dispatch) => {
     dispatch(beginPaymentPending());
     http()
-      .post(`${URL}/orders`, {
-        line_item_params: boards,
-        order_params: { gift_type: "normal", source: "CC" },
-      })
+      .post(`${URL}/orders`, payload)
       .then((response) => dispatch(beginPaymentSuccess(response?.data)))
       .catch((error) => {
-        if (error?.response?.data === "") {
-          return dispatch(beginPaymentError("something went wrong, please try again."));
+        if (
+          error?.response?.data === "" ||
+          error?.message === "Network Error"
+        ) {
+          return dispatch(
+            beginPaymentError("something went wrong, please try again.")
+          );
         } else {
           return dispatch(beginPaymentError(error.response?.data.errors));
         }

@@ -7,7 +7,7 @@ import Invite from "./Invitation";
 import GiftOrder from "./Dashboard/GiftPayment/Order";
 import GiftCheckout from "./Dashboard/GiftPayment/Checkout";
 import Preload from "./Dashboard/Preload";
-import FoundationGiving from "./Dashboard/FoundationGiving";
+import FoundationGifting from "./Dashboard/FoundationGifting";
 import Login from "./Login";
 import Recover from "./RecoverPassword";
 import Community from "./Dashboard/Admin/Community";
@@ -26,7 +26,6 @@ const App = () => (
     <Route path="/active-boards" component={ActiveBoards} />
     <Route path="/recover" component={Recover} />
     <Route path="/community" component={Community} />
-    <Route path="/gift-payment" component={FoundationGiving} />
     <Route path="/board" component={FundBoard} />
 
     {/* enter board  */}
@@ -35,7 +34,7 @@ const App = () => (
 
     <Route path="/preload" component={Preload} />
     <Route path="/waiting-list" component={WaitingList} />
-    <Route path="/foundation" component={FoundationGiving} />
+    <Route path="/foundation-gift" component={FoundationGifting} />
 
     <Route path="/community" component={Community} />
     <Route path="/board" component={FundBoard} />
