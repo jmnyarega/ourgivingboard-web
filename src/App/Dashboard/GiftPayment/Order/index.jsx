@@ -20,6 +20,7 @@ import {
   getCart,
   savePaymentId,
   saveIntent,
+  saveFoundation
 } from "../../../../helpers/localStorage";
 
 const getFundBoardId = (boards, value) =>
@@ -79,6 +80,7 @@ const GiftOrder = ({ type, title="Select Board To Join" }) => {
         addcart({ inputs, total, boardInfo });
         savePaymentId(begin?.payment_method_id);
         saveIntent(begin?.payment_intent_client_secret);
+        saveFoundation(type);
         history.push("/gift-checkout");
         location.reload();
       }

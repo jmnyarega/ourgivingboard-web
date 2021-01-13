@@ -108,10 +108,21 @@ export const getPreload = () => {
   return localStorage.getItem("preload");
 };
 
+export const saveFoundation = (amount) => {
+  const { localStorage } = window;
+  localStorage.setItem("foundation", amount);
+};
+
+export const getFundation = () => {
+  const { localStorage } = window;
+  return localStorage.getItem("foundation");
+};
+
 export const clearCart = () => {
   const { localStorage } = window;
   localStorage.removeItem("intent");
   localStorage.removeItem("paymentId");
   localStorage.removeItem("cart");
   localStorage.removeItem("preload");
+  localStorage.removeItem("foundation");
 };

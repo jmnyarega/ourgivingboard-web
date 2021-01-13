@@ -25,6 +25,7 @@ import {
   getIntent,
   getPaymentId,
   getPreload,
+  getFundation
 } from "../../../../helpers/localStorage";
 
 const CheckoutForm = () => {
@@ -89,10 +90,15 @@ const CheckoutForm = () => {
 const GiftCheckout = () => {
   const cart = getCart();
   const preload = getPreload();
+  const foundation = getFundation();
   const history = useHistory();
 
-  const handleToCart = (path = "/gift-order") => {
-    history.push(path);
+  const handleToCart = (e, path = "/gift-order") => {
+    if (foundation) {
+      history.push("/foundation-gift");
+    } else {
+      history.push(path);
+    }
   };
 
   return (
