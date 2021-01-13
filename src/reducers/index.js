@@ -27,13 +27,14 @@ import updateCommunityReducer from "./communities/update";
 import createCommunityReducer from "./communities/create";
 
 // waiting list
-import waitingListReducer from "./waitingList/get"
+import waitingListReducer from "./waitingList/get";
 
 // active boards
-import activeBoardsReducer from "./activeBoards/get"
+import activeBoardsReducer from "./activeBoards/get";
 
 // community stats
-import communityStatsReducer from "./communityStats/get"
+import communityStatsReducer from "./communityStats/get";
+import statReducer from "./stats/get";
 
 export default combineReducers({
   invite: invitationReducer,
@@ -57,4 +58,5 @@ export default combineReducers({
   waitingList: waitingListReducer,
   activeBoards: activeBoardsReducer,
   communityStats: communityStatsReducer,
+  stat: statReducer,
 });

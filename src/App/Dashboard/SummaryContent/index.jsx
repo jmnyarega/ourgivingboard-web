@@ -1,18 +1,30 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SummaryElement = ({ title, number }) => (
-  <div className="element-box">
-    <p className="label title">{title}</p>
-    <p className="value">${number}</p>
-    <div className="flex flex-jc-sb element-box-footer">
-      <span>Actual: ${((number || 0) * 0.95).toFixed(2)}</span>
-      <button className="btn btn-link">
-        <i className="fa fa-arrow-right" />
-      </button>
+const formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  minimumFractionDigits: 2,
+});
+
+const SummaryElement = ({ title, number }) => {
+  const currency = number ? Number(number.replace(/[^0-9.-]+/g, "")) * 0.75 : 0;
+
+  return (
+    <div className="element-box">
+      <p className="label title">{title}</p>
+      <p className="value">{number}</p>
+      <div className="flex flex-jc-sb element-box-footer">
+        {title === "net payout" && (
+          <span>Actual: {formatter.format(currency)}</span>
+        )}
+        <button className="btn btn-link element-box-btn">
+          <i className="fa fa-arrow-right" />
+        </button>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 SummaryElement.propTypes = {
   title: PropTypes.string.isRequired,

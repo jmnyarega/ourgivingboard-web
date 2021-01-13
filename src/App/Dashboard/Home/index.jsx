@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { communityStats as communityStatsAction } from "../../../actions/communityStats/getCommunityStats";
+import { getStat } from "../../../actions/stats";
 
 // components
 import SummaryElement from "../SummaryContent";
@@ -11,34 +12,17 @@ import Line from "../../../common/Line";
 // hooks
 import { useCurrentUser } from "../../../hooks/authentication";
 
-const getTotalPotential = (data) => {
-  const potential = data?.reduce(
-    (acc, current) => acc + Number(current.full_potential),
-    0
-  );
-  const gift = data?.reduce(
-    (acc, current) => acc + Number(current.gifts_needed),
-    0
-  );
-  return [potential, gift];
-};
-
 const Home = () => {
   const { user } = useSelector((state) => state?.currentUser);
-  const [fullPotential, setFullPotential] = useState(0);
-  const [totalGift, setGift] = useState(0);
-  const { communityStats } = useSelector((state) => state?.communityStats);
+  const { stat } = useSelector((state) => state?.stat);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(communityStatsAction());
+    dispatch(getStat());
   }, []);
 
-  useEffect(() => {
-    const [potential, gift] = getTotalPotential(communityStats?.data);
-    setFullPotential(potential);
-    setGift(gift);
-  }, [communityStats]);
+  console.log(stat)
 
   useCurrentUser();
   return (
@@ -46,9 +30,9 @@ const Home = () => {
       <div className="dashboard-main">
         <div className="title">{user?.name}</div>
         <div className="dashboard-summary">
-          <SummaryElement title="total potential" number={fullPotential} />
-          <SummaryElement title="total gifted" number={totalGift} />
-          <SummaryElement title="net payout" number={0} />
+          <SummaryElement title="total potential" number={stat?.full_potential} />
+          <SummaryElement title="total gifted" number={stat?.total_gifted} />
+          <SummaryElement title="net payout" number={stat?.net_payout} />
         </div>
         <Line />
         <Community data={[1, 2, 3, 4]} />
