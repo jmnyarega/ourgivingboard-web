@@ -98,9 +98,20 @@ export const addcart = (value) => {
 
 export const getCart = () => JSON.parse(localStorage.getItem("cart") || "{}");
 
+export const savePreload = (amount) => {
+  const { localStorage } = window;
+  localStorage.setItem("preload", amount);
+};
+
+export const getPreload = () => {
+  const { localStorage } = window;
+  return localStorage.getItem("preload");
+};
+
 export const clearCart = () => {
   const { localStorage } = window;
   localStorage.removeItem("intent");
   localStorage.removeItem("paymentId");
   localStorage.removeItem("cart");
+  localStorage.removeItem("preload");
 };

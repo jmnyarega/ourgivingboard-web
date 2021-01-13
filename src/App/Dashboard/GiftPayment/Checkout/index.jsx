@@ -17,7 +17,12 @@ import Dashboard from "../../index";
 import Checkout from "../../../../common/Checkout";
 
 // helpers
-import { getCart, getIntent, getPaymentId } from "../../../../helpers/localStorage";
+import {
+  getCart,
+  getIntent,
+  getPaymentId,
+  getPreload,
+} from "../../../../helpers/localStorage";
 
 const CheckoutForm = () => {
   const {
@@ -74,17 +79,20 @@ const CheckoutForm = () => {
 
 const GiftCheckout = () => {
   const cart = getCart();
+  const preload = getPreload();
   const history = useHistory();
-  const handleToCart = () => {
-    history.push("/gift-order");
+
+  const handleToCart = (path="/gift-order") => {
+    history.push(path);
   };
+
   return (
     <Dashboard>
       <div className="gift-wrapper">
         <Checkout>
           <CheckoutForm />
         </Checkout>
-        <Summary cart={cart} handleToCart={handleToCart} />
+        <Summary cart={cart} handleToCart={handleToCart} preload={preload} />
       </div>
     </Dashboard>
   );
