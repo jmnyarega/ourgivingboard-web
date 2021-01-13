@@ -6,7 +6,7 @@ const SummaryElement = ({ title, number }) => (
     <p className="label title">{title}</p>
     <p className="value">${number}</p>
     <div className="flex flex-jc-sb element-box-footer">
-      <span>Actual: ${(0 * .95).toFixed(2)}</span>
+      <span>Actual: ${(number * .95).toFixed(2)}</span>
       <button className="btn btn-link">
         <i className="fa fa-arrow-right" />
       </button>

@@ -1,20 +1,23 @@
 import React from "react";
 
-const EnterGift = () => {
-  const handleGift = () => {
-    location.href = "/#/gift-order";
+const Stat = () => {
+  const handleCommunityStats = () => {
+    location.href = "/#/community-stats";
     location.reload();
   };
 
   return (
     <div className="element-box">
-      <h3 className="label title">Enter Gift</h3>
-      <p className="element-description">Gift to board</p>
-      <button onClick={handleGift} className="btn btn-outline-primary">
-        Enter
+      <h3 className="label title">Community Stats</h3>
+      <p className="element-description">&nbsp;</p>
+      <button
+        className="btn btn-outline-primary"
+        onClick={handleCommunityStats}
+      >
+        View Stats
       </button>
     </div>
   );
 };
 
-export default EnterGift;
+export default Stat;
