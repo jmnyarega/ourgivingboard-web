@@ -2,15 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { waitingList as waitingListAction } from "../../../actions/waitingList/getWaitingList";
-import Dashboard from "../index"
-
+import Dashboard from "../index";
+import Loader from "../../../Assets/25.gif";
 
 const WaitingList = () => {
-
-  const { waitingList } = useSelector(
-    (state) => state?.waitingList
-  );
-  console.log(waitingList)
+  const { waitingList } = useSelector((state) => state?.waitingList);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(waitingListAction());
@@ -29,24 +25,24 @@ const WaitingList = () => {
             </tr>
           </thead>
           <tbody>
-            {
-              waitingList?.data?.map(
-                (item) => (
-                  <tr key={item}>
-                    <td>${parseInt(item.gift_in)} Fundboard</td>
-                    <td>{item.position}</td>
-                    <td>${parseInt(item.full_potential)}</td>
-                  </tr>
-                )
-              )
-            }
+            {waitingList ? (
+              waitingList?.data?.map((item) => (
+                <tr key={item}>
+                  <td>${parseInt(item.gift_in)} Fundboard</td>
+                  <td>{item.position}</td>
+                  <td>${parseInt(item.full_potential)}</td>
+                </tr>
+              ))
+            ) : (
+              <img src={Loader} />
+            )}
           </tbody>
         </table>
       </div>
     </Dashboard>
-  )
-}
+  );
+};
 
-WaitingList.propTypes = {}
+WaitingList.propTypes = {};
 
 export default WaitingList;

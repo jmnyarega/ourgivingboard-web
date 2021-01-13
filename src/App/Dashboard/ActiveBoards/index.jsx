@@ -2,14 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { activeBoards as activeBoardsAction } from "../../../actions/activeBoards/getActiveBoards";
-import Dashboard from "../index"
-
+import Dashboard from "../index";
+import Loader from "../../../Assets/25.gif";
 
 const ActiveBoards = () => {
-
-  const { activeBoards } = useSelector(
-    (state) => state?.activeBoards
-  );
+  const { activeBoards } = useSelector((state) => state?.activeBoards);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -28,23 +25,23 @@ const ActiveBoards = () => {
             </tr>
           </thead>
           <tbody>
-            {
-              activeBoards?.data?.map(
-                (item) => (
-                  <tr key={item}>
-                    <td>${parseInt(item.gift_in)} Fundboard</td>
-                    <td>${parseInt(item.full_potential)}</td>
-                  </tr>
-                )
-              )
-            }
+            {activeBoards ? (
+              activeBoards?.data?.map((item) => (
+                <tr key={item}>
+                  <td>${parseInt(item.gift_in)} Fundboard</td>
+                  <td>${parseInt(item.full_potential)}</td>
+                </tr>
+              ))
+            ) : (
+              <img src={Loader} />
+            )}
           </tbody>
         </table>
       </div>
     </Dashboard>
-  )
-}
+  );
+};
 
-ActiveBoards.propTypes = {}
+ActiveBoards.propTypes = {};
 
 export default ActiveBoards;

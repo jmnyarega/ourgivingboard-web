@@ -2,14 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { communityStats as communityStatsAction } from "../../../actions/communityStats/getCommunityStats";
-import Dashboard from "../index"
-
+import Dashboard from "../index";
+import Loader from "../../../Assets/25.gif";
 
 const CommunityStats = () => {
-
-  const { communityStats } = useSelector(
-    (state) => state?.communityStats
-  );
+  const { communityStats } = useSelector((state) => state?.communityStats);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -29,24 +26,24 @@ const CommunityStats = () => {
             </tr>
           </thead>
           <tbody>
-            {
-              communityStats?.data?.map(
-                (item) => (
-                  <tr key={item}>
-                    <td>${parseInt(item.full_potential)} Fundboard</td>
-                    <td>Live</td>
-                    <td>{parseInt(item.gifts_needed)}</td>
-                  </tr>
-                )
-              )
-            }
+            {communityStats ? (
+              communityStats?.data?.map((item) => (
+                <tr key={item}>
+                  <td>${parseInt(item.full_potential)} Fundboard</td>
+                  <td>Live</td>
+                  <td>{parseInt(item.gifts_needed)}</td>
+                </tr>
+              ))
+            ) : (
+              <img src={Loader} />
+            )}
           </tbody>
         </table>
       </div>
     </Dashboard>
-  )
-}
+  );
+};
 
-CommunityStats.propTypes = {}
+CommunityStats.propTypes = {};
 
 export default CommunityStats;
