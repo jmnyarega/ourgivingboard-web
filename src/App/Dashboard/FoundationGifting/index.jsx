@@ -127,13 +127,13 @@ const CheckoutForm = () => {
         </table>
       </form>
       <div className="foundation-btn">
-        <button
-          className="btn btn-primary"
-          disabled={true && total <= 0 || beginPending}
-          onClick={handleSubmit}
-        >
-          {beginPending ? "Processing" : " Proceed To Payment"}
-        </button>
+        {/* <button */}
+        {/*   className="btn btn-primary" */}
+        {/*   disabled={true && total <= 0 || beginPending} */}
+        {/*   onClick={handleSubmit} */}
+        {/* > */}
+        {/*   {beginPending ? "Processing" : " Proceed To Payment"} */}
+        {/* </button> */}
       </div>
       {!beginPending && beginError && (
         <div className="alert alert-danger">{beginError}</div>
