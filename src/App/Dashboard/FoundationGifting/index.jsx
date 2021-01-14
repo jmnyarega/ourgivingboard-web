@@ -129,7 +129,7 @@ const CheckoutForm = () => {
       <div className="foundation-btn">
         <button
           className="btn btn-primary"
-          disabled={total <= 0 || beginPending}
+          disabled={true && total <= 0 || beginPending}
           onClick={handleSubmit}
         >
           {beginPending ? "Processing" : " Proceed To Payment"}

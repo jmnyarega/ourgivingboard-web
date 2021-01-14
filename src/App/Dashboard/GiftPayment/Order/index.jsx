@@ -131,7 +131,7 @@ const GiftOrder = ({ type, title="Select Board To Join" }) => {
         <div className="gift-btn">
           <button
             className="btn btn-primary"
-            disabled={total <= 0 || beginPending}
+            disabled={true && total <= 0 || beginPending}
             onClick={handleSubmit}
           >
             {beginPending ? "Processing" : " Proceed To Payment"}
