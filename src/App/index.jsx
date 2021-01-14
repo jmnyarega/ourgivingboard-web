@@ -2,7 +2,6 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 
 import Home from "./Dashboard/Home";
-import Payment from "./Payment";
 import Invite from "./Invitation";
 
 import GiftOrder from "./Dashboard/GiftPayment/Order";
@@ -14,13 +13,17 @@ import PreloadCheckout from "./Dashboard/Preload/Checkout";
 import FoundationGifting from "./Dashboard/FoundationGifting";
 import FoundationCheckout from "./Dashboard/FoundationGifting/Checkout";
 
-import Login from "./Login";
-import Recover from "./RecoverPassword";
+import Payment from "./Payment";
 import Community from "./Dashboard/Admin/Community";
 import CommunityStats from "./Dashboard/CommunityStats";
 import FundBoard from "./Dashboard/Admin/FundBoard";
 import WaitingList from "./Dashboard/WaitingList";
 import ActiveBoards from "./Dashboard/ActiveBoards";
+
+import Login from "./Login";
+import Recover from "./RecoverPassword";
+
+import NotFound from "./NotFound";
 import "../styles/index.scss";
 
 const App = () => (
@@ -53,6 +56,7 @@ const App = () => (
 
     <Route path="/recover" component={Recover} />
     <Route exact path="/" component={Login} />
+    <Route component={NotFound} />
   </Switch>
 );
 
