@@ -24,6 +24,7 @@ import {
   getCart,
   getIntent,
   getPaymentId,
+  getPreload,
 } from "../../../../helpers/localStorage";
 
 const CheckoutForm = () => {
@@ -85,12 +86,13 @@ const CheckoutForm = () => {
   );
 };
 
-const GiftCheckout = () => {
+const FoundationCheckout = () => {
   const cart = getCart();
+  const preload = getPreload();
   const history = useHistory();
 
   const handleToCart = () => {
-      history.push("/gift-order");
+      history.push("/foundation-gift");
   };
 
   return (
@@ -99,10 +101,10 @@ const GiftCheckout = () => {
         <Checkout>
           <CheckoutForm />
         </Checkout>
-        <Summary cart={cart} handleToCart={handleToCart}/>
+        <Summary cart={cart} handleToCart={handleToCart} preload={preload} />
       </div>
     </Dashboard>
   );
 };
 
-export default GiftCheckout;
+export default FoundationCheckout;

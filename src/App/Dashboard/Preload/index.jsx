@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 // hooks
@@ -9,77 +9,127 @@ import { useCurrentUser } from "../../../hooks/authentication.js";
 // components
 import Dashboard from "../index";
 import Checkout from "../../../common/Checkout";
+  import Loader from "../../../Assets/25.gif";
 
 // hooks
 import { useCustomForm } from "../../../hooks/forms";
 
+// actions
+import { getBoards } from "../../../actions/board/get";
+
 //helpers
 import {
-  savePreload,
-  getPreload,
   savePaymentId,
   saveIntent,
+  addcart,
+  getCart
 } from "../../../helpers/localStorage";
 
-const CheckoutForm = () => {
-  useCurrentUser();
-  const preload = getPreload();
-  const history = useHistory();
+const getFundBoardId = (boards, value) =>
+  boards?.find((board) => board.gift_in == value)?.id;
 
-  const [amount, setAmount] = useState(0);
+const CheckoutForm = () => {
+  const stored = getCart();
+  useCurrentUser();
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const [total, setTotal] = useState(0);
+  const [boardInfo, setBoardInfo] = useState([]);
 
   // handles inputs & sends input to server
   const [inputs, handleInputChange] = useCustomForm(
-    { amount: preload },
+    stored.inputs,
     Function,
     Function
   );
-  const [handleSubmit] = useBeginPayment(
-    [{ fundboard_id: 2, quantity: 3 }],
-    "preload", amount
-  );
+  const [handleSubmit] = useBeginPayment(boardInfo, "preload", total);
 
   // begin payment response
   const { begin, error: beginError, pending: beginPending } = useSelector(
     (state) => state?.beginPayment
   );
+  const { boards } = useSelector((state) => state?.boards);
 
   useEffect(() => {
     if (begin) {
-      if (amount > 0) {
-        savePreload(amount);
+      if (total > 0) {
+        addcart({ inputs, total, boardInfo });
         savePaymentId(begin?.payment_method_id);
         saveIntent(begin?.payment_intent_client_secret);
-        history.push("/gift-checkout");
+        history.push("/preload-checkout");
       }
     }
   }, [begin]);
 
   useEffect(() => {
-    inputs.amount && setAmount(inputs.amount);
+    dispatch(getBoards());
+  }, []);
+
+  // calculate total 
+  useEffect(() => {
+    if (inputs && Object.values(inputs).length) {
+      let total = 0;
+      let data = [];
+      total =
+        inputs &&
+        Object.keys(inputs).reduce((acc, board) => {
+          const fundboard_id = getFundBoardId(boards, board);
+          data.push({ fundboard_id, quantity: Number(inputs[board]) });
+          return acc + Number(inputs[board]) * Number(board);
+        }, 0);
+      setTotal(total);
+      data = data.filter((b) => b.quantity > 0);
+      setBoardInfo(data);
+    }
   }, [inputs]);
 
   return (
     <div className="preload">
       <h3 className="element-header gift-title">Preload Gift</h3>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name"> Enter Amount You Account:
-          <input
-            name="amount"
-            type="number"
-            min="0"
-            placeholder="Enter amount"
-            value={inputs.amount}
-            className="form-control"
-            onChange={handleInputChange}
-            required
-          />
-        </label>
+        <table className="gift-container">
+          <thead>
+            <tr>
+              <th>Board</th>
+              <th>Quantity</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {boards?.map(({ gift_in }) => (
+                <tr key={gift_in}>
+                  <td>${parseInt(gift_in)}</td>
+                  <td>
+                    <select
+                      className="form-control"
+                      name={gift_in}
+                      value={inputs && inputs[gift_in]}
+                      onChange={handleInputChange}
+                    >
+                      {[0, 1, 2, 3, 4, 5].map((value) => (
+                        <option key={value}>{value}</option>
+                      ))}
+                    </select>
+                  </td>
+                  <td>${(inputs && gift_in * inputs[gift_in]) || 0}</td>
+                </tr>
+              ))}
+            {boards ? (
+              <tr>
+                <td /> <td />
+                <td className="title gift-total">Total = ${total}</td>
+              </tr>
+            ) : (
+              <img src={Loader} />
+            )}
+          </tbody>
+        </table>
       </form>
       <div className="preload-btn">
         <button
           className="btn btn-primary"
-          disabled={amount <= 0 || beginPending}
+          disabled={total <= 0 || beginPending}
           onClick={handleSubmit}
         >
           {beginPending ? "Processing" : " Proceed To Payment"}

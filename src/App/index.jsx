@@ -4,10 +4,16 @@ import { Switch, Route } from "react-router-dom";
 import Home from "./Dashboard/Home";
 import Payment from "./Payment";
 import Invite from "./Invitation";
+
 import GiftOrder from "./Dashboard/GiftPayment/Order";
 import GiftCheckout from "./Dashboard/GiftPayment/Checkout";
+
 import Preload from "./Dashboard/Preload";
+import PreloadCheckout from "./Dashboard/Preload/Checkout";
+
 import FoundationGifting from "./Dashboard/FoundationGifting";
+import FoundationCheckout from "./Dashboard/FoundationGifting/Checkout";
+
 import Login from "./Login";
 import Recover from "./RecoverPassword";
 import Community from "./Dashboard/Admin/Community";
@@ -32,9 +38,15 @@ const App = () => (
     <Route path="/gift-order" component={GiftOrder} />
     <Route path="/gift-checkout" component={GiftCheckout} />
 
-    <Route path="/preload" component={Preload} />
-    <Route path="/waiting-list" component={WaitingList} />
+    {/* preload gift */}
+    <Route path="/preload-gift" component={Preload} />
+    <Route path="/preload-checkout" component={PreloadCheckout} />
+
+    {/* preload gift */}
     <Route path="/foundation-gift" component={FoundationGifting} />
+    <Route path="/foundation-checkout" component={FoundationCheckout} />
+
+    <Route path="/waiting-list" component={WaitingList} />
 
     <Route path="/community" component={Community} />
     <Route path="/board" component={FundBoard} />

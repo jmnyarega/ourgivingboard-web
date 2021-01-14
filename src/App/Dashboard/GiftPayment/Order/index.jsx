@@ -24,7 +24,7 @@ import {
 } from "../../../../helpers/localStorage";
 
 const getFundBoardId = (boards, value) =>
-  boards?.find((board) => board.gift_in == value).id;
+  boards?.find((board) => board.gift_in == value)?.id;
 
 const GiftOrder = ({ type, title="Select Board To Join" }) => {
   const stored = getCart();

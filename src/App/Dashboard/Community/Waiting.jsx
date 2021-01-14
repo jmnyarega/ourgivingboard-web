@@ -7,7 +7,7 @@ import { currencyToNumber } from "../../../helpers/currency";
 
 const nearestPosition = (waitingList) => {
   const positions = waitingList?.data
-    .filter(({ position }) => position > 0)
+    .filter(({ position }) => position >= 0)
     .map(({ position }) => position);
 
   const leastPosition = positions ? Math.min(...positions) : -1;
@@ -33,6 +33,8 @@ const Waiting = () => {
   useEffect(() => {
     dispatch(waitingListAction());
   }, []);
+  
+  console.log(waitingList)
 
   useEffect(() => {
     const [position, board] = nearestPosition(waitingList);

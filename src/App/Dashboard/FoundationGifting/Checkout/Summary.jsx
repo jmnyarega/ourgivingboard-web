@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const Summary = ({ cart, handleToCart }) => (
   <div className="gift-summary">
-    <h3 className="element-header">Payment Summary</h3>
+    <h3 className="element-header">Foundation Gifting Summary</h3>
     <table>
       <thead>
         <tr>
@@ -32,7 +32,6 @@ const Summary = ({ cart, handleToCart }) => (
       </tbody>
     </table>
     <div className="gift-btn">
-      {}
       <button className="btn btn-primary" onClick={handleToCart}>
         Change
       </button>
