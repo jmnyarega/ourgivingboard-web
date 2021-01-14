@@ -10,7 +10,8 @@ const nearestPosition = (waitingList) => {
     .filter(({ position }) => position >= 0)
     .map(({ position }) => position);
 
-  const leastPosition = positions ? Math.min(...positions) : -1;
+  let leastPosition = positions ? Math.min(...positions) : -1;
+  if (leastPosition === Infinity) leastPosition = 0;
 
   const data = waitingList?.data.find(
     ({ position }) => position === leastPosition
