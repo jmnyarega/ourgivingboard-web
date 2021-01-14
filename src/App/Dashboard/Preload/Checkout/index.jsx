@@ -21,13 +21,14 @@ import Checkout from "../../../../common/Checkout";
 
 // helpers
 import {
-  getCart,
+  getPreload,
   getIntent,
   getPaymentId,
-  getPreload,
+  clearCart,
 } from "../../../../helpers/localStorage";
 
 const CheckoutForm = () => {
+  const history = useHistory();
   const { payment, error: paymentError, pending: paymentPending } = useSelector(
     (state) => state?.confirmPayment
   );
@@ -45,6 +46,11 @@ const CheckoutForm = () => {
   }, []);
 
   useCompleteJoinBoard(payment);
+
+  const handleCancel = () => {
+    clearCart();
+    history.push("/preload-gift");
+  };
   return (
     <div className="gift-payment">
       <h3 className="element-header">Billing Details</h3>
@@ -71,13 +77,21 @@ const CheckoutForm = () => {
         </div>
       </div>
 
-      <div className="flex flex-jc-c gift-payment-checkout-btn">
+      <div className="flex flex-jc-sb gift-payment-checkout-btn">
+        <button
+          className="btn btn-outline-primary"
+          onClick={handleCancel}
+          disabled={paymentPending}
+        >
+          Cancel <i className="fa fa-times-circle" />
+        </button>
         <button
           className="btn btn-primary"
           onClick={handleSubmit}
-          disabled={!stripe || paymentPending}
+          disabled={(!stripe && getPreload()) || paymentPending}
         >
-          {paymentPending ? "Processing" : "Checkout"}
+          {paymentPending ? "Processing" : "Checkout"}{" "}
+          <i className="fa fa-check-circle" />
         </button>
       </div>
       {paymentError && <div className="alert alert-danger">{paymentError}</div>}
@@ -87,7 +101,6 @@ const CheckoutForm = () => {
 };
 
 const PreloadCheckout = () => {
-  const cart = getCart();
   const preload = getPreload();
   const history = useHistory();
 
@@ -101,7 +114,7 @@ const PreloadCheckout = () => {
         <Checkout>
           <CheckoutForm />
         </Checkout>
-        <Summary cart={cart} handleToCart={handleToCart} preload={preload} />
+        <Summary preload={preload} handleToCart={handleToCart} />
       </div>
     </Dashboard>
   );

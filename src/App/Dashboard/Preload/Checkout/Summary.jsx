@@ -1,37 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Summary = ({ cart, handleToCart }) => (
+const Summary = ({ preload, handleToCart }) => (
   <div className="gift-summary">
     <h3 className="element-header">Prealod Summary</h3>
-    <p>The amount below will be saved to your ourgiving account</p>
-    <table>
-      <thead>
-        <tr>
-          <th>Board</th>
-          <th>Quantity</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        {cart?.inputs &&
-          Object.keys(cart.inputs).map(
-            (board) =>
-              cart?.inputs[board] > 0 && (
-                <tr key={board}>
-                  <td>${board}</td>
-                  <td>{cart?.inputs[board]}</td>
-                  <td>${cart?.inputs[board] * board}</td>
-                </tr>
-              )
-          )}
-        <tr>
-          <td></td>
-          <td></td>
-          <td className="title gift-total">Total = ${cart?.total}</td>
-        </tr>
-      </tbody>
-    </table>
+    <p>
+      The amount below will be saved to your <b>ourgiving</b> account
+    </p>
+    <h3>Total = ${preload}</h3>
     <div className="gift-btn">
       <button className="btn btn-primary" onClick={handleToCart}>
         Change
@@ -41,7 +17,6 @@ const Summary = ({ cart, handleToCart }) => (
 );
 
 Summary.propTypes = {
-  cart: PropTypes.any,
   handleToCart: PropTypes.func,
   preload: PropTypes.string,
 };

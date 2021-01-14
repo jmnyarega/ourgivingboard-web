@@ -43,7 +43,6 @@ const Summary = ({ cart, handleToCart }) => (
 Summary.propTypes = {
   cart: PropTypes.any,
   handleToCart: PropTypes.func,
-  preload: PropTypes.string,
 };
 
 export default Summary;

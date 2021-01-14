@@ -24,10 +24,11 @@ import {
   getCart,
   getIntent,
   getPaymentId,
-  getPreload,
+  clearCart,
 } from "../../../../helpers/localStorage";
 
 const CheckoutForm = () => {
+  const history = useHistory();
   const { payment, error: paymentError, pending: paymentPending } = useSelector(
     (state) => state?.confirmPayment
   );
@@ -43,6 +44,11 @@ const CheckoutForm = () => {
   useEffect(() => {
     dispatch(billingDetails());
   }, []);
+
+  const handleCancel = () => {
+    clearCart();
+    history.push("/foundation-gift");
+  };
 
   useCompleteJoinBoard(payment);
   return (
@@ -71,14 +77,23 @@ const CheckoutForm = () => {
         </div>
       </div>
 
-      <div className="flex flex-jc-c gift-payment-checkout-btn">
+      <div className="flex flex-jc-sb gift-payment-checkout-btn">
+        <button
+          className="btn btn-outline-primary"
+          onClick={handleCancel}
+          disabled={paymentPending}
+        >
+          Cancel <i className="fa fa-times-circle" />
+        </button>
         <button
           className="btn btn-primary"
           onClick={handleSubmit}
-          disabled={!stripe || paymentPending}
+          disabled={!(stripe && getCart()?.boardInfo)  || paymentPending}
         >
-          {paymentPending ? "Processing" : "Checkout"}
+          {paymentPending ? "Processing" : "Checkout"}{" "}
+          <i className="fa fa-check-circle" />
         </button>
+
       </div>
       {paymentError && <div className="alert alert-danger">{paymentError}</div>}
       {payment && <div className="alert alert-success">{payment}</div>}
@@ -88,7 +103,6 @@ const CheckoutForm = () => {
 
 const FoundationCheckout = () => {
   const cart = getCart();
-  const preload = getPreload();
   const history = useHistory();
 
   const handleToCart = () => {
@@ -101,7 +115,7 @@ const FoundationCheckout = () => {
         <Checkout>
           <CheckoutForm />
         </Checkout>
-        <Summary cart={cart} handleToCart={handleToCart} preload={preload} />
+        <Summary cart={cart} handleToCart={handleToCart} />
       </div>
     </Dashboard>
   );

@@ -24,9 +24,11 @@ import {
   getCart,
   getIntent,
   getPaymentId,
+  clearCart
 } from "../../../../helpers/localStorage";
 
 const CheckoutForm = () => {
+  const history = useHistory();
   const { payment, error: paymentError, pending: paymentPending } = useSelector(
     (state) => state?.confirmPayment
   );
@@ -43,6 +45,11 @@ const CheckoutForm = () => {
     dispatch(billingDetails());
   }, []);
 
+  const handleCancel = () => {
+    clearCart();
+    history.push("/gift-order");
+  };
+
   useCompleteJoinBoard(payment);
   return (
     <div className="gift-payment">
@@ -58,8 +65,7 @@ const CheckoutForm = () => {
         <div className="card-name flex flex-row-gap-1">
           <label className="title"> Name: </label>
           <i className="fa fa-user"></i>
-          <div>{billing?.billing_details.name}</div>
-        </div>
+          <div>{billing?.billing_details.name}</div> </div>
 
         <div className="card-name flex flex-row-gap-1">
           <label className="title"> Expiry: </label>
@@ -70,13 +76,21 @@ const CheckoutForm = () => {
         </div>
       </div>
 
-      <div className="flex flex-jc-c gift-payment-checkout-btn">
+      <div className="flex flex-jc-sb gift-payment-checkout-btn">
+        <button
+          className="btn btn-outline-primary"
+          onClick={handleCancel}
+          disabled={paymentPending}
+        >
+          Cancel <i className="fa fa-times-circle" />
+        </button>
         <button
           className="btn btn-primary"
           onClick={handleSubmit}
-          disabled={!stripe || paymentPending}
+          disabled={!(stripe && getCart()?.boardInfo)  || paymentPending}
         >
-          {paymentPending ? "Processing" : "Checkout"}
+          {paymentPending ? "Processing" : "Checkout"}{" "}
+          <i className="fa fa-check-circle" />
         </button>
       </div>
       {paymentError && <div className="alert alert-danger">{paymentError}</div>}

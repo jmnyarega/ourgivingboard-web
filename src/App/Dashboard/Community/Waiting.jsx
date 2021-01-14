@@ -34,8 +34,6 @@ const Waiting = () => {
     dispatch(waitingListAction());
   }, []);
   
-  console.log(waitingList)
-
   useEffect(() => {
     const [position, board] = nearestPosition(waitingList);
     setPosition(position);

@@ -21,13 +21,13 @@ const beginPaymentError = (error) => ({
 });
 
 export const beginPayment = (boards, type, rest) => {
-  const payload = {
+  let payload = {
     line_item_params: boards,
     order_params: { gift_type: type, source: "CC" },
   };
 
   if (type === "preload") {
-    payload.preload_params = { amount: rest[0] };
+    payload = { amount: rest[0], gift_type: type };
   }
   return (dispatch) => {
     dispatch(beginPaymentPending());
