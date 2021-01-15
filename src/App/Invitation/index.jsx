@@ -57,7 +57,7 @@ const Invite = () => {
   return (
     <>
       <GuestTopBar />
-      <Wizard classes="hide-for-mobile" steps={["active", "progress", "inactive"]}  />
+      <Wizard classes="hide-for-mobile" steps={["active", "progress"]}  />
       <div className="invite flex-jc-c flex-ai-c">
         <div className="invite-form">
           <h3 className="invite-form__header title">Welcome to your Gifting Board</h3>

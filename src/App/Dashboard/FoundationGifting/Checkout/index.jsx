@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-
+import { Radio, Button, Alert } from 'antd';
+import { CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
 // stripe
 import { useStripe } from "@stripe/react-stripe-js";
 
@@ -33,7 +34,10 @@ const CheckoutForm = () => {
     (state) => state?.confirmPayment
   );
   const { billing } = useSelector((state) => state?.billing);
+  const { user } = useSelector((state) => state?.currentUser);
   const dispatch = useDispatch();
+
+  const [paymentMethod, setPaymentMethod] = useState();
 
   const stripe = useStripe();
   const intent = getIntent();
@@ -50,53 +54,59 @@ const CheckoutForm = () => {
     history.push("/foundation-gift");
   };
 
+  const selectPaymentMethod = (evt) => {
+    setPaymentMethod(evt.target.value);
+  };
+
+  const goToPayment = () => {
+    history.push("/update-payment");
+  };
+
   useCompleteJoinBoard(payment);
   return (
     <div className="gift-payment">
-      <h3 className="element-header">Billing Details</h3>
-
+      <h3 className="element-header">Select Payment Method</h3>
       <div className="gift-payment-container">
-        <div className="credit-card flex flex-row-gap-1">
-          <label className="title"> Card: </label>
-          <i className="fa fa-credit-card"></i>
-          <div> **** **** **** {billing?.card.last4} </div>
-        </div>
-
-        <div className="card-name flex flex-row-gap-1">
-          <label className="title"> Name: </label>
-          <i className="fa fa-user"></i>
-          <div>{billing?.billing_details.name}</div>
-        </div>
-
-        <div className="card-name flex flex-row-gap-1">
-          <label className="title"> Expiry: </label>
-          <i className="fa fa-calendar"></i>
-          <div>
-            {billing?.card.expiry_month} / {billing?.card.expiry_year}
-          </div>
-        </div>
+        <Radio.Group
+          onChange={selectPaymentMethod}
+          value={paymentMethod}
+        >
+          <Radio value="card" disabled={!billing}>
+            Use credit card ending with <b> {billing?.card.last4} </b>
+            <Button value="large" type="link" onClick={goToPayment}>
+              Change Card
+            </Button>
+          </Radio>
+          <br />
+          <Radio value="account" disabled={user?.current_balance}>
+            Use your <strong>ourgiving</strong> preload account
+          </Radio>
+        </Radio.Group>
       </div>
-
       <div className="flex flex-jc-sb gift-payment-checkout-btn">
-        <button
-          className="btn btn-outline-primary"
+        <Button
           onClick={handleCancel}
+          type="ghost"
+          className="btn-outline-primary"
+          icon={<CloseCircleOutlined />}
           disabled={paymentPending}
         >
-          Cancel <i className="fa fa-times-circle" />
-        </button>
-        <button
-          className="btn btn-primary"
+          Cancel
+        </Button>
+        <Button
           onClick={handleSubmit}
-          disabled={!(stripe && getCart()?.boardInfo)  || paymentPending}
+          type="primary"
+          icon={<CheckCircleOutlined />}
+          disabled={
+            !(stripe && getCart()?.boardInfo && paymentMethod) || paymentPending
+          }
         >
           {paymentPending ? "Processing" : "Checkout"}{" "}
-          <i className="fa fa-check-circle" />
-        </button>
-
+        </Button>
       </div>
-      {paymentError && <div className="alert alert-danger">{paymentError}</div>}
-      {payment && <div className="alert alert-success">{payment}</div>}
+      <br />
+      {paymentError && <Alert message={paymentError} type="error" />}
+      {payment && <Alert message={payment} type="success" />}
     </div>
   );
 };

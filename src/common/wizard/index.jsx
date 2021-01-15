@@ -1,13 +1,16 @@
 import React from "react";
 import Types from "prop-types";
+import { Steps } from "antd";
 
 const Wizard = ({ classes, steps }) => (
-  <div className={`container ${classes} wizard`}>
-    <ul className="progressbar title">
-      <li className={steps && steps[0]}>Invitation</li>
-      <li className={steps && steps[1]}>Registration</li>
-      <li className={steps && steps[2]}>Payment Details</li>
-    </ul>
+  <div className={`container ${classes} flex flex-jc-c`}>
+    <div className="wizard">
+      <Steps current={steps.length - 1} size="small">
+        <Steps.Step title="Invitation" />
+        <Steps.Step title="Registration" />
+        <Steps.Step title="Payment Details" />
+      </Steps>
+    </div>
   </div>
 );
 

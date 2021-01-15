@@ -38,9 +38,15 @@
 
     &-expiry {
         width: 47%;
+        @include breakpoint-down(medium) {
+            width: 100%;
+        }
     }
     &-cvc {
         width: 47%;
+        @include breakpoint-down(medium) {
+            width: 100%;
+        }
     }
 
     &-card, &-name {

@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { Alert, Button } from 'antd';
+import { CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
 
 // stripe
 import { useStripe } from "@stripe/react-stripe-js";
@@ -78,24 +80,27 @@ const CheckoutForm = () => {
       </div>
 
       <div className="flex flex-jc-sb gift-payment-checkout-btn">
-        <button
-          className="btn btn-outline-primary"
+        <Button
           onClick={handleCancel}
+          type="ghost"
+          className="btn-outline-primary"
+          icon={<CloseCircleOutlined />}
           disabled={paymentPending}
         >
-          Cancel <i className="fa fa-times-circle" />
-        </button>
-        <button
-          className="btn btn-primary"
+          Cancel
+        </Button>
+        <Button
           onClick={handleSubmit}
+          type="primary"
+          icon={<CheckCircleOutlined />}
           disabled={(!stripe && getPreload()) || paymentPending}
         >
           {paymentPending ? "Processing" : "Checkout"}{" "}
-          <i className="fa fa-check-circle" />
-        </button>
+        </Button>
       </div>
-      {paymentError && <div className="alert alert-danger">{paymentError}</div>}
-      {payment && <div className="alert alert-success">{payment}</div>}
+      <br />
+      {paymentError && <Alert message={paymentError} type="error" />}
+      {payment && <Alert message={payment} type="success" />}
     </div>
   );
 };

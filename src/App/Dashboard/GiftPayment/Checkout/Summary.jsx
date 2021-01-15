@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { EditOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
 
 const Summary = ({ cart, handleToCart }) => (
   <div className="gift-summary">
@@ -32,10 +34,9 @@ const Summary = ({ cart, handleToCart }) => (
       </tbody>
     </table>
     <div className="gift-btn">
-      {}
-      <button className="btn btn-primary" onClick={handleToCart}>
+      <Button icon={<EditOutlined />} onClick={handleToCart} type="primary">
         Change
-      </button>
+      </Button>
     </div>
   </div>
 );

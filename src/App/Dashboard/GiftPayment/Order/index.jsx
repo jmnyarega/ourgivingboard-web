@@ -50,7 +50,7 @@ const GiftOrder = ({ type, title="Select Board To Join" }) => {
     (state) => state?.beginPayment
   );
 
-  const [,] = useBeginPayment(boardInfo, type);
+  const [handleSubmit] = useBeginPayment(boardInfo, type);
 
   // loads the boads on component-did-update
   useEffect(() => {
@@ -72,7 +72,7 @@ const GiftOrder = ({ type, title="Select Board To Join" }) => {
       data = data.filter((b) => b.quantity > 0);
       setBoardInfo(data);
     }
-  }, [inputs]);
+  }, [inputs, boards]);
 
   useEffect(() => {
     if (begin) {
@@ -129,13 +129,13 @@ const GiftOrder = ({ type, title="Select Board To Join" }) => {
           </tbody>
         </table>
         <div className="gift-btn">
-          {/* <button */}
-          {/*   className="btn btn-primary" */}
-          {/*   disabled={true && total <= 0 || beginPending} */}
-          {/*   onClick={handleSubmit} */}
-          {/* > */}
-          {/*   {beginPending ? "Processing" : " Proceed To Payment"} */}
-          {/* </button> */}
+          <button
+            className="btn btn-primary"
+            disabled={total <= 0 || beginPending || !boards}
+            onClick={handleSubmit}
+          >
+            {beginPending ? "Processing" : " Proceed To Payment"}
+          </button>
         </div>
         {!beginPending && beginError && (
           <div className="alert alert-danger">{beginError}</div>

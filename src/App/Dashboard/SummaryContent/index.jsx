@@ -8,7 +8,9 @@ const SummaryElement = ({ title, number, actual }) => {
   return (
     <div className="element-box">
       <p className="label title">{title}</p>
-      <p className="value">{formatter.format(currencyToNumber(number))}</p>
+      <p className="value">{
+        number && formatter.format(currencyToNumber(number.toString()))
+      }</p>
       <div className="flex element-box-footer">
         {title === "net payout" && (
           <span>Actual: {formatter.format(currencyToNumber(actual))}</span>
@@ -23,8 +25,8 @@ const SummaryElement = ({ title, number, actual }) => {
 
 SummaryElement.propTypes = {
   title: PropTypes.string,
-  number: PropTypes.number,
-  actual: PropTypes.number,
+  number: PropTypes.any,
+  actual: PropTypes.any,
 };
 
 export default SummaryElement;

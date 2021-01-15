@@ -14,6 +14,7 @@ import FoundationGifting from "./Dashboard/FoundationGifting";
 import FoundationCheckout from "./Dashboard/FoundationGifting/Checkout";
 
 import Payment from "./Payment";
+import UpdatePayment from "./Dashboard/Payment";
 import Community from "./Dashboard/Admin/Community";
 import CommunityStats from "./Dashboard/CommunityStats";
 import FundBoard from "./Dashboard/Admin/FundBoard";
@@ -31,6 +32,7 @@ const App = () => (
     <Route path="/home" component={Home} />
     <Route path="/invite/:invitation_token" component={Invite} />
     <Route path="/payment" component={Payment} />
+    <Route path="/update-payment" component={UpdatePayment} />
     <Route path="/community-stats" component={CommunityStats} />
     <Route path="/active-boards" component={ActiveBoards} />
     <Route path="/recover" component={Recover} />

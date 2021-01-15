@@ -1,6 +1,6 @@
 .element {
     &-box {
-        padding: 0.5rem 1rem;
+        padding: 0.8rem 1rem;
         border-radius: 0.5rem;
         background-color: $white;
         box-shadow: 0px 0px 3px $lightGray;
@@ -11,7 +11,6 @@
         .label {
             font-size: 0.9rem;
             color: $purple;
-            margin-bottom: 0;
             font-weight: 600;
             text-transform: uppercase;
         }
