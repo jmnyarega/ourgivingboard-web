@@ -6,6 +6,7 @@ import { useVerifyLogin } from "../../hooks/authentication";
 import LoginForm from "./LoginForm";
 import { login } from "../../actions/user/login";
 import GuestTopBar from "../Dashboard/TopBar/GuestTopBar";
+import { getToken } from "../../helpers/localStorage";
 
 const validate = ({ email, password }) => {
   let errors = {};
@@ -37,8 +38,13 @@ const Login = () => {
     "login success"
   );
 
-  return (
+  // go to dashboard if you are already signed in
+  const token = getToken();
+  if (token) {
+    history.push("/home");
+  }
 
+  return (
     <>
     <GuestTopBar />
     <div className="login flex-jc-c flex-ai-c">

@@ -37,6 +37,10 @@ export const cleanLocalStorage = () => {
   localStorage.removeItem("client");
   localStorage.removeItem("uid");
   localStorage.removeItem("cart");
+  localStorage.removeItem("intent");
+  localStorage.removeItem("paymentId");
+  localStorage.removeItem("preload");
+  localStorage.removeItem("foundation");
 };
 
 export const getToken = () => {

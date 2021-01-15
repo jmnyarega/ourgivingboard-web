@@ -28,6 +28,7 @@ export const beginPayment = (boards, type, rest) => {
 
   if (type === "preload") {
     payload.preload_params = { amount: rest[0] };
+    payload.order_params = { gift_type: type, source: "USER_ACCOUNT" };
   }
   return (dispatch) => {
     dispatch(beginPaymentPending());

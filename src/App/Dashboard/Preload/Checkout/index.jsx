@@ -21,10 +21,10 @@ import Checkout from "../../../../common/Checkout";
 
 // helpers
 import {
-  getCart,
+  getPreload,
   getIntent,
   getPaymentId,
-  clearCart
+  clearCart,
 } from "../../../../helpers/localStorage";
 
 const CheckoutForm = () => {
@@ -45,12 +45,12 @@ const CheckoutForm = () => {
     dispatch(billingDetails());
   }, []);
 
+  useCompleteJoinBoard(payment);
+
   const handleCancel = () => {
     clearCart();
-    history.push("/gift-order");
+    history.push("/preload-gift");
   };
-
-  useCompleteJoinBoard(payment);
   return (
     <div className="gift-payment">
       <h3 className="element-header">Billing Details</h3>
@@ -65,7 +65,8 @@ const CheckoutForm = () => {
         <div className="card-name flex flex-row-gap-1">
           <label className="title"> Name: </label>
           <i className="fa fa-user"></i>
-          <div>{billing?.billing_details.name}</div> </div>
+          <div>{billing?.billing_details.name}</div>
+        </div>
 
         <div className="card-name flex flex-row-gap-1">
           <label className="title"> Expiry: </label>
@@ -87,7 +88,7 @@ const CheckoutForm = () => {
         <button
           className="btn btn-primary"
           onClick={handleSubmit}
-          disabled={!(stripe && getCart()?.boardInfo)  || paymentPending}
+          disabled={(!stripe && getPreload()) || paymentPending}
         >
           {paymentPending ? "Processing" : "Checkout"}{" "}
           <i className="fa fa-check-circle" />
@@ -99,12 +100,12 @@ const CheckoutForm = () => {
   );
 };
 
-const GiftCheckout = () => {
-  const cart = getCart();
+const PreloadCheckout = () => {
+  const preload = getPreload();
   const history = useHistory();
 
   const handleToCart = () => {
-      history.push("/gift-order");
+      history.push("/preload-gift");
   };
 
   return (
@@ -113,10 +114,10 @@ const GiftCheckout = () => {
         <Checkout>
           <CheckoutForm />
         </Checkout>
-        <Summary cart={cart} handleToCart={handleToCart}/>
+        <Summary preload={preload} handleToCart={handleToCart} />
       </div>
     </Dashboard>
   );
 };
 
-export default GiftCheckout;
+export default PreloadCheckout;

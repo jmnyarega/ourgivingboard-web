@@ -2,7 +2,7 @@ import React from "react";
 
 const Preload = () => {
   const handlePreload = () => {
-    location.href = "/#/preload";
+    location.href = "/#/preload-gift";
     location.reload();
   };
 

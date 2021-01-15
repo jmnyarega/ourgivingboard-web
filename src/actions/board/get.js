@@ -24,7 +24,7 @@ export const getBoards = () => {
   return (dispatch) => {
     dispatch(getBoardPending());
     http()
-      .get(`${URL}/communities/1/fundboards`)
+      .get(`${URL}/communities/2/fundboards`)
       .then((response) => dispatch(getBoardSuccess(response?.data?.fundboards)))
       .catch((error) => {
         if (error.response) {

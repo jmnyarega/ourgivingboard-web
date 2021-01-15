@@ -24,7 +24,7 @@ import {
   getCart,
   getIntent,
   getPaymentId,
-  clearCart
+  clearCart,
 } from "../../../../helpers/localStorage";
 
 const CheckoutForm = () => {
@@ -47,7 +47,7 @@ const CheckoutForm = () => {
 
   const handleCancel = () => {
     clearCart();
-    history.push("/gift-order");
+    history.push("/foundation-gift");
   };
 
   useCompleteJoinBoard(payment);
@@ -65,7 +65,8 @@ const CheckoutForm = () => {
         <div className="card-name flex flex-row-gap-1">
           <label className="title"> Name: </label>
           <i className="fa fa-user"></i>
-          <div>{billing?.billing_details.name}</div> </div>
+          <div>{billing?.billing_details.name}</div>
+        </div>
 
         <div className="card-name flex flex-row-gap-1">
           <label className="title"> Expiry: </label>
@@ -92,6 +93,7 @@ const CheckoutForm = () => {
           {paymentPending ? "Processing" : "Checkout"}{" "}
           <i className="fa fa-check-circle" />
         </button>
+
       </div>
       {paymentError && <div className="alert alert-danger">{paymentError}</div>}
       {payment && <div className="alert alert-success">{payment}</div>}
@@ -99,12 +101,12 @@ const CheckoutForm = () => {
   );
 };
 
-const GiftCheckout = () => {
+const FoundationCheckout = () => {
   const cart = getCart();
   const history = useHistory();
 
   const handleToCart = () => {
-      history.push("/gift-order");
+      history.push("/foundation-gift");
   };
 
   return (
@@ -113,10 +115,10 @@ const GiftCheckout = () => {
         <Checkout>
           <CheckoutForm />
         </Checkout>
-        <Summary cart={cart} handleToCart={handleToCart}/>
+        <Summary cart={cart} handleToCart={handleToCart} />
       </div>
     </Dashboard>
   );
 };
 
-export default GiftCheckout;
+export default FoundationCheckout;

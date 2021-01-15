@@ -50,7 +50,7 @@ const CheckoutForm = () => {
         savePreload(amount);
         savePaymentId(begin?.payment_method_id);
         saveIntent(begin?.payment_intent_client_secret);
-        history.push("/gift-checkout");
+        history.push("/preload-checkout");
       }
     }
   }, [begin]);
