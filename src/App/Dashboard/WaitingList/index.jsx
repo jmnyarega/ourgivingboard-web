@@ -29,7 +29,10 @@ const WaitingList = () => {
               waitingList?.data?.map((item) => (
                 <tr key={item}>
                   <td>${parseInt(item.gift_in)} Fundboard</td>
-                  <td>{item.position}</td>
+                  { item.position < 0 && (<td>Promoted</td>) }
+                  { item.position === 0 && (<td>Active</td>) }
+                  { item.position === 1 && (<td>Next</td>) }
+                  { item.position > 1 && (<td>{item.position}</td>) }
                   <td>${parseInt(item.full_potential)}</td>
                 </tr>
               ))
