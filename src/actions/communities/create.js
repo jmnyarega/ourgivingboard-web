@@ -1,14 +1,11 @@
 // import { http } from "../../helpers/axios";
 // import { URL } from "../../helpers/constants";
 import { server as fakeServer } from "../../coverage/fakeServer";
-import {
-  CREATE_COMMUNITY_PENDING,
-  CREATE_COMMUNITY_SUCCESS,
-  CREATE_COMMUNITY_FAILURE,
-} from "./types";
+import { CREATE_COMMUNITY_SUCCESS } from "./types";
+import { FAILURE, PENDING } from "../errorsAndPending/types";
 
 export const createCommunityPending = () => ({
-  type: CREATE_COMMUNITY_PENDING,
+  type: PENDING,
 });
 
 export const createCommunitySuccess = (payload) => ({
@@ -17,7 +14,7 @@ export const createCommunitySuccess = (payload) => ({
 });
 
 export const createCommunityFailure = (error) => ({
-  type: CREATE_COMMUNITY_FAILURE,
+  type: FAILURE,
   error,
 });
 
@@ -25,14 +22,12 @@ export const createComminuty = (data) => {
   return (dispatch) => {
     dispatch(createCommunityPending());
     // http()
-      fakeServer(data)
+    fakeServer(data)
       // .put(`${URL}/adim/board`, data)
       .then(() => dispatch(createCommunitySuccess(data)))
       .catch((error) => {
         if (error.response) {
-          return dispatch(
-            createCommunityFailure(error.response?.data.errrs)
-          );
+          return dispatch(createCommunityFailure(error.response?.data.errrs));
         } else {
           return dispatch(createCommunityFailure("something went wrong"));
         }

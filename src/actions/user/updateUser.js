@@ -1,13 +1,10 @@
 import { http } from "../../helpers/axios";
 import { URL } from "../../helpers/constants";
-import {
-  UPDATE_USER_PENDING,
-  UPDATE_USER_SUCCESS,
-  UPDATE_USER_FAILURE,
-} from "./types";
+import { UPDATE_USER_SUCCESS } from "./types";
+import { FAILURE, PENDING } from "../errorsAndPending/types";
 
 export const updateUserPending = () => ({
-  type: UPDATE_USER_PENDING,
+  type: PENDING,
 });
 
 export const updateUserSuccess = (payload) => ({
@@ -16,7 +13,7 @@ export const updateUserSuccess = (payload) => ({
 });
 
 export const updateUserFailure = (error) => ({
-  type: UPDATE_USER_FAILURE,
+  type: FAILURE,
   error,
 });
 

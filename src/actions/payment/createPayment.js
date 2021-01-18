@@ -1,11 +1,8 @@
-import {
-  CREATE_PAYMENT_PENDING,
-  CREATE_PAYMENT_SUCCESS,
-  CREATE_PAYMENT_FAILURE,
-} from "./types";
+import { CREATE_PAYMENT_SUCCESS } from "./types";
+import { FAILURE, PENDING } from "../errorsAndPending/types";
 
 const createPaymentPending = () => ({
-  type: CREATE_PAYMENT_PENDING,
+  type: PENDING,
 });
 
 const createPaymentSuccess = (payload) => ({
@@ -14,7 +11,7 @@ const createPaymentSuccess = (payload) => ({
 });
 
 const createPaymentError = (error) => ({
-  type: CREATE_PAYMENT_FAILURE,
+  type: FAILURE,
   error,
 });
 

@@ -1,14 +1,11 @@
 import { http } from "../../helpers/axios";
 import { URL } from "../../helpers/constants";
 // import { server as fakeServer } from "../../coverage/fakeServer";
-import {
-  UPDATE_BOARD_PENDING,
-  UPDATE_BOARD_SUCCESS,
-  UPDATE_BOARD_FAILURE,
-} from "./types";
+import { UPDATE_BOARD_SUCCESS } from "./types";
+import { FAILURE, PENDING } from "../errorsAndPending/types";
 
 export const updateBoardPending = () => ({
-  type: UPDATE_BOARD_PENDING,
+  type: PENDING,
 });
 
 export const updateBoardSuccess = (payload) => ({
@@ -17,7 +14,7 @@ export const updateBoardSuccess = (payload) => ({
 });
 
 export const updateBoardFailure = (error) => ({
-  type: UPDATE_BOARD_FAILURE,
+  type: FAILURE,
   error,
 });
 
@@ -30,9 +27,7 @@ export const updateBoard = (data) => {
       .then((response) => dispatch(updateBoardSuccess(response.data)))
       .catch((error) => {
         if (error.response) {
-          return dispatch(
-            updateBoardFailure(error.response?.data.errrs)
-          );
+          return dispatch(updateBoardFailure(error.response?.data.errrs));
         } else {
           return dispatch(updateBoardFailure("something went wrong"));
         }

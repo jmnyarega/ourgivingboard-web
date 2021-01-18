@@ -1,14 +1,11 @@
 import { http } from "../../helpers/axios";
 import { URL } from "../../helpers/constants";
 // import { server as fakeServer } from "../../coverage/fakeServer";
-import {
-  UPDATE_COMMUNITY_PENDING,
-  UPDATE_COMMUNITY_SUCCESS,
-  UPDATE_COMMUNITY_FAILURE,
-} from "./types";
+import { UPDATE_COMMUNITY_SUCCESS } from "./types";
+import { FAILURE, PENDING } from "../errorsAndPending/types";
 
 export const updateCommunityPending = () => ({
-  type: UPDATE_COMMUNITY_PENDING,
+  type: PENDING,
 });
 
 export const updateCommunitySuccess = (payload) => ({
@@ -17,7 +14,7 @@ export const updateCommunitySuccess = (payload) => ({
 });
 
 export const updateCommunityFailure = (error) => ({
-  type: UPDATE_COMMUNITY_FAILURE,
+  type: FAILURE,
   error,
 });
 
@@ -30,9 +27,7 @@ export const updateCommunity = (data) => {
       .then((response) => dispatch(updateCommunitySuccess(response.data)))
       .catch((error) => {
         if (error.response) {
-          return dispatch(
-            updateCommunityFailure(error.response?.data.errrs)
-          );
+          return dispatch(updateCommunityFailure(error.response?.data.errrs));
         } else {
           return dispatch(updateCommunityFailure("something went wrong"));
         }

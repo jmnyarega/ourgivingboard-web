@@ -1,13 +1,10 @@
 import { http } from "../../helpers/axios";
 import { URL } from "../../helpers/constants";
-import {
-  BILLING_DETAILS_PENDING,
-  BILLING_DETAILS_SUCCESS,
-  BILLING_DETAILS_FAILURE,
-} from "./types";
+import { BILLING_DETAILS_SUCCESS } from "./types";
+import { FAILURE, PENDING } from "../errorsAndPending/types";
 
 const billingDetailsPending = () => ({
-  type: BILLING_DETAILS_PENDING,
+  type: PENDING,
 });
 
 const billingDetailsSuccess = (payload) => ({
@@ -16,7 +13,7 @@ const billingDetailsSuccess = (payload) => ({
 });
 
 const billingDetailsError = (error) => ({
-  type: BILLING_DETAILS_FAILURE,
+  type: FAILURE,
   error,
 });
 

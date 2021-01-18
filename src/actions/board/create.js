@@ -1,14 +1,11 @@
 // import { http } from "../../helpers/axios";
 // import { URL } from "../../helpers/constants";
 import { server as fakeServer } from "../../coverage/fakeServer";
-import {
-  CREATE_BOARD_PENDING,
-  CREATE_BOARD_SUCCESS,
-  CREATE_BOARD_FAILURE,
-} from "./types";
+import { CREATE_BOARD_SUCCESS } from "./types";
+import { FAILURE, PENDING } from "../errorsAndPending/types";
 
 export const createBoardPending = () => ({
-  type: CREATE_BOARD_PENDING,
+  type: PENDING,
 });
 
 export const createBoardSuccess = (payload) => ({
@@ -17,7 +14,7 @@ export const createBoardSuccess = (payload) => ({
 });
 
 export const createBoardFailure = (error) => ({
-  type: CREATE_BOARD_FAILURE,
+  type: FAILURE,
   error,
 });
 
@@ -25,14 +22,12 @@ export const createBoard = (data) => {
   return (dispatch) => {
     dispatch(createBoardPending());
     // http()
-      fakeServer(data)
+    fakeServer(data)
       // .put(`${URL}/adim/board`, data)
       .then(() => dispatch(createBoardSuccess(data)))
       .catch((error) => {
         if (error.response) {
-          return dispatch(
-            createBoardFailure(error.response?.data.errrs)
-          );
+          return dispatch(createBoardFailure(error.response?.data.errrs));
         } else {
           return dispatch(createBoardFailure("something went wrong"));
         }

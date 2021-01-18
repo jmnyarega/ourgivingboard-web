@@ -1,9 +1,10 @@
 import { http } from "../../helpers/axios";
 import { URL } from "../../helpers/constants";
-import { INVITE_PENDING, INVITE_SUCCESS, INVITE_FAILURE } from "./types";
+import { INVITE_SUCCESS } from "./types";
+import { FAILURE, PENDING } from "../errorsAndPending/types";
 
 export const invitePending = () => ({
-  type: INVITE_PENDING,
+  type: PENDING,
 });
 
 export const inviteSuccess = (payload) => ({
@@ -12,7 +13,7 @@ export const inviteSuccess = (payload) => ({
 });
 
 export const inviteFailure = (error) => ({
-  type: INVITE_FAILURE,
+  type: FAILURE,
   error,
 });
 

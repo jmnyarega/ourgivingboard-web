@@ -1,13 +1,10 @@
 import { http } from "../../helpers/axios";
 import { URL } from "../../helpers/constants";
-import {
-  CURRENT_USER_PENDING,
-  CURRENT_USER_SUCCESS,
-  CURRENT_USER_FAILURE,
-} from "./types";
+import { CURRENT_USER_SUCCESS } from "./types";
+import { FAILURE, PENDING } from "../errorsAndPending/types";
 
 export const currentUserPending = () => ({
-  type: CURRENT_USER_PENDING,
+  type: PENDING,
 });
 
 export const currentUserSuccess = (payload) => ({
@@ -16,7 +13,7 @@ export const currentUserSuccess = (payload) => ({
 });
 
 export const currentUserFailure = (error) => ({
-  type: CURRENT_USER_FAILURE,
+  type: FAILURE,
   error,
 });
 

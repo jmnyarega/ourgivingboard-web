@@ -1,14 +1,11 @@
 import { http } from "../../helpers/axios";
 import { URL } from "../../helpers/constants";
 // import { server as fakeServer } from "../../coverage/fakeServer";
-import {
-  DELETE_BOARD_PENDING,
-  DELETE_BOARD_SUCCESS,
-  DELETE_BOARD_FAILURE,
-} from "./types";
+import { DELETE_BOARD_SUCCESS } from "./types";
+import { FAILURE, PENDING } from "../errorsAndPending/types";
 
 export const deleteBoardPending = () => ({
-  type: DELETE_BOARD_PENDING,
+  type: PENDING,
 });
 
 export const deleteBoardSuccess = (payload) => ({
@@ -17,7 +14,7 @@ export const deleteBoardSuccess = (payload) => ({
 });
 
 export const deleteBoardFailure = (error) => ({
-  type: DELETE_BOARD_FAILURE,
+  type: FAILURE,
   error,
 });
 
@@ -30,9 +27,7 @@ export const deleteBoard = (data) => {
       .then((response) => dispatch(deleteBoardSuccess(response.data)))
       .catch((error) => {
         if (error.response) {
-          return dispatch(
-            deleteBoardFailure(error.response?.data.errrs)
-          );
+          return dispatch(deleteBoardFailure(error.response?.data.errrs));
         } else {
           return dispatch(deleteBoardFailure("something went wrong"));
         }

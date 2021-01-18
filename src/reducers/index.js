@@ -1,5 +1,7 @@
 import { combineReducers } from "redux";
 
+//errors and pending reducer
+import errorAndPendingReducer from "./errorsAndPending/errorsAndPending";
 // user
 import invitationReducer from "./user/invitation";
 import loginReducer from "./user/login";
@@ -61,4 +63,5 @@ export default combineReducers({
   communityStats: communityStatsReducer,
   stat: statReducer,
   billing: billingDetailsReducer,
+  errorAndPending: errorAndPendingReducer,
 });

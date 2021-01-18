@@ -1,13 +1,10 @@
 import { http } from "../../helpers/axios";
 import { URL } from "../../helpers/constants";
-import {
-  GET_BOARD_PENDING,
-  GET_BOARD_SUCCESS,
-  GET_BOARD_FAILURE,
-} from "./types";
+import { GET_BOARD_SUCCESS } from "./types";
+import { FAILURE, PENDING } from "../errorsAndPending/types";
 
 export const getBoardPending = () => ({
-  type: GET_BOARD_PENDING,
+  type: PENDING,
 });
 
 export const getBoardSuccess = (payload) => ({
@@ -16,7 +13,7 @@ export const getBoardSuccess = (payload) => ({
 });
 
 export const getBoardFailure = (error) => ({
-  type: GET_BOARD_FAILURE,
+  type: FAILURE,
   error,
 });
 

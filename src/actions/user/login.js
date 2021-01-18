@@ -1,9 +1,10 @@
 import { http } from "../../helpers/axios";
 import { URL } from "../../helpers/constants";
-import { LOGIN_PENDING, LOGIN_SUCCESS, LOGIN_FAILURE } from "./types";
+import { LOGIN_SUCCESS } from "./types";
+import { FAILURE, PENDING } from "../errorsAndPending/types";
 
 export const loginPending = () => ({
-  type: LOGIN_PENDING,
+  type: PENDING,
 });
 
 export const loginSuccess = (payload) => ({
@@ -12,7 +13,7 @@ export const loginSuccess = (payload) => ({
 });
 
 export const loginFailure = (error) => ({
-  type: LOGIN_FAILURE,
+  type: FAILURE,
   error,
 });
 

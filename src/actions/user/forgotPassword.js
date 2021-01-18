@@ -1,13 +1,10 @@
 import { http } from "../../helpers/axios";
 import { URL } from "../../helpers/constants";
-import {
-  FORGOT_PASSWORD_PENDING,
-  FORGOT_PASSWORD_SUCCESS,
-  FORGOT_PASSWORD_FAILURE,
-} from "./types";
+import { FORGOT_PASSWORD_SUCCESS } from "./types";
+import { FAILURE, PENDING } from "../errorsAndPending/types";
 
 export const forgotPasswordPending = () => ({
-  type: FORGOT_PASSWORD_PENDING,
+  type: PENDING,
 });
 
 export const forgotPasswordSuccess = (payload) => ({
@@ -16,7 +13,7 @@ export const forgotPasswordSuccess = (payload) => ({
 });
 
 export const forgotPasswordFailure = (error) => ({
-  type: FORGOT_PASSWORD_FAILURE,
+  type: FAILURE,
   error,
 });
 

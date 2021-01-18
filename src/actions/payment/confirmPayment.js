@@ -1,11 +1,8 @@
-import {
-  CONFIRM_PAYMENT_PENDING,
-  CONFIRM_PAYMENT_SUCCESS,
-  CONFIRM_PAYMENT_FAILURE,
-} from "./types";
+import { CONFIRM_PAYMENT_SUCCESS } from "./types";
+import { FAILURE, PENDING } from "../errorsAndPending/types";
 
 const confirmPaymentPending = () => ({
-  type: CONFIRM_PAYMENT_PENDING,
+  type: PENDING,
 });
 
 const confirmPaymentSuccess = (payload) => ({
@@ -14,7 +11,7 @@ const confirmPaymentSuccess = (payload) => ({
 });
 
 const confirmPaymentError = (error) => ({
-  type: CONFIRM_PAYMENT_FAILURE,
+  type: FAILURE,
   error,
 });
 
@@ -29,7 +26,9 @@ export const confirmPayment = (stripe, secretIntent, paymentId) => {
         if (response.error) {
           return dispatch(confirmPaymentError(response.error?.message));
         }
-        return dispatch(confirmPaymentSuccess("You payment was successfuly received"));
+        return dispatch(
+          confirmPaymentSuccess("You payment was successfuly received")
+        );
       })
       .catch((error) => dispatch(confirmPaymentError(error)));
   };

@@ -1,9 +1,10 @@
 import { http } from "../../helpers/axios";
 import { URL } from "../../helpers/constants";
-import { WAIT_LIST_PENDING, WAIT_LIST_SUCCESS, WAIT_LIST_FAILURE } from "./types";
+import { WAIT_LIST_SUCCESS } from "./types";
+import { FAILURE, PENDING } from "../errorsAndPending/types";
 
 export const waitingListPending = () => ({
-  type: WAIT_LIST_PENDING,
+  type: PENDING,
 });
 
 export const waitingListSuccess = (payload) => ({
@@ -12,7 +13,7 @@ export const waitingListSuccess = (payload) => ({
 });
 
 export const waitingListFailure = (error) => ({
-  type: WAIT_LIST_FAILURE,
+  type: FAILURE,
   error,
 });
 
@@ -24,7 +25,7 @@ export const waitingList = () => {
       .then((response) =>
         dispatch(
           waitingListSuccess({
-            data: response?.data.wait_lists
+            data: response?.data.wait_lists,
           })
         )
       )
