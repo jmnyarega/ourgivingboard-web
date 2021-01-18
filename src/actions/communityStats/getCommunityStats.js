@@ -22,15 +22,13 @@ export const communityStats = () => {
     http()
       .get(`${URL}/fundboards/stats`)
       .then((response) =>
-        dispatch(
-          communityStatsSuccess({
-            data: response?.data.fundboards
-          })
-        )
+        dispatch(communityStatsSuccess(response?.data.fundboards))
       )
       .catch((error) => {
         if (error.response) {
-          return dispatch(communityStatsFailure(error.response?.data.fundboads));
+          return dispatch(
+            communityStatsFailure(error.response?.data.fundboads)
+          );
         } else {
           return dispatch(communityStatsFailure("something went wrong"));
         }

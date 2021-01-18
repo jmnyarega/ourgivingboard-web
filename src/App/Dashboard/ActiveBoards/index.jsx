@@ -1,9 +1,24 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Table } from "antd";
 
 import { activeBoards as activeBoardsAction } from "../../../actions/activeBoards/getActiveBoards";
 import Dashboard from "../index";
-import Loader from "../../../Assets/25.gif";
+
+const columns = [
+  {
+    title: "Fundboard",
+    dataIndex: "gift_in",
+    key: "gift_in",
+    render: (item) => `$${parseInt(item)} Fundboard`,
+  },
+  {
+    title: "Potential",
+    dataIndex: "full_potential",
+    key: "full_potential",
+    render: (value) => parseInt(value),
+  },
+];
 
 const ActiveBoards = () => {
   const { activeBoards } = useSelector((state) => state?.activeBoards);
@@ -17,26 +32,11 @@ const ActiveBoards = () => {
     <Dashboard>
       <div className="gift">
         <h3 className="element-header gift-title">Active Boards</h3>
-        <table className="gift-container">
-          <thead>
-            <tr>
-              <th>Fundboard</th>
-              <th>Potential</th>
-            </tr>
-          </thead>
-          <tbody>
-            {activeBoards ? (
-              activeBoards?.data?.map((item) => (
-                <tr key={item}>
-                  <td>${parseInt(item.gift_in)} Fundboard</td>
-                  <td>${parseInt(item.full_potential)}</td>
-                </tr>
-              ))
-            ) : (
-              <img src={Loader} />
-            )}
-          </tbody>
-        </table>
+        <Table
+          dataSource={activeBoards?.data}
+          pagination={{ pageSize: 10 }}
+          columns={columns}
+        />
       </div>
     </Dashboard>
   );

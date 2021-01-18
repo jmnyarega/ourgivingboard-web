@@ -1,10 +1,29 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Table } from "antd";
 
 import { communityStats as communityStatsAction } from "../../../actions/communityStats/getCommunityStats";
 import Dashboard from "../index";
-import Loader from "../../../Assets/25.gif";
 
+const columns = [
+  {
+    title: "Fundboard",
+    dataIndex: "full_potential",
+    key: "fundboad",
+    render: (item) => `$${parseInt(item)} Fundboard`,
+  },
+  {
+    title: "Stats",
+    dataIndex: "status",
+    key: "status",
+    render: () => "Live",
+  },
+  {
+    title: "Gifts Needed",
+    dataIndex: "gifts_needed",
+    key: "gifts_needed",
+  },
+];
 const CommunityStats = () => {
   const { communityStats } = useSelector((state) => state?.communityStats);
 
@@ -17,28 +36,11 @@ const CommunityStats = () => {
     <Dashboard>
       <div className="gift">
         <h3 className="element-header gift-title">Community Stats</h3>
-        <table className="gift-container">
-          <thead>
-            <tr>
-              <th>Fundboard</th>
-              <th>Status</th>
-              <th>Gifts Needed</th>
-            </tr>
-          </thead>
-          <tbody>
-            {communityStats ? (
-              communityStats?.data?.map((item) => (
-                <tr key={item}>
-                  <td>${parseInt(item.full_potential)} Fundboard</td>
-                  <td>Live</td>
-                  <td>{parseInt(item.gifts_needed)}</td>
-                </tr>
-              ))
-            ) : (
-              <img src={Loader} />
-            )}
-          </tbody>
-        </table>
+        <Table
+          dataSource={communityStats}
+          columns={columns}
+          pagination={{ pageSize: 10 }}
+        />
       </div>
     </Dashboard>
   );

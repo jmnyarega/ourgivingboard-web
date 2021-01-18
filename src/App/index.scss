@@ -24,24 +24,13 @@
         @include breakpoint-down(medium) {
             flex: 1 1 30%;
         }
-        i {
-            display: inline-block;
-            cursor: pointer;
-        }
         &-user {
-            color:$lightPurple;
-            padding: 1rem;
-            border-radius: 50%;
-            background-color: white;
+            cursor: pointer;
             margin-left: 1rem;
         }
         &-bell {
-            color:$lightPurple;
-            padding: 1rem;
-            border-radius: 50%;
-            background-color: white;
             margin-right: 1rem;
+            cursor: pointer;
         }
-
     }
 }

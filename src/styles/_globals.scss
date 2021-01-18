@@ -68,6 +68,10 @@ a:hover {
       $space: 1rem;
       @include gap($space, 0, $space, 0, "flex-row-gap-1", $space);
     }
+    &-0-5 {
+      $space: 0.5rem;
+      @include gap($space, 0, $space, 0, "flex-row-gap-1", $space);
+    }
   }
 
   &-column-gap {

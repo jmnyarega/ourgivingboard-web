@@ -1,9 +1,35 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Table } from "antd";
 
 import { waitingList as waitingListAction } from "../../../actions/waitingList/getWaitingList";
 import Dashboard from "../index";
-import Loader from "../../../Assets/25.gif";
+
+const columns = [
+  {
+    title: "Fundboard",
+    dataIndex: "gift_in",
+    key: "gift_in",
+    render: (value) => `$${parseInt(value)} Fundboard`,
+  },
+  {
+    title: "Position",
+    dataIndex: "position",
+    key: "position",
+    render: (position) => {
+      if (position < 0) return "Promoted";
+      if (position === 0) return "position";
+      if (position === 1) return "Next";
+      if (position > 1) return "position";
+    },
+  },
+  {
+    title: "Potential",
+    dataIndex: "full_potential",
+    key: "full_potential",
+    render: (value) => `$${parseInt(value)}`,
+  },
+];
 
 const WaitingList = () => {
   const { waitingList } = useSelector((state) => state?.waitingList);
@@ -16,31 +42,11 @@ const WaitingList = () => {
     <Dashboard>
       <div className="gift">
         <h3 className="element-header gift-title">Waiting List</h3>
-        <table className="gift-container">
-          <thead>
-            <tr>
-              <th>Fundboard</th>
-              <th>Position</th>
-              <th>Potential</th>
-            </tr>
-          </thead>
-          <tbody>
-            {waitingList ? (
-              waitingList?.data?.map((item) => (
-                <tr key={item}>
-                  <td>${parseInt(item.gift_in)} Fundboard</td>
-                  { item.position < 0 && (<td>Promoted</td>) }
-                  { item.position === 0 && (<td>Active</td>) }
-                  { item.position === 1 && (<td>Next</td>) }
-                  { item.position > 1 && (<td>{item.position}</td>) }
-                  <td>${parseInt(item.full_potential)}</td>
-                </tr>
-              ))
-            ) : (
-              <img src={Loader} />
-            )}
-          </tbody>
-        </table>
+        <Table
+          dataSource={waitingList?.data}
+          columns={columns}
+          pagination={{ pageSize: 10 }}
+        />
       </div>
     </Dashboard>
   );
